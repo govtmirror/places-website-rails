@@ -150,10 +150,16 @@ exit
 
 ### Create the databases
 
-To create the three databases - for development, testing and production - run:
+To create the two databases - for development, testing run:
 
 ```
 bundle exec rake db:create
+```
+
+To create the **three** databases - for development, testing, and production run:
+
+```
+RAILS_ENV=production rake db:create
 ```
 
 ### PostgreSQL Btree-gist Extension
