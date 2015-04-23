@@ -1,7 +1,7 @@
 # Installation
 
 These instructions are designed for setting up The Rails Port for development and testing.
-If you want to deploy the software for your own project, then see the notes at the end.
+If you want to deploy the software for your own poproject, then see the notes at the end.
 
 You can install the software directly on your machine, which is the traditional and probably best-bupported approach. However, there is an alternative which may be easier: Vagrant. This installs the software into a virtual machine, which makes it easier to get a consistent development environment and may avoid installation difficulties. For Vagrant instructions, see [VAGRANT.md](VAGRANT.md).
 
@@ -94,13 +94,13 @@ Note that OS X does not have a /home directory by default, so if you are using t
 The repository is reasonably large (~150MB) and it's unlikely that you need the full history. If you are happy to wait for it all to download, run:
 
 ```
-git clone https://github.com/openstreetmap/openstreetmap-website.git
+git clone https://github.com/nationalparkservice/places-website-rails.git
 ```
 
 To clone only the most recent version (~23MB), instead use a 'shallow clone':
 
 ```
-git clone --depth=1 https://github.com/openstreetmap/openstreetmap-website.git
+git clone --depth=1 https://github.com/nationalparkservice/places-website-rails.git
 ```
 
 If you want to add in the full history later on, perhaps to run `git blame` or `git log`, run `git fetch --depth=1000000`
