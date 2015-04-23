@@ -148,6 +148,14 @@ createuser -s <username>
 exit
 ```
 
+There is a script for this in `./config` to use it, run
+
+```
+cd ./config
+sudo -u postgres ./install_extentions.sh makeUsers
+cd ..
+```
+
 ### Create the databases
 
 #### Developement
@@ -179,6 +187,8 @@ For PostgreSQL >= 9.1:
 psql -d openstreetmap -c "CREATE EXTENSION btree_gist"
 ```
 
+**If you're using the script below, this is not required**
+
 ### PostgreSQL Functions
 
 We need to install special functions into the postgresql databases, and these are provided by a library that needs compiling first.
@@ -195,6 +205,14 @@ Then we create the functions within each database. We're using `pwd` to substitu
 psql -d openstreetmap -c "CREATE FUNCTION maptile_for_point(int8, int8, int4) RETURNS int4 AS '`pwd`/db/functions/libpgosm', 'maptile_for_point' LANGUAGE C STRICT"
 psql -d openstreetmap -c "CREATE FUNCTION tile_for_point(int4, int4) RETURNS int8 AS '`pwd`/db/functions/libpgosm', 'tile_for_point' LANGUAGE C STRICT"
 psql -d openstreetmap -c "CREATE FUNCTION xid_to_int4(xid) RETURNS int4 AS '`pwd`/db/functions/libpgosm', 'xid_to_int4' LANGUAGE C STRICT"
+```
+
+There is a script for this in `./config` to use it, run
+
+```
+cd ./config
+sudo -u postgres ./install_extentions.sh createDbExtentions
+cd ..
 ```
 
 ### Database structure
