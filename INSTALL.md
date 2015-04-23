@@ -150,12 +150,13 @@ exit
 
 ### Create the databases
 
-To create the two databases - for development, testing run:
+#### Developement
+To create the **two** databases - for development, testing run:
 
 ```
 bundle exec rake db:create
 ```
-
+#### Production
 To create the **three** databases - for development, testing, and production run:
 
 ```
