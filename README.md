@@ -1,7 +1,7 @@
 # "The Rails Port"
 
 This is The Rails Port, the [Ruby on Rails](http://rubyonrails.org/)
-application that powers the [OpenStreetMap](http://www.openstreetmap.org) website and API.
+application that powers the [Places](http://www.nps.gov/npmap/tools/places/) website and API.
 The software is also known as "places-website-rails".
 
 This repository consists of:
