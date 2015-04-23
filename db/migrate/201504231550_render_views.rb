@@ -40,7 +40,7 @@ class RenderViews < ActiveRecord::Migration
           FROM (
             SELECT "current_way_tags"."k", "current_way_tags"."v"
             FROM "current_way_tags"
-            WHERE "current_way_tags"."way_id" = "current_ways"."id"
+            WHERE "current_way_tags"."id" = "current_ways"."id"
           ) "result"
         ) AS "tags",
         ( SELECT json_agg("nodes_in_way")
