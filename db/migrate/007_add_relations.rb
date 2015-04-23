@@ -22,8 +22,8 @@ class AddRelations < ActiveRecord::Migration
     # add_index "current_relation_members", ["id"], :name => "current_relation_members_id_idx"
     create_table "current_relation_tags", :id => false do |t|
       t.column "id", :bigint, :null => false
-      t.column "k",  :text, :default => "", :null => false
-      t.column "v",  :text, :default => "", :null => false
+      t.column "k",  :string, :default => "", :null => false
+      t.column "v",  :string, :default => "", :null => false
     end
 
     add_index "current_relation_tags", ["id"], :name => "current_relation_tags_id_idx"
@@ -49,8 +49,8 @@ class AddRelations < ActiveRecord::Migration
 
     create_table "relation_tags", :id => false do |t|
       t.column "id",      :bigint, :default => 0, :null => false
-      t.column "k",       :text, :null => false, :default => ""
-      t.column "v",       :text, :null => false, :default => ""
+      t.column "k",       :string, :null => false, :default => ""
+      t.column "v",       :string, :null => false, :default => ""
       t.column "version", :bigint, :null => false
     end
 
