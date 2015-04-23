@@ -1,12 +1,12 @@
 usernames=`grep "username:" database.yml | perl -p -e 's|.*username: (.+)|\1|g'`
 databases=`grep "database:" database.yml | perl -p -e 's|.*database: (.+)|\1|g'`
 
-if [ $1 = 'makeUsers']; then
+if [ $1 = 'makeUsers' ]; then
   for user in $usernames; do
     createuser -s $user
     alter user $user with password '$user';
   done
-elif [ $1 = 'createDbExtentions']; then
+elif [ $1 = 'createDbExtentions' ]; then
   for database in $databases; do
     psql -d $database -c "CREATE EXTENSION btree_gist"
     psql -d $database -c "CREATE FUNCTION maptile_for_point(int8, int8, int4) RETURNS int4 AS '`pwd`/../db/functions/libpgosm', 'maptile_for_point' LANGUAGE C STRICT"
