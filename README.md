@@ -29,7 +29,7 @@ a copy of which can be found in the [LICENSE](LICENSE) file.
 The Rails Port is a Ruby on Rails application that uses PostgreSQL as its database, and has a large
 number of dependencies for installation. For full details please see [INSTALL.md](INSTALL.md)
 
-## Cloning the repository
+# Cloning the repository
 
 The repository is reasonably large (~150MB) and it's unlikely that you need the full history. If you are happy to wait for it all to download, run:
 
