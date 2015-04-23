@@ -41,8 +41,8 @@ class CreateOsmDb < ActiveRecord::Migration
 
     create_table "current_way_tags", :id => false do |t|
       t.column "id", :bigint
-      t.column "k",  :string, :default => "", :null => false
-      t.column "v",  :string, :default => "", :null => false
+      t.column "k",  :text, :default => "", :null => false
+      t.column "v",  :text, :default => "", :null => false
     end
 
     add_index "current_way_tags", ["id"], :name => "current_way_tags_id_idx"
@@ -197,8 +197,8 @@ class CreateOsmDb < ActiveRecord::Migration
 
     create_table "way_tags", :id => false do |t|
       t.column "id",      :bigint, :default => 0, :null => false
-      t.column "k",       :string
-      t.column "v",       :string
+      t.column "k",       :text
+      t.column "v",       :text
       t.column "version", :bigint
     end
 
