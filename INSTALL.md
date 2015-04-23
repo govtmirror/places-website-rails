@@ -172,6 +172,7 @@ RAILS_ENV=production rake db:create
 ```
 
 ### PostgreSQL Btree-gist Extension
+**If you're using the script below, this is not required**
 
 We need to load the btree-gist extension, which is needed for showing changesets on the history tab.
 
@@ -186,8 +187,6 @@ For PostgreSQL >= 9.1:
 ```
 psql -d openstreetmap -c "CREATE EXTENSION btree_gist"
 ```
-
-**If you're using the script below, this is not required**
 
 ### PostgreSQL Functions
 
