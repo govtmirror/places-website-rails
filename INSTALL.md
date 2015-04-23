@@ -221,6 +221,7 @@ To create all the tables, indexes and constraints, run:
 
 ```
 bundle exec rake db:migrate
+rake db:migrate RAILS_ENV=test
 ```
 
 ## Running the tests
