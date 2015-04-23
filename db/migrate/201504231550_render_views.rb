@@ -16,7 +16,7 @@ class RenderViews < ActiveRecord::Migration
           FROM (
             SELECT "current_node_tags"."k", "current_node_tags"."v"
             FROM "current_node_tags"
-            WHERE "current_node_tags"."node_id" = "current_nodes"."id"
+            WHERE "current_node_tags"."id" = "current_nodes"."id"
           ) "result"
         ) AS "tags",
         "current_nodes"."version",
@@ -45,9 +45,9 @@ class RenderViews < ActiveRecord::Migration
         ) AS "tags",
         ( SELECT json_agg("nodes_in_way")
           FROM (
-            SELECT "current_way_nodes"."node_id", "current_way_nodes"."sequence_id"
+            SELECT "current_way_nodes"."id", "current_way_nodes"."sequence_id"
             FROM "current_way_nodes"
-            WHERE "current_way_nodes"."way_id" = "current_ways"."id"
+            WHERE "current_way_nodes"."id" = "current_ways"."id"
             ORDER BY "current_way_nodes"."sequence_id"
           ) "nodes_in_way"
         ) AS "nodes"
@@ -70,7 +70,7 @@ class RenderViews < ActiveRecord::Migration
           FROM (
             SELECT "current_relation_tags"."k", "current_relation_tags"."v"
             FROM "current_relation_tags"
-            WHERE "current_relation_tags"."relation_id" = "current_relations"."id"
+            WHERE "current_relation_tags"."id" = "current_relations"."id"
           ) "result"
         ) AS "tags",
         ( SELECT json_agg("members_in_relation")
@@ -81,7 +81,7 @@ class RenderViews < ActiveRecord::Migration
               "current_relation_members"."member_role",
               "current_relation_members"."sequence_id"
             FROM "current_relation_members"
-            WHERE "current_relation_members"."relation_id" = "current_relations"."id"
+            WHERE "current_relation_members"."id" = "current_relations"."id"
             ORDER BY "current_relation_members"."sequence_id"
           ) "members_in_relation"
         ) AS "members"
