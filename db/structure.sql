@@ -222,8 +222,8 @@ ALTER SEQUENCE changeset_comments_id_seq OWNED BY changeset_comments.id;
 
 CREATE TABLE changeset_tags (
     changeset_id bigint NOT NULL,
-    k character varying DEFAULT ''::character varying NOT NULL,
-    v character varying DEFAULT ''::character varying NOT NULL
+    k text DEFAULT ''::text NOT NULL,
+    v text DEFAULT ''::text NOT NULL
 );
 
 
@@ -323,8 +323,8 @@ ALTER SEQUENCE client_applications_id_seq OWNED BY client_applications.id;
 
 CREATE TABLE current_node_tags (
     node_id bigint NOT NULL,
-    k character varying DEFAULT ''::character varying NOT NULL,
-    v character varying DEFAULT ''::character varying NOT NULL
+    k text DEFAULT ''::text NOT NULL,
+    v text DEFAULT ''::text NOT NULL
 );
 
 
@@ -382,8 +382,8 @@ CREATE TABLE current_relation_members (
 
 CREATE TABLE current_relation_tags (
     relation_id bigint NOT NULL,
-    k character varying DEFAULT ''::character varying NOT NULL,
-    v character varying DEFAULT ''::character varying NOT NULL
+    k text DEFAULT ''::text NOT NULL,
+    v text DEFAULT ''::text NOT NULL
 );
 
 
@@ -436,8 +436,8 @@ CREATE TABLE current_way_nodes (
 
 CREATE TABLE current_way_tags (
     way_id bigint NOT NULL,
-    k character varying DEFAULT ''::character varying NOT NULL,
-    v character varying DEFAULT ''::character varying NOT NULL
+    k text DEFAULT ''::text NOT NULL,
+    v text DEFAULT ''::text NOT NULL
 );
 
 
@@ -714,8 +714,8 @@ ALTER SEQUENCE messages_id_seq OWNED BY messages.id;
 CREATE TABLE node_tags (
     node_id bigint NOT NULL,
     version bigint NOT NULL,
-    k character varying DEFAULT ''::character varying NOT NULL,
-    v character varying DEFAULT ''::character varying NOT NULL
+    k text DEFAULT ''::text NOT NULL,
+    v text DEFAULT ''::text NOT NULL
 );
 
 
@@ -940,8 +940,8 @@ CREATE TABLE relation_members (
 
 CREATE TABLE relation_tags (
     relation_id bigint DEFAULT 0 NOT NULL,
-    k character varying DEFAULT ''::character varying NOT NULL,
-    v character varying DEFAULT ''::character varying NOT NULL,
+    k text DEFAULT ''::text NOT NULL,
+    v text DEFAULT ''::text NOT NULL,
     version bigint NOT NULL
 );
 
@@ -1158,8 +1158,8 @@ CREATE TABLE way_nodes (
 
 CREATE TABLE way_tags (
     way_id bigint DEFAULT 0 NOT NULL,
-    k character varying NOT NULL,
-    v character varying NOT NULL,
+    k text NOT NULL,
+    v text NOT NULL,
     version bigint NOT NULL
 );
 
@@ -2547,6 +2547,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150110152606');
 INSERT INTO schema_migrations (version) VALUES ('20150111192335');
 
 INSERT INTO schema_migrations (version) VALUES ('20150222101847');
+
+INSERT INTO schema_migrations (version) VALUES ('201504231252');
 
 INSERT INTO schema_migrations (version) VALUES ('21');
 

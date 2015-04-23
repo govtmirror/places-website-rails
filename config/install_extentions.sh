@@ -4,7 +4,7 @@ databases=`grep "database:" database.yml | perl -p -e 's|.*database: (.+)|\1|g'`
 if [ $1 = 'makeUsers' ]; then
   for user in $usernames; do
     createuser -s $user
-    alter user $user with password '$user';
+    psql -c "alter user $user with password '$user'";
   done
 elif [ $1 = 'createDbExtentions' ]; then
   for database in $databases; do
