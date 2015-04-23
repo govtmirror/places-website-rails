@@ -29,6 +29,22 @@ a copy of which can be found in the [LICENSE](LICENSE) file.
 The Rails Port is a Ruby on Rails application that uses PostgreSQL as its database, and has a large
 number of dependencies for installation. For full details please see [INSTALL.md](INSTALL.md)
 
+## Cloning the repository
+
+The repository is reasonably large (~150MB) and it's unlikely that you need the full history. If you are happy to wait for it all to download, run:
+
+```
+git clone https://github.com/openstreetmap/openstreetmap-website.git
+```
+
+To clone only the most recent version (~23MB), instead use a 'shallow clone':
+
+```
+git clone --depth=1 https://github.com/openstreetmap/openstreetmap-website.git
+```
+
+If you want to add in the full history later on, perhaps to run `git blame` or `git log`, run `git fetch --depth=1000000`
+
 # Development
 
 We're always keen to have more developers! Pull requests are very welcome.
