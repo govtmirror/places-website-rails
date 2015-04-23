@@ -1,11 +1,8 @@
 # "The Rails Port"
 
-[![Build Status](https://travis-ci.org/openstreetmap/openstreetmap-website.svg?branch=master)](https://travis-ci.org/openstreetmap/openstreetmap-website)
-[![Coverage Status](https://coveralls.io/repos/openstreetmap/openstreetmap-website/badge.svg?branch=master)](https://coveralls.io/r/openstreetmap/openstreetmap-website?branch=master)
-
 This is The Rails Port, the [Ruby on Rails](http://rubyonrails.org/)
 application that powers the [OpenStreetMap](http://www.openstreetmap.org) website and API.
-The software is also known as "openstreetmap-website".
+The software is also known as "places-website-rails".
 
 This repository consists of:
 
@@ -34,13 +31,13 @@ number of dependencies for installation. For full details please see [INSTALL.md
 The repository is reasonably large (~150MB) and it's unlikely that you need the full history. If you are happy to wait for it all to download, run:
 
 ```
-git clone https://github.com/openstreetmap/openstreetmap-website.git
+git clone https://github.com/nationalparkservice/places-website-rails.git
 ```
 
 To clone only the most recent version (~23MB), instead use a 'shallow clone':
 
 ```
-git clone --depth=1 https://github.com/openstreetmap/openstreetmap-website.git
+git clone --depth=1 https://github.com/nationalparkservice/places-website-rails.git
 ```
 
 If you want to add in the full history later on, perhaps to run `git blame` or `git log`, run `git fetch --depth=1000000`
