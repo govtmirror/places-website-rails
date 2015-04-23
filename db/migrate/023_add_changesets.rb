@@ -17,8 +17,8 @@ class AddChangesets < ActiveRecord::Migration
 
     create_table "changeset_tags", :id => false do |t|
       t.column "id", :bigint, :null => false
-      t.column "k",  :string, :default => "", :null => false
-      t.column "v",  :string, :default => "", :null => false
+      t.column "k",  :text, :default => "", :null => false
+      t.column "v",  :text, :default => "", :null => false
     end
 
     add_index "changeset_tags", ["id"], :name => "changeset_tags_id_idx"
