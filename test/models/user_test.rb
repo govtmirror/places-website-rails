@@ -60,7 +60,7 @@ class UserTest < ActiveSupport::TestCase
     bad.each do |name|
       user = users(:normal_user)
       user.email = name
-      assert user.invalid?(:save), "#{name} is valid when it shouldn't be"
+      # assert user.invalid?(:save), "#{name} is valid when it shouldn't be" # We no longer validate emails
     end
   end
 
