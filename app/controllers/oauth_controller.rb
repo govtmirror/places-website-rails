@@ -8,37 +8,24 @@ class OauthController < ApplicationController
   def authorize
     foo = params["oauth_callback"] + "?oauth_token=" + params["oauth_token"] + "&addUser=http://localhost:3003/oauth/add_active_directory_user"
     foo = URI.escape(foo, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
-    puts "foo time"
-    puts foo
     redirect_to "https://" + "insidemaps.nps.gov" + "/account/logon/" + "?ReturnUrl=" + foo
   end
 
   def access_token
 
-    puts "*************************************************************1"
     auths = ActionController::HttpAuthentication::Digest::decode_credentials(request.headers["HTTP_AUTHORIZATION"])
-    puts auths
-    puts "*************************************************************2"
     @oauth_token = OauthToken.where("type = ? AND token = ? AND secret = ? AND invalidated_at IS NULL", "RequestToken", auths["oauth_token"], auths["request_token_secret"]).first
     @user = User.find(@oauth_token.user_id)
     if @oauth_token
-    puts "*************************************************************3"
-    # TODO use the application they signed up with
-    # @access_token=AccessToken.create(:user => @user, :client_application => ClientApplication.find(@oauth_token.client_application_id))
     @access_token=AccessToken.create(:user => @user, :client_application => @oauth_token.client_application)
     @oauth_token.client_application.permissions.each do |pref|
-      puts "1234567890"
-      puts pref
-      puts @oauth_token.client_application[pref]
       if @oauth_token.client_application[pref]
         @access_token.update_attribute(pref, true)
       else
         @access_token.update_attribute(pref, false)
       end
     end
-    puts "*************************************************************4"
       @oauth_token.update_attribute(:invalidated_at, Time.now.getutc)
-    puts "*************************************************************5"
       render text: "oauth_token=" + @access_token.token.to_s + "&oauth_token_secret=" + @access_token.secret.to_s + "&username=" + @user.display_name + "&userId=" + @user.id.to_s
     else
       render text: "Access Denied", status: :unauthorized
@@ -48,12 +35,10 @@ class OauthController < ApplicationController
   def add_active_directory_user
     params.merge! JSON.parse(request.body.string)
     query = params["query"]
-    puts params
     if query["addUser"]
       @user = User.find_by(:email => params["userId"])
       unless @user
         # TODO: If username already exists but with a different userId (stored in email) add a number at the end
-        puts "SUPER YAY"
         @user = User.new(
           :email => params["userId"],
           :email_confirmation => params[:email],
@@ -69,14 +54,11 @@ class OauthController < ApplicationController
           :image_file_name => "http://www.nps.gov/npmap/tools/assets/img/places-icon.png"
         )
         if @user.invalid?
-          puts "INVALID"
           raise ActionController::MethodNotAllowed.new
         else
-          puts "Saving"
           @user.save
         end
       end
-      puts "YAY"
       @token = OauthToken.find_by(token: query["oauth_token"])
       @token.update_attribute(:user_id, @user.id)
       @token.update_attribute(:authorized_at, Time.now.getutc)
