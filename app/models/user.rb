@@ -53,8 +53,8 @@ class User < ActiveRecord::Base
   validates :preferred_editor, :inclusion => Editors::ALL_EDITORS, :allow_nil => true
   validates :image, :attachment_content_type => { :content_type => %r{\Aimage/.*\Z} }
 
-  validates_email_format_of :email, :if => proc { |u| u.email_changed? }
-  validates_email_format_of :new_email, :allow_blank => true, :if => proc { |u| u.new_email_changed? }
+  # validates_email_format_of :email, :if => proc { |u| u.email_changed? }
+  # validates_email_format_of :new_email, :allow_blank => true, :if => proc { |u| u.new_email_changed? }
 
   after_initialize :set_defaults
   before_save :encrypt_password
