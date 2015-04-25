@@ -274,6 +274,7 @@ OpenStreetMap::Application.routes.draw do
   end
   match "/oauth/revoke" => "oauth#revoke", :via => [:get, :post]
   match "/oauth/authorize" => "oauth#authorize", :via => [:get, :post], :as => :authorize
+  match "/oauth/add_active_directory_user" => "oauth#add_active_directory_user", :via => [:post], :as => :add_active_directory_user
   match "/oauth/token" => "oauth#token", :via => :get, :as => :token
   match "/oauth/request_token" => "oauth#request_token", :via => [:get, :post], :as => :request_token
   match "/oauth/access_token" => "oauth#access_token", :via => [:get, :post], :as => :access_token
