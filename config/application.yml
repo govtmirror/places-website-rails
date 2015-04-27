@@ -1,6 +1,6 @@
 defaults: &defaults
   # The server URL
-  server_url: "10.147.153.193"
+server_url: "10.147.153.193:8000"
   # The generator
   generator: "Places server"
   copyright_owner: "Public Domain"
