@@ -4,7 +4,5 @@ A good guide on how this was set up is [here](https://gorails.com/deploy/ubuntu/
 It should be as easy as running the command:
 `cap production deploy`
 
-But you will also need the production secret key, right now you'll need to contact jimmyrocks for it. 
-
-Once you find it, you can run the command:
-`export SECRET_KEY_BASE="KEY GOES HERE"`
+I haven't figured out a good way to do the secret key stuff, so for now.. after you install in, you need to run this command:
+`sudo rm /var/www/places/current/config/secrets.yml && sudo ln -s /home/deploy/secrets.yml /var/www/places/current/config/secrets.yml`
