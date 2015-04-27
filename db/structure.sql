@@ -126,7 +126,7 @@ CREATE TYPE user_status_enum AS ENUM (
 
 CREATE FUNCTION maptile_for_point(bigint, bigint, integer) RETURNS integer
     LANGUAGE c STRICT
-    AS '/home/jim/dev/places-website-rails/config/../db/functions/libpgosm', 'maptile_for_point';
+    AS '/home/jmcandrew/dev/places-website-rails/config/../db/functions/libpgosm', 'maptile_for_point';
 
 
 --
@@ -135,7 +135,7 @@ CREATE FUNCTION maptile_for_point(bigint, bigint, integer) RETURNS integer
 
 CREATE FUNCTION tile_for_point(integer, integer) RETURNS bigint
     LANGUAGE c STRICT
-    AS '/home/jim/dev/places-website-rails/config/../db/functions/libpgosm', 'tile_for_point';
+    AS '/home/jmcandrew/dev/places-website-rails/config/../db/functions/libpgosm', 'tile_for_point';
 
 
 --
@@ -144,7 +144,7 @@ CREATE FUNCTION tile_for_point(integer, integer) RETURNS bigint
 
 CREATE FUNCTION xid_to_int4(xid) RETURNS integer
     LANGUAGE c STRICT
-    AS '/home/jim/dev/places-website-rails/config/../db/functions/libpgosm', 'xid_to_int4';
+    AS '/home/jmcandrew/dev/places-website-rails/config/../db/functions/libpgosm', 'xid_to_int4';
 
 
 SET default_tablespace = '';
@@ -222,8 +222,8 @@ ALTER SEQUENCE changeset_comments_id_seq OWNED BY changeset_comments.id;
 
 CREATE TABLE changeset_tags (
     changeset_id bigint NOT NULL,
-    k text DEFAULT ''::text NOT NULL,
-    v text DEFAULT ''::text NOT NULL
+    k text DEFAULT ''::character varying NOT NULL,
+    v text DEFAULT ''::character varying NOT NULL
 );
 
 
@@ -323,8 +323,8 @@ ALTER SEQUENCE client_applications_id_seq OWNED BY client_applications.id;
 
 CREATE TABLE current_node_tags (
     node_id bigint NOT NULL,
-    k text DEFAULT ''::text NOT NULL,
-    v text DEFAULT ''::text NOT NULL
+    k text DEFAULT ''::character varying NOT NULL,
+    v text DEFAULT ''::character varying NOT NULL
 );
 
 
@@ -382,8 +382,8 @@ CREATE TABLE current_relation_members (
 
 CREATE TABLE current_relation_tags (
     relation_id bigint NOT NULL,
-    k text DEFAULT ''::text NOT NULL,
-    v text DEFAULT ''::text NOT NULL
+    k text DEFAULT ''::character varying NOT NULL,
+    v text DEFAULT ''::character varying NOT NULL
 );
 
 
@@ -436,8 +436,8 @@ CREATE TABLE current_way_nodes (
 
 CREATE TABLE current_way_tags (
     way_id bigint NOT NULL,
-    k text DEFAULT ''::text NOT NULL,
-    v text DEFAULT ''::text NOT NULL
+    k text DEFAULT ''::character varying NOT NULL,
+    v text DEFAULT ''::character varying NOT NULL
 );
 
 
@@ -714,8 +714,8 @@ ALTER SEQUENCE messages_id_seq OWNED BY messages.id;
 CREATE TABLE node_tags (
     node_id bigint NOT NULL,
     version bigint NOT NULL,
-    k text DEFAULT ''::text NOT NULL,
-    v text DEFAULT ''::text NOT NULL
+    k text DEFAULT ''::character varying NOT NULL,
+    v text DEFAULT ''::character varying NOT NULL
 );
 
 
@@ -887,6 +887,85 @@ ALTER SEQUENCE oauth_tokens_id_seq OWNED BY oauth_tokens.id;
 
 
 --
+-- Name: pgs_current_node; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW pgs_current_node AS
+ SELECT current_nodes.id,
+    current_nodes.latitude AS lat,
+    current_nodes.longitude AS lon,
+    current_nodes.changeset_id,
+    current_nodes.visible,
+    current_nodes."timestamp",
+    ( SELECT json_agg(result.*) AS json_agg
+           FROM ( SELECT current_node_tags.k,
+                    current_node_tags.v
+                   FROM current_node_tags
+                  WHERE (current_node_tags.node_id = current_nodes.id)) result) AS tags,
+    current_nodes.version,
+    ( SELECT changesets.user_id
+           FROM changesets
+          WHERE (changesets.id = current_nodes.changeset_id)) AS user_id
+   FROM current_nodes;
+
+
+--
+-- Name: pgs_current_relation; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW pgs_current_relation AS
+ SELECT current_relations.id,
+    current_relations.version,
+    current_relations.visible,
+    ( SELECT changesets.user_id
+           FROM changesets
+          WHERE (changesets.id = current_relations.changeset_id)) AS user_id,
+    current_relations."timestamp",
+    current_relations.changeset_id,
+    ( SELECT json_agg(result.*) AS json_agg
+           FROM ( SELECT current_relation_tags.k,
+                    current_relation_tags.v
+                   FROM current_relation_tags
+                  WHERE (current_relation_tags.relation_id = current_relations.id)) result) AS tags,
+    ( SELECT json_agg(members_in_relation.*) AS json_agg
+           FROM ( SELECT current_relation_members.member_id,
+                    current_relation_members.member_type,
+                    current_relation_members.member_role,
+                    current_relation_members.sequence_id
+                   FROM current_relation_members
+                  WHERE (current_relation_members.relation_id = current_relations.id)
+                  ORDER BY current_relation_members.sequence_id) members_in_relation) AS members
+   FROM current_relations;
+
+
+--
+-- Name: pgs_current_way; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW pgs_current_way AS
+ SELECT current_ways.id,
+    current_ways.version,
+    current_ways.visible,
+    ( SELECT changesets.user_id
+           FROM changesets
+          WHERE (changesets.id = current_ways.changeset_id)) AS user_id,
+    current_ways."timestamp",
+    current_ways.changeset_id,
+    ( SELECT json_agg(result.*) AS json_agg
+           FROM ( SELECT current_way_tags.k,
+                    current_way_tags.v
+                   FROM current_way_tags
+                  WHERE (current_way_tags.way_id = current_ways.id)) result) AS tags,
+    ( SELECT json_agg(nodes_in_way.*) AS json_agg
+           FROM ( SELECT current_way_nodes.way_id AS id,
+                    current_way_nodes.sequence_id
+                   FROM current_way_nodes
+                  WHERE (current_way_nodes.way_id = current_ways.id)
+                  ORDER BY current_way_nodes.sequence_id) nodes_in_way) AS nodes
+   FROM current_ways;
+
+
+--
 -- Name: redactions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -940,8 +1019,8 @@ CREATE TABLE relation_members (
 
 CREATE TABLE relation_tags (
     relation_id bigint DEFAULT 0 NOT NULL,
-    k text DEFAULT ''::text NOT NULL,
-    v text DEFAULT ''::text NOT NULL,
+    k text DEFAULT ''::character varying NOT NULL,
+    v text DEFAULT ''::character varying NOT NULL,
     version bigint NOT NULL
 );
 
@@ -2549,6 +2628,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150111192335');
 INSERT INTO schema_migrations (version) VALUES ('20150222101847');
 
 INSERT INTO schema_migrations (version) VALUES ('201504231252');
+
+INSERT INTO schema_migrations (version) VALUES ('201504231550');
 
 INSERT INTO schema_migrations (version) VALUES ('21');
 
