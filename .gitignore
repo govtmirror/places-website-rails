@@ -11,5 +11,4 @@ doc
 .ruby-gemset
 .ruby-version
 .idea
-./config/secrets.yml
-./config/secret.txt
+config/secret.txt
