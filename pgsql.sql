@@ -778,6 +778,21 @@ CREATE TABLE nps_render_log
 );
 -----------------------------------------------------------------------
 
+-- nps_change_log
+------------------------------
+-- Keeps track of changes to geometries so they can be removed from old maps
+CREATE TABLE public.nps_change_log
+(
+  osm_id bigint,
+  version integer,
+  member_type character(1),
+  way geometry,
+  rendered timestamp without time zone,
+  change_time timestamp without time zone
+);
+-----------------------------------------------------------------------
+
+
 -- #NPS# -----------------------------------------------------------------
 -- Rendering Views
 --------------------------------
@@ -1042,4 +1057,434 @@ FROM (
 ) "base"
 WHERE
   "base"."type" IS NOT NULL;
+
+
+----------------------------------------
+
+-- Function: public.o2p_render_element(bigint, character)
+
+-- DROP FUNCTION public.o2p_render_element(bigint, character);
+
+CREATE OR REPLACE FUNCTION public.o2p_render_element(bigint, character)
+  RETURNS boolean AS
+$BODY$
+  DECLARE
+    v_id ALIAS FOR $1;
+    v_member_type ALIAS FOR $2;
+    v_rel_id BIGINT;
+  BEGIN
+  
+  -- Add any information that will be deleting / changing
+  -- to the change log, which is used to keep the renderers synchronized
+    IF UPPER(v_member_type) = 'N' THEN
+    -- Nodes have different OSM_IDs than ways, so we do them separently
+      INSERT INTO nps_change_log (
+        SELECT
+          v_id AS "osm_id",
+          MIN("nps_rendered"."version") AS "version",
+          v_member_type AS "member_type",
+          ST_UNION("nps_rendered"."the_geom") AS "way",
+          MIN("nps_rendered"."rendered") AS "created",
+          NOW()::timestamp without time zone AS "change_time"
+        FROM (
+           SELECT
+             "osm_id",
+             "version",
+             "the_geom",
+             "rendered"
+           FROM
+             "nps_render_point") AS "nps_rendered"
+        WHERE
+          "osm_id" = v_id
+      );
+
+      DELETE FROM "nps_render_point" WHERE osm_id = v_id;
+      INSERT INTO "nps_render_point" (
+        SELECT
+          "osm_id" AS "osm_id",
+          "version" AS "version",
+          "name" AS "name",
+          "type" AS "type",
+          "nps_type" AS "nps_type",
+          "tags" AS "tags",
+          "created" AS "rendered",
+          "way" AS "the_geom",
+          "z_order" AS "z_order",
+          "unit_code" AS "unit_code"
+        FROM "nps_render_point_view"
+        WHERE "osm_id" = v_id
+      );
+    ELSE
+      -- Nodes have different OSM_IDs than ways, so we do them separently
+      -- relations also have different ids, but we make them negative so they can fit in the same namespace
+      INSERT INTO nps_change_log (
+      SELECT
+        v_id AS "osm_id",
+        MIN("nps_rendered"."version") AS "version",
+        v_member_type AS "member_type",
+        ST_UNION("nps_rendered"."the_geom") AS "way",
+        MIN("nps_rendered"."rendered") AS "created",
+        NOW()::timestamp without time zone AS "change_time"
+      FROM (
+         SELECT
+           "osm_id",
+           "version",
+           "the_geom",
+           "rendered"
+         FROM
+           "nps_render_polygon"
+         UNION ALL
+         SELECT
+           "osm_id",
+           "version",
+           "the_geom",
+           "rendered"
+         FROM
+           "nps_render_line") AS "nps_rendered"
+      WHERE
+        "osm_id" = v_id
+    );
+
+      DELETE FROM "nps_render_polygon" WHERE "osm_id" = v_id;
+      INSERT INTO "nps_render_polygon" (
+        SELECT
+          "osm_id" AS "osm_id",
+          "version" AS "version",
+          "name" AS "name",
+          "type" AS "type",
+          "nps_type" AS "nps_type",
+          "tags" AS "tags",
+          "created" AS "rendered",
+          "way" AS "the_geom",
+          "z_order" AS "z_order",
+          "unit_code" AS "unit_code"
+        FROM "nps_render_polygon_view"
+        WHERE "osm_id" = v_id
+      );
+
+      DELETE FROM "nps_render_line" WHERE osm_id = v_id;
+      INSERT INTO "nps_render_line" (
+        SELECT
+          "osm_id" AS "osm_id",
+          "version" AS "version",
+          "name" AS "name",
+          "type" AS "type",
+          "nps_type" AS "nps_type",
+          "tags" AS "tags",
+          "created" AS "rendered",
+          "way" AS "the_geom",
+          "z_order" AS "z_order",
+          "unit_code" AS "unit_code"
+        FROM "nps_render_line_view"
+        WHERE "osm_id" = v_id
+      );
+    END IF;
+
+    RETURN true;
+  END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
 --------------------------------
+-- #NPS#
+---------------------------
+-- Foreign Data
+---------------------------
+CREATE EXTENSION postgres_fdw;
+CREATE SERVER places_prod FOREIGN DATA WRAPPER postgres_fdw OPTIONS (host 'localhost', port '5432', dbname 'places_prod');
+CREATE USER MAPPING FOR PUBLIC SERVER places_prod OPTIONS (user 'places_prod', password 'places_prod');
+
+--DROP FOREIGN TABLE api_changesets;
+CREATE FOREIGN TABLE api_changesets (id bigint, closed_at timestamp without time zone) SERVER places_prod OPTIONS (table_name 'changesets');
+--DROP FOREIGN TABLE api_nodes;
+CREATE FOREIGN TABLE api_nodes (id bigint, visible boolean, version bigint, changeset bigint, "timestamp" timestamp without time zone, "user" text, uid bigint, lat double precision, lon double precision, tag JSON) SERVER places_prod OPTIONS (table_name 'api_current_nodes');
+--DROP FOREIGN TABLE api_ways;
+CREATE FOREIGN TABLE api_ways (id bigint, visible boolean, version bigint, changeset bigint, "timestamp" timestamp without time zone, "user" text, "uid" bigint, nd JSON, tag JSON)  SERVER places_prod OPTIONS (table_name 'api_current_ways');
+--DROP FOREIGN TABLE api_relations;
+CREATE FOREIGN TABLE api_relations (id bigint, visible boolean, version bigint, changeset bigint, "timestamp" timestamp without time zone, "user" text, "uid" bigint, member JSON, tag JSON) SERVER places_prod OPTIONS (table_name 'api_current_relations');
+--DROP FOREIGN TABLE api_users;
+CREATE FOREIGN TABLE api_users (email character varying (255), id bigint, display_name character varying (255)) SERVER places_prod OPTIONS (table_name 'users');
+
+--------------------------------
+-- #NPS# ------
+-----------------------
+-- Render Functions
+--DROP FUNCTION pgs_upsert_node(bigint, double precision, double precision, bigint, boolean, timestamp without time zone, json, bigint, bigint);
+CREATE OR REPLACE FUNCTION pgs_upsert_node(
+  bigint,
+  double precision,
+  double precision,
+  bigint,
+  boolean,
+  timestamp without time zone,
+  json,
+  bigint,
+  bigint
+) RETURNS boolean AS $pgs_upsert_node$
+  DECLARE
+    v_id ALIAS FOR $1;
+    v_lat ALIAS FOR $2;
+    v_lon ALIAS FOR $3;
+    v_changeset ALIAS FOR $4;
+    v_visible ALIAS FOR $5;
+    v_timestamp ALIAS FOR $6;
+    v_tags ALIAS FOR $7;
+    v_version ALIAS FOR $8;
+    v_userid ALIAS FOR $9;
+    v_X boolean;
+    BEGIN
+  -- Delete the current nodes and tags
+    DELETE from nodes where id = v_id;
+
+    IF v_visible THEN
+      INSERT INTO
+        nodes (
+          id,
+          version,
+          user_id,
+          tstamp,
+          changeset_id,
+          tags,
+          geom
+        ) VALUES (
+          v_id,
+          v_version,
+          v_userid,
+          v_timestamp,
+          v_changeset,
+          (select hstore(array_agg(k), array_agg(v)) from json_populate_recordset(null::new_hstore,v_tags)),
+          ST_SetSRID(ST_MakePoint(v_lon, v_lat),4326)
+        );
+    END IF;
+    
+    -- This is the default OSM style, we will use the NPS style(s) instead
+    SELECT o2p_render_element(v_id, 'N') into v_X;
+
+    RETURN v_X;
+    END;
+$pgs_upsert_node$ LANGUAGE plpgsql;
+
+
+-- ----------------------------------------
+--DROP FUNCTION pgs_upsert_way(bigint, bigint, boolean, timestamp without time zone, json, json, bigint, bigint);
+CREATE OR REPLACE FUNCTION pgs_upsert_way(
+  bigint,
+  bigint,
+  boolean,
+  timestamp without time zone,
+  json,
+  json,
+  bigint,
+  bigint
+) RETURNS boolean AS $pgs_upsert_way$
+  DECLARE
+    v_id ALIAS FOR $1;
+    v_changeset ALIAS FOR $2;
+    v_visible ALIAS FOR $3;
+    v_timestamp ALIAS FOR $4;
+    v_nodes ALIAS FOR $5;
+    v_tags ALIAS FOR $6;
+    v_version ALIAS FOR $7;
+    v_user_id ALIAS FOR $8;
+    v_X boolean;
+  BEGIN 
+
+  -- Delete the current way nodes and tags
+    DELETE from way_nodes where way_id = v_id;
+    DELETE from ways where id = v_id;
+
+    IF v_visible THEN
+      INSERT INTO
+        ways (
+          id,
+          version,
+          user_id,
+          tstamp,
+          changeset_id,
+          tags,
+          nodes
+        ) VALUES (
+          v_id,
+          v_version,
+          v_user_id,
+          v_timestamp,
+          v_changeset,
+          (select hstore(array_agg(k), array_agg(v)) from json_populate_recordset(null::new_hstore,v_tags)),
+          (SELECT array_agg(node_id) FROM json_populate_recordset(null::way_nodes, v_nodes))
+        );    
+    
+        -- Associated Nodes
+        INSERT INTO
+         way_nodes (
+         SELECT
+           v_id AS way_id,
+           node_id as node_id,
+           sequence_id as sequence_id
+         FROM
+           json_populate_recordset(
+             null::way_nodes,
+             v_nodes
+           )
+         );
+      END IF;
+      
+      SELECT o2p_render_element(v_id, 'W') into v_X;
+
+    RETURN v_X;
+    END;
+$pgs_upsert_way$ LANGUAGE plpgsql;
+
+-- ------------------------------------------
+--DROP FUNCTION pgs_upsert_relation(bigint, bigint, boolean, json, json, timestamp without time zone, bigint, bigint);
+CREATE OR REPLACE FUNCTION pgs_upsert_relation(
+  bigint,
+  bigint,
+  boolean,
+  json,
+  json,
+  timestamp without time zone,
+  bigint,
+  bigint
+) RETURNS boolean AS $pgs_upsert_relation$
+  DECLARE
+    v_id ALIAS FOR $1;
+    v_changeset ALIAS FOR $2;
+    v_visible ALIAS FOR $3;
+    v_members ALIAS FOR $4;
+    v_tags ALIAS FOR $5;
+    v_timestamp ALIAS FOR $6;
+    v_version ALIAS FOR $7;
+    v_user_id ALIAS FOR $8;
+    v_X boolean;
+  BEGIN
+
+  -- Delete the current way nodes and tags
+    DELETE from relation_members where relation_id = v_id;
+    DELETE from relations where id = v_id;
+
+    IF v_visible THEN
+      INSERT INTO
+        relations (
+          id,
+          version,
+          user_id,
+          tstamp,
+          changeset_id,
+          tags
+        ) VALUES (
+          v_id,
+          v_version,
+          v_user_id,
+          v_timestamp,
+          v_changeset,
+          (select hstore(array_agg(k), array_agg(v)) from json_populate_recordset(null::new_hstore,v_tags))
+        );    
+
+      -- Associated Members
+      INSERT INTO
+        relation_members (
+          SELECT
+             v_id AS relation_id,
+             member_id as member_id,
+             member_type::character(1) as member_type,
+             member_role as member_role,
+             sequence_id as sequence_id
+        FROM
+           json_populate_recordset(
+           null::new_relation_members,
+           v_members
+         )
+        );
+    END IF;
+    
+    SELECT o2p_render_element(v_id, 'R') into v_X;
+
+    RETURN v_X;
+    END;
+$pgs_upsert_relation$ LANGUAGE plpgsql;
+
+-- ------------------------------------------
+--DROP FUNCTION pgs_update();
+CREATE OR REPLACE FUNCTION pgs_update()
+RETURNS bigint AS $pgs_update$
+  DECLARE
+    v_last_changeset bigint;
+    v_changes bigint;
+  BEGIN
+
+    SELECT MAX(changeset_id) AS last_changeset FROM
+    (
+      SELECT changeset_id FROM nodes
+      UNION ALL
+      SELECT changeset_id FROM ways
+      UNION ALL
+      SELECT changeset_id FROM relations
+    ) all_updates INTO v_last_changeset;
+
+    SELECT pgs_update(v_last_changeset) INTO v_changes;
+
+    RETURN v_changes;
+    END;
+$pgs_update$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION pgs_update(bigint)
+RETURNS bigint AS $pgs_update$
+  DECLARE
+    v_last_changeset ALIAS for $1;
+    v_changes bigint;
+  BEGIN
+  
+    SELECT count(*) FROM (
+    SELECT pgs_upsert_node(id, lat, lon, changeset, visible, timestamp, tag, version, uid) FROM api_nodes WHERE changeset > v_last_changeset
+    UNION ALL
+    SELECT pgs_upsert_way(id, changeset, visible, timestamp, nd, tag, version, uid) FROM api_ways WHERE changeset > v_last_changeset
+    UNION ALL
+    SELECT pgs_upsert_relation(id, changeset, visible, member, tag, timestamp, version, uid) FROM api_relations WHERE changeset > v_last_changeset)
+    changes INTO v_changes;
+
+    -- Update the users
+    INSERT INTO users SELECT id, display_name AS name FROM api_users WHERE id NOT IN (SELECT id FROM users);
+
+    RETURN v_changes;
+    END;
+$pgs_update$ LANGUAGE plpgsql;
+
+-----------------------------
+-- #NPS# --------
+-----------------------------
+-- Rendering views
+
+-- CartoDB
+CREATE OR REPLACE VIEW public.nps_cartodb_line_view AS 
+ SELECT nps_render_line.osm_id AS cartodb_id,
+    nps_render_line.version,
+    nps_render_line.tags -> 'name'::text AS name,
+    nps_render_line.tags -> 'nps:places_id'::text AS places_id,
+    nps_render_line.unit_code,
+    nps_render_line.nps_type AS type,
+    nps_render_line.tags::json::text AS tags,
+    nps_render_line.the_geom
+   FROM nps_render_line;
+
+CREATE OR REPLACE VIEW public.nps_cartodb_point_view AS 
+ SELECT nps_render_point.osm_id AS cartodb_id,
+    nps_render_point.version,
+    nps_render_point.tags -> 'name'::text AS name,
+    nps_render_point.tags -> 'nps:places_id'::text AS places_id,
+    nps_render_point.unit_code,
+    nps_render_point.nps_type AS type,
+    nps_render_point.tags::json::text AS tags,
+    nps_render_point.the_geom
+   FROM nps_render_point;
+
+CREATE OR REPLACE VIEW public.nps_cartodb_polygon_view AS 
+ SELECT nps_render_polygon.osm_id AS cartodb_id,
+    nps_render_polygon.version,
+    nps_render_polygon.tags -> 'name'::text AS name,
+    nps_render_polygon.tags -> 'nps:places_id'::text AS places_id,
+    nps_render_polygon.unit_code,
+    nps_render_polygon.nps_type AS type,
+    nps_render_polygon.tags::json::text AS tags,
+    nps_render_polygon.the_geom
+   FROM nps_render_polygon;
+
