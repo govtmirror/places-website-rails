@@ -5,7 +5,7 @@ defaults: &defaults
   generator: "Places server"
   copyright_owner: "Public Domain"
   attribution_url: "http://doi.gov"
-  license_url: "https://www.law.cornell.edu/uscode/text/15/290e"
+  license_url: "http://www.copyright.gov/title17/92chap1.html#105"
   # Sender addresses for emails
   email_from: "Places <npmap@nps.gov>"
   email_return_path: "bounces@nps.gov"
