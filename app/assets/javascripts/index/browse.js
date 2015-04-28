@@ -71,7 +71,7 @@ OSM.initializeBrowse = function (map) {
      * the data browser, so increase the limit to 2000 by default, but keep
      * it restricted to 500 for IE8 and 100 for older IEs.
      */
-    var maxFeatures = 2000;
+    var maxFeatures = 10000;
 
     /*@cc_on
       if (navigator.appVersion < 8) {
