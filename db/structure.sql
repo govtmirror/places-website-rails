@@ -249,7 +249,7 @@ CREATE TABLE changesets (
 --
 
 CREATE SEQUENCE changesets_id_seq
-    START WITH 1
+    START WITH 1222
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
