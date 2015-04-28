@@ -32,9 +32,10 @@ class RenderViews < ActiveRecord::Migration
           users.display_name AS "user",
           changesets.user_id AS uid,
           ( SELECT json_agg(members.*) AS json_agg
-                 FROM ( SELECT lower(relation_members.member_type::text) AS type,
-                          relation_members.member_id AS ref,
-                          relation_members.member_role AS role
+                 FROM ( SELECT relation_members.relation_id, relation_members.member_id,
+                          upper(relation_members.member_type::char(1)) AS member_type,
+                          relation_members.member_role as member_role,
+                          relation_members.sequence_id AS sequence_id
                          FROM relation_members
                         WHERE relation_members.relation_id = current_relations.id) members) AS member,
           ( SELECT json_agg(tags.*) AS json_agg
@@ -55,13 +56,12 @@ class RenderViews < ActiveRecord::Migration
           users.display_name AS "user",
           changesets.user_id AS uid,
           ( SELECT json_agg(nodes.*) AS json_agg
-                 FROM ( SELECT current_way_nodes.node_id AS ref
+                 FROM ( SELECT current_way_nodes.*
                          FROM current_way_nodes
                         WHERE current_way_nodes.way_id = current_ways.id AND current_ways.version = current_ways.version
                         ORDER BY current_way_nodes.sequence_id) nodes) AS nd,
           ( SELECT json_agg(tags.*) AS json_agg
-                 FROM ( SELECT current_way_tags.k,
-                          current_way_tags.v
+                 FROM ( SELECT current_way_tags.*
                          FROM current_way_tags
                         WHERE current_way_tags.way_id = current_ways.id) tags) AS tag
          FROM current_ways
