@@ -6,7 +6,7 @@ class OauthController < ApplicationController
   layout "site"
 
   def authorize
-    foo = params["oauth_callback"] + "?oauth_token=" + params["oauth_token"] + "&addUser=http://localhost:3003/oauth/add_active_directory_user"
+    foo = params["oauth_callback"] + "?oauth_token=" + params["oauth_token"] + "&addUser=http://localhost:4000/oauth/add_active_directory_user"
     foo = URI.escape(foo, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
     redirect_to "https://" + "insidemaps.nps.gov" + "/account/logon/" + "?ReturnUrl=" + foo
   end
@@ -71,7 +71,9 @@ class OauthController < ApplicationController
   def login_required
     authorize_web
     set_locale
-    require_user
+    foo = params["oauth_callback"] + "?oauth_token=" + params["oauth_token"] + "&addUser=http://localhost:4000/oauth/add_active_directory_user"
+    foo = URI.escape(foo, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+    redirect_to "https://" + "insidemaps.nps.gov" + "/account/logon/" + "?ReturnUrl=" + foo
   end
 
   def user_authorizes_token?
