@@ -6,7 +6,7 @@ class OauthController < ApplicationController
   layout "site"
 
   def authorize
-    foo = params["oauth_callback"] + "?oauth_token=" + params["oauth_token"] + "&addUser=http://localhost:4000/oauth/add_active_directory_user"
+    foo = params["oauth_callback"] + "?oauth_token=" + params["oauth_token"] + "&addUser=http://10.147.153.193/oauth/add_active_directory_user"
     foo = URI.escape(foo, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
     redirect_to "https://" + "insidemaps.nps.gov" + "/account/logon/" + "?ReturnUrl=" + foo
   end
@@ -33,7 +33,7 @@ class OauthController < ApplicationController
   end
 
   def add_active_directory_user
-    params.merge! JSON.parse(request.body.string)
+    params.merge! JSON.parse(request.body.read)
     query = params["query"]
     if query["addUser"]
       @user = User.find_by(:email => params["userId"])
@@ -71,7 +71,7 @@ class OauthController < ApplicationController
   def login_required
     authorize_web
     set_locale
-    foo = params["oauth_callback"] + "?oauth_token=" + params["oauth_token"] + "&addUser=http://localhost:4000/oauth/add_active_directory_user"
+    foo = params["oauth_callback"] + "?oauth_token=" + params["oauth_token"] + "&addUser=http://10.147.153.193/oauth/add_active_directory_user"
     foo = URI.escape(foo, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
     redirect_to "https://" + "insidemaps.nps.gov" + "/account/logon/" + "?ReturnUrl=" + foo
   end
