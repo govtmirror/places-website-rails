@@ -286,11 +286,11 @@ $json_to_hstore$
 LANGUAGE plpgsql;
 -------------------------
 
--- Function: public.o2p_get_name(hstore, text[], boolean)
+-- Function: public.o2p_get_type(hstore, text[], boolean)
 
--- DROP FUNCTION public.o2p_get_name(hstore, text[], boolean);
+-- DROP FUNCTION public.o2p_get_type(hstore, text[], boolean);
 
-CREATE OR REPLACE FUNCTION public.o2p_get_name(
+CREATE OR REPLACE FUNCTION public.o2p_get_type(
     hstore,
     text[],
     boolean)
@@ -369,7 +369,7 @@ IF v_tag_count > 0 THEN
                 ((ARRAY['point'] && v_geometry_type AND "tag_list"."geometry" && ARRAY['point']) OR
                 (ARRAY['line','area'] && v_geometry_type AND "tag_list"."geometry" && ARRAY['line','area'])) AND
                 (v_all OR (
-                  "tag_list"."searchable" is null OR
+                  -- "tag_list"."searchable" is null OR
                   "tag_list"."searchable" is true
                 ))
             ) "hstore_tag_list"
@@ -404,7 +404,7 @@ END;
 $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION public.o2p_get_name(hstore, text[], boolean)
+ALTER FUNCTION public.o2p_get_type(hstore, text[], boolean)
   OWNER TO postgres;
 -------------------
 
