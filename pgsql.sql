@@ -1073,6 +1073,11 @@ $BODY$
     v_member_type ALIAS FOR $2;
     v_rel_id BIGINT;
   BEGIN
+
+  -- We make relation ids negative so they don't stomp on the namespace for ways
+    IF UPPER(v_member_type) = 'R' THEN
+      SELECT v_id * -1 INTO v_id;
+    END IF;
   
   -- Add any information that will be deleting / changing
   -- to the change log, which is used to keep the renderers synchronized
@@ -1408,17 +1413,17 @@ $pgs_upsert_relation$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION pgs_update()
 RETURNS bigint AS $pgs_update$
   DECLARE
-    v_last_changeset bigint;
+    v_last_changeset timestamp without time zone;
     v_changes bigint;
   BEGIN
 
-    SELECT MAX(changeset_id) AS last_changeset FROM
+    SELECT MAX(timestamp) AS last_changeset FROM
     (
-      SELECT changeset_id FROM nodes
+      SELECT timestamp FROM nodes
       UNION ALL
-      SELECT changeset_id FROM ways
+      SELECT timestamp FROM ways
       UNION ALL
-      SELECT changeset_id FROM relations
+      SELECT timestamp FROM relations
     ) all_updates INTO v_last_changeset;
 
     SELECT pgs_update(v_last_changeset) INTO v_changes;
@@ -1427,7 +1432,7 @@ RETURNS bigint AS $pgs_update$
     END;
 $pgs_update$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION pgs_update(bigint)
+CREATE OR REPLACE FUNCTION pgs_update(timestamp without time zone)
 RETURNS bigint AS $pgs_update$
   DECLARE
     v_last_changeset ALIAS for $1;
@@ -1435,11 +1440,11 @@ RETURNS bigint AS $pgs_update$
   BEGIN
   
     SELECT count(*) FROM (
-    SELECT pgs_upsert_node(id, lat, lon, changeset, visible, timestamp, tag, version, uid) FROM api_nodes WHERE changeset > v_last_changeset
+    SELECT pgs_upsert_node(id, lat, lon, changeset, visible, timestamp, tag, version, uid) FROM api_nodes WHERE timestamp > v_last_changeset
     UNION ALL
-    SELECT pgs_upsert_way(id, changeset, visible, timestamp, nd, tag, version, uid) FROM api_ways WHERE changeset > v_last_changeset
+    SELECT pgs_upsert_way(id, changeset, visible, timestamp, nd, tag, version, uid) FROM api_ways WHERE timestamp > v_last_changeset
     UNION ALL
-    SELECT pgs_upsert_relation(id, changeset, visible, member, tag, timestamp, version, uid) FROM api_relations WHERE changeset > v_last_changeset)
+    SELECT pgs_upsert_relation(id, changeset, visible, member, tag, timestamp, version, uid) FROM api_relations WHERE timestamp > v_last_changeset)
     changes INTO v_changes;
 
     -- Update the users
