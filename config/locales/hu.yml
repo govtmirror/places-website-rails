@@ -10,12 +10,16 @@
 # Author: Grin
 # Author: Kempelen
 # Author: Leiric
+# Author: Macofe
 # Author: Misibacsi
+# Author: Máté
 # Author: Nemo bis
 # Author: R-Joe
+# Author: Ruila
 # Author: Samat
 # Author: Sucy
 # Author: Tacsipacsi
+# Author: Uno20001
 ---
 hu:
   time:
@@ -27,7 +31,7 @@ hu:
       changeset: Módosításcsomag
       changeset_tag: Módosításcsomag címkéje
       country: Ország
-      diary_comment: Naplóhozzászólás
+      diary_comment: Naplómegjegyzés
       diary_entry: Naplóbejegyzés
       friend: Barát
       language: Nyelv
@@ -130,11 +134,16 @@ hu:
       way_paginated: Vonalak (%{x}-%{y} összesen %{count})
       relation: Kapcsolatok (%{count})
       relation_paginated: Kapcsolatok (%{x}-%{y} összesen %{count})
+      comment: Hozzászólások (%{count})
+      hidden_commented_by: 'Rejtett hozzászólás, szerzője: %{user} <abbr title=''%{exact_time}''>%{when}</abbr>'
+      commented_by: 'Hozzászólás, szerzője: %{user} <abbr title=''%{exact_time}''>%{when}</abbr>'
       changesetxml: Changeset XML
       osmchangexml: osmChange XML
       feed:
         title: 'Módosításcsomag: %{id}'
         title_comment: 'Módosításcsomag: %{id} - %{comment}'
+      join_discussion: Jelentkezz be, hogy bekapcsolódhass a megbeszélésbe
+      discussion: Megbeszélés
     node:
       title: 'Pont: %{name}'
       history_title: 'Pont történet: %{name}'
@@ -165,6 +174,7 @@ hu:
         way: vonal
         relation: kapcsolat
         changeset: módosításcsomag
+        note: megjegyzés
     timeout:
       sorry: Sajnálom, a(z) %{type} típusú %{id} azonosítójú adatok kinyerése túl
         sokáig tartott.
@@ -173,6 +183,7 @@ hu:
         way: vonal
         relation: kapcsolat
         changeset: módosításcsomag
+        note: megjegyzés
     redacted:
       redaction: Eltávolítás %{id}
       message_html: A %{type} %{version} verzióját nem lehet megjeleníteni, mert el
@@ -210,6 +221,11 @@ hu:
       reopened_by: Újraaktiválta %{user} <abbr title='%{exact_time}'>%{when}</abbr>
       reopened_by_anonymous: Újraaktiválva névtelenül <abbr title='%{exact_time}'>%{when}</abbr>
       hidden_by: Elrejtette %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+    query:
+      title: Lekérdezési Funkciók
+      introduction: Kattintson a térképen, a közeli funkciók kereséséhez.
+      nearby: Közeli funkciók
+      enclosing: Bentfoglalt funkciók
   changeset:
     changeset_paging_nav:
       showing_page: '%{page} oldal'
@@ -240,9 +256,17 @@ hu:
     timeout:
       sorry: Sajnálom, az általad kért módosításcsomagok listájának lekérése túl sokáig
         tartott.
+    rss:
+      title_all: OpenStreetMap változtatáscsomag vita
+      title_particular: 'OpenStreetMap változtatáscsomag #%{changeset_id} vita'
+      comment: 'Új hozzászólás a változtatáscsomaghoz #%{changeset_id} by %{author}'
+      commented_at_html: Frissítve %{when}
+      commented_at_by_html: '%{when} ezelőtt frissítette %{user}'
+      full: Teljes beszélgetés
   diary_entry:
     new:
       title: Új naplóbejegyzés
+      publish_button: Publikálás
     list:
       title: Felhasználók naplói
       title_friends: Ismerősök naplói
@@ -347,6 +371,7 @@ hu:
             frissített kivonata
         metro:
           title: Metro Extracts
+          description: A főbb városok, valamint a környező területek kivonatai
         other:
           title: Más források
           description: További források az OpenStreetMap wiki oldalán találhatók
@@ -354,7 +379,7 @@ hu:
       format: 'Formátum:'
       scale: Méretarány
       max: max.
-      image_size: 'Képméret:'
+      image_size: Képméret
       zoom: Nagyítási szint
       add_marker: Jelölő hozzáadása a térképhez
       latitude: 'Földrajzi szélesség:'
@@ -391,6 +416,7 @@ hu:
           taxiway: gurulóút
           terminal: Utasterminál
         amenity:
+          animal_shelter: Állatmenhely
           arts_centre: Művészeti központ
           atm: Bankautomata
           bank: Bank
@@ -400,6 +426,7 @@ hu:
           bicycle_parking: Kerékpártároló
           bicycle_rental: Kerékpárkölcsönző
           biergarten: Sörkert
+          boat_rental: Csónakkölcsönző
           brothel: Bordélyház
           bureau_de_change: Pénzváltó
           bus_station: Autóbusz-állomás
@@ -409,8 +436,10 @@ hu:
           car_wash: Autómosó
           casino: Kaszinó
           charging_station: Elektromos töltőállomás
+          childcare: Gyermekgondozás
           cinema: Mozi
           clinic: Klinika
+          clock: Óra
           college: Főiskola
           community_centre: Művelődési központ
           courthouse: Bíróság
@@ -429,6 +458,7 @@ hu:
           food_court: Ételudvar
           fountain: Szökőkút
           fuel: Benzinkút
+          gambling: Szerencsejáték
           grave_yard: Kis temető
           gym: Fitnesz- / Tornaterem
           health_centre: Egészségügyi központ
@@ -439,11 +469,14 @@ hu:
           library: Könyvtár
           market: Piac
           marketplace: Vásártér
+          monastery: Kolostor
+          motorcycle_parking: Motoros parkoló
           nightclub: Éjszakai bár
           nursery: Óvoda
           nursing_home: Idősek otthona
           office: Iroda
           parking: Parkoló
+          parking_entrance: Parkoló bejárat
           pharmacy: Gyógyszertár
           place_of_worship: Vallási hely
           police: Rendőrség
@@ -491,14 +524,29 @@ hu:
           "yes": Híd
         building:
           "yes": Épület
+        craft:
+          brewery: Sörfőzde
+          carpenter: Ács
+          electrician: Villanyszerelő
+          gardener: Kertész
+          painter: Festő
+          photographer: Fényképész
+          plumber: Vízvezetékszerelő
+          shoemaker: Cipész
+          tailor: Szabó
         emergency:
+          ambulance_station: Mentőállomás
+          defibrillator: Defibrillátor
+          landing_site: Vészhelyzeti leszállóhely
           phone: Segélyhívó
         highway:
+          abandoned: Elhagyatott út
           bridleway: Lovaglóút
           bus_guideway: Buszsín
           bus_stop: Buszmegálló
           construction: Építés alatt álló közút
           cycleway: Kerékpárút
+          elevator: Lift
           emergency_access_point: Vészhelyzeti hozzáférési pont
           footway: Gyalogút
           ford: Gázló
@@ -527,32 +575,41 @@ hu:
           tertiary: Bekötőút
           tertiary_link: Bekötőút
           track: Földút
+          traffic_signals: Jelzőlámpák
           trail: Túraút
           trunk: Autóút
           trunk_link: Autóút
           unclassified: Egyéb út
           unsurfaced: Burkolatlan út
+          "yes": Út
         historic:
           archaeological_site: Régészeti lelőhely
           battlefield: Csatamező
           boundary_stone: Határkő
           building: Történelmi épület
+          bunker: Bunker
           castle: Vár
           church: Templom
+          city_gate: Városkapu
           citywalls: Városfal
           fort: Erőd
+          heritage: Világörökségi helyszín
           house: Ház
           icon: Ikon
           manor: Majorság
           memorial: Emlékmű
           mine: Bánya
           monument: Műemlék
+          roman_road: Római út
           ruins: Rom
+          stone: Kő
           tomb: Sírkő
           tower: Torony
           wayside_cross: Útszéli kereszt
           wayside_shrine: Útszéli kegyhely
           wreck: Hajóroncs
+        junction:
+          "yes": Csomópont
         landuse:
           allotments: Kert
           basin: Medence
@@ -584,14 +641,19 @@ hu:
           road: Közúti terület
           village_green: Közös mező
           vineyard: Szőlős
+          "yes": Földhasználat
         leisure:
           beach_resort: Tengerparti üdülőhely
           bird_hide: Madárles
+          club: Klub
           common: Közös terület
+          dog_park: Kutyapark
           fishing: Horgászterület
+          fitness_centre: Fitneszközpont
           fitness_station: Fitneszterem
           garden: Kert
           golf_course: Golfpálya
+          horse_riding: Lovaglás
           ice_rink: Műjégpálya
           marina: Kishajókikötő
           miniature_golf: Minigolfpálya
@@ -600,6 +662,7 @@ hu:
           pitch: Labdarúgópálya
           playground: Játszótér
           recreation_ground: Szabadidőpark
+          resort: Üdülőhely
           sauna: Szauna
           slipway: Sólya
           sports_centre: Sportközpont
@@ -607,6 +670,13 @@ hu:
           swimming_pool: Uszoda
           track: Futópálya
           water_park: Vízipark
+          "yes": Szabadidő
+        man_made:
+          lighthouse: Világítótorony
+          pipeline: Csővezeték
+          tower: Torony
+          works: Gyár
+          "yes": Mesterséges
         military:
           airfield: Katonai repülőtér
           barracks: Laktanya
@@ -626,6 +696,7 @@ hu:
           forest: Erdő
           geyser: Gejzír
           glacier: Gleccser
+          grassland: Füves puszta
           heath: Puszta
           hill: Domb
           island: Sziget
@@ -638,6 +709,8 @@ hu:
           reef: Zátony
           ridge: Hegygerinc
           rock: Szikla
+          saddle: Hágó
+          sand: Homok
           scree: Sziklatörmelék
           scrub: Cserjés
           spring: Forrás
@@ -651,6 +724,7 @@ hu:
           wood: Erdő
         office:
           accountant: Könyvelő
+          administrative: Admininsztrálás
           architect: Építész
           company: Cég
           employment_agency: Foglalkoztatási Ügynökség
@@ -663,6 +737,8 @@ hu:
           travel_agent: Utazási iroda
           "yes": Iroda
         place:
+          allotments: Veteményeskertek
+          block: Blokk
           airport: Repülőtér
           city: Nagyváros
           country: Ország
@@ -687,6 +763,7 @@ hu:
           town: Város
           unincorporated_area: Jogi személyiséggel nem rendelkező terület
           village: Nagyközség
+          "yes": Hely
         railway:
           abandoned: Felhagyott vasút
           construction: Építés alatt álló vasút
@@ -707,7 +784,7 @@ hu:
           spur: Vasúti szárnyvonal
           station: Vasútállomás
           stop: Vasúti megálló
-          subway: Metróállomás
+          subway: Metró
           subway_entrance: Metrókijárat
           switch: Vasúti váltó
           tram: Villamos
@@ -789,6 +866,7 @@ hu:
           "yes": Bolt
         tourism:
           alpine_hut: Alpesi kunyhó
+          apartment: Lakás
           artwork: Műalkotás
           attraction: Látnivaló
           bed_and_breakfast: Vendégház
@@ -796,6 +874,7 @@ hu:
           camp_site: Kemping
           caravan_site: Lakókocsitábor
           chalet: Nyaralóház
+          gallery: Galéria
           guest_house: Vendégház
           hostel: Turistaszálló
           hotel: Szálloda
@@ -827,6 +906,7 @@ hu:
           wadi: Vádi
           waterfall: Vízesés
           weir: Bukógát
+          "yes": Vízi út
       admin_levels:
         level2: Országhatár
         level4: Államhatár
@@ -911,10 +991,11 @@ hu:
       mapping_link: kezdheted a térképezést
     legal_babble:
       title_html: Szerzői jog és licenc
-      intro_1_html: |2-
-           Az OpenStreetMap egy <i>szabad adathalmaz</i>, amelyre az <a
+      intro_1_html: |-
+        Az OpenStreetMap<sup><a href="#trademarks">&reg;</a></sup> egy <i>szabad adathalmaz</i>, amelyet az <a
         href="http://opendatacommons.org/licenses/odbl/">Open Data
-        Commons Open Database License</a> licenc (ODbL) vonatkozik.
+        Commons Open Database License</a> licenc (ODbL) alatt tett közzé az <a
+        href="http://osmfoundation.org/">OpenStreetMap Alapítvány</a> (OSMF).
       intro_2_html: |2-
           Szabadon másolhatod, terjesztheted, továbbíthatod és átdolgozhatod adatainkat mindaddig, amíg feltünteted az OpenStreetMapot és közreműködőit. Ha módosítod vagy felhasználod az adatainkat, akkor az eredményt is csak azonos licenccel terjesztheted. A teljes <a
           href="http://opendatacommons.org/licenses/odbl/1.0/">jogi
@@ -947,9 +1028,10 @@ hu:
         title: Példa egy hivatkozásra
       more_title_html: Tudj meg többet!
       more_1_html: |-
-        További információ adataink használatáról a <a
-          href="http://wiki.openstreetmap.org/wiki/Legal_FAQ">Jogi
-          GYIK</a>-ban.
+        További információ adataink használatáról az <a
+        href="http://osmfoundation.org/License">OSMF Licenc lapon</a> és a közösség <a
+        href="http://wiki.openstreetmap.org/wiki/Legal_FAQ">Jogi
+        GYIK</a> gyűjteményében.
       more_2_html: |-
         Habár az OpenStreetMap egy nyílt adatforrás, nem tudunk ingyenes térkép API elérést biztosítani külső fejlesztőknek.
 
@@ -1000,6 +1082,7 @@ hu:
         Ha úgy gondolod, hogy jogvédett anyag került jogszerűtlenül az OpenStreetMap adatbázisba vagy erre a weblapra, kérjük olvasd el az <a href="http://www.osmfoundation.org/wiki/License/Takedown_procedure">eltávolítási
         folyamat leírását</a> vagy jelentsd be közvetlenül az
         <a href="http://dmca.openstreetmap.org/">online bejelentő oldalon</a>.
+      trademarks_title_html: <span id="trademarks"></span>Védjegyek
   welcome_page:
     title: Üdvözlet!
     introduction_html: Üdvözöl az OpenStreetMap - a szabad és szerkeszthető világtérkép
@@ -1026,6 +1109,14 @@ hu:
         egy út, folyó, tó vagy épület.
       tag_html: A <strong>címke</strong> egy pici adat egy ponthoz vagy vonalhoz,
         mint például egy étterem neve vagy egy sebességkorlátozás mértéke.
+    rules:
+      title: Szabályok!
+      paragraph_1_html: "Az openStreetMap-nek van néhány formális szabálya is de alapvetően
+        minden résztvevőtől azt várjuk el hogy együttműködjön és kommunikáljon a közösség
+        többi tagjával. Ha bármilyen kézi szerkesztésen túlmutató tevékenységet tervezel
+        akkor kérjük, hogy olvasd el az erről szóló útmutatókat az \n<a href='http://wiki.openstreetmap.org/wiki/Import/Guidelines'>Importálásról</a>
+        és az \n<a href='http://wiki.openstreetmap.org/wiki/Automated_Edits_code_of_conduct'>Automatikus
+        szerkesztésekről</a> szóló lapokon."
     questions:
       title: Kérdésed van?
       paragraph_1_html: Az OpenStreetMap számos anyagot kínál fel ahhoz, hogy ismerkedj
@@ -1060,9 +1151,18 @@ hu:
     welcome:
       url: /welcome
       title: Üdvözlünk az OSM-en
+    beginners_guide:
+      url: http://wiki.openstreetmap.org/wiki/Hu:Beginners%27_guide
+      title: Kezdők kézikönyve
     help:
       url: https://help.openstreetmap.org/
       title: help.openstreetmap.org
+    mailing_lists:
+      title: Levelezőlisták
+    forums:
+      title: Fórumok
+    irc:
+      title: IRC
     wiki:
       url: https://wiki.openstreetmap.org/wiki/Hu:Main_Page
       title: wiki.openstreetmap.org
@@ -1171,6 +1271,13 @@ hu:
         commented_note: '[OpenStreetMap] %{commenter} újra megnyitotta az egyik jegyzetet
           amelyhez te is hozzászóltál, %{place} közelében.'
       details: 'A jegyzetről további információk: %{url}.'
+    changeset_comment_notification:
+      greeting: Szia!
+      commented:
+        subject_own: '[OpenStreetMap] %{commenter} hozzászólt az egyik változtatáscsomagodhoz'
+        subject_other: '[OpenStreetMap] %{commenter} hozzászólt az egyik, általad
+          érdekesnek vélt változtatáscsomaghoz'
+        partial_changeset_without_comment: hozzászólás nélkül
   message:
     inbox:
       title: Beérkezett üzenetek
@@ -1282,6 +1389,9 @@ hu:
       close: Bezár
     search:
       search: Keresés
+      get_directions_title: Útirány keresése két pont között
+      from: Feladó
+      to: Címzett
       where_am_i: Hol vagyok?
       where_am_i_title: A jelenlegi helyszín leírása a keresőmotor segítségével
       submit_text: Menj
@@ -1289,13 +1399,12 @@ hu:
       table:
         entry:
           motorway: Autópálya
+          main_road: Fő út
           trunk: Autóút
           primary: Főút
           secondary: Összekötő út
           unclassified: Egyéb út
-          unsurfaced: Burkolatlan út
           track: Földút
-          byway: Ösvény
           bridleway: Lovaglóút
           cycleway: Kerékpárút
           footway: Gyalogút
@@ -1319,7 +1428,6 @@ hu:
           golf: Golfpálya
           park: Park
           resident: Gyalogos övezet
-          tourist: Turisztikai látványosság
           common:
           - Füves terület
           - rét
@@ -1349,7 +1457,6 @@ hu:
           tunnel: Szaggatott szegély = alagút
           bridge: Fekete szegély = híd
           private: Behajtás csak engedéllyel
-          permissive: Behajtás engedélyezett
           destination: Csak célforgalom
           construction: Utak építés alatt
     richtext_area:
@@ -1477,7 +1584,8 @@ hu:
     georss:
       title: OpenStreetMap GPS nyomvonalak
     description:
-      description_with_count: GPX fájl %{count} ponttal %{user} felhasználótól
+      description_with_count:
+        other: GPX fájl %{count} ponttal %{user} felhasználótól
       description_without_count: GPX fájl %{user} felhasználótól
   application:
     require_cookies:
@@ -1493,6 +1601,7 @@ hu:
         Ezt nem kell elfogadnod, de meg kell tekintened.
   oauth:
     oauthorize:
+      title: A fiókodhoz való hozzáférés engedélyezése
       request_access: A(z) %{app_name} alkalmazás hozzáférést kér a felhasználói fiókodhoz,
         %{user}. Kérlek, jelöld, ha azt szeretnéd, hogy az alkalmazás rendelkezzen
         a következő képességekkel. Választhatsz olyan sokat vagy keveset, amennyit
@@ -1505,10 +1614,14 @@ hu:
       allow_read_gpx: magán GPS nyomvonalak olvasása.
       allow_write_gpx: GPS nyomvonalak feltöltése.
       allow_write_notes: jegyzet módosítása
+      grant_access: Hozzáférés megadása
     oauthorize_success:
+      title: Hozzáférési kérés jóváhagyva
+      allowed: '%{app_name} számára hozzáférést biztosítottál a fiókodhoz.'
       verification: 'Az ellenőrző kód: %{code}.'
     oauthorize_failure:
       title: Az azonosítás sikertelen.
+      denied: '%{app_name} alkalmazástól megtagadtad, hogy hozzáférhessen a fiókodhoz.'
       invalid: A hitelesítő token érvénytelen.
     revoke:
       flash: Visszavontad az utalványt a(z) %{application} alkalmazáshoz
@@ -1580,12 +1693,13 @@ hu:
       email or username: 'E-mail cím vagy felhasználónév:'
       password: 'Jelszó:'
       openid: '%{logo} OpenID:'
-      remember: 'Emlékezz rám:'
+      remember: Emlékezz rám
       lost password link: Elfelejtetted a jelszavad?
       login_button: Bejelentkezés
       register now: Regisztrálj most
       with username: 'Már van OpenStreetMap fiókod? Jelentkezz be a felhasználóneveddel
         és jelszavaddal:'
+      with external: 'Alternatívaként használj külső fiókot a bejelentkezéshez:'
       new to osm: Új vagy az OpenStreetMapnál?
       to make changes: Ahhoz, hogy módosíthasd az OpenStreetMap-adatokat, rendelkezned
         kell egy felhasználói fiókkal.
@@ -1600,6 +1714,27 @@ hu:
         kérdés tisztázásához.'
       auth failure: Sajnálom, ilyen adatokkal nem tudsz bejelentkezni.
       openid_logo_alt: Bejelentkezés egy OpenID-vel
+      auth_providers:
+        openid:
+          title: Bejelentkezés OpenID-vel
+        google:
+          title: Bejelentkezés Google-lel
+          alt: Bejelentkezés Google OpenID-vel
+        facebook:
+          title: Bejelentkezés Facebook-kal
+          alt: Bejelentkezés Facebook fiókkal
+        windowslive:
+          title: Bejelentkezés Windows Live-val.
+          alt: Bejelentkezés WIndows Live fiókkal
+        yahoo:
+          title: Bejelentkezés Yahoo-val
+          alt: Bejelentkezés Yahoo OpenID-vel
+        wordpress:
+          title: Bejelentkezés Wordpress-szel
+          alt: Bejelentkezés Wordpress OpenID-vel
+        aol:
+          title: Bejelentkezés AOL-lal
+          alt: Bejelentkezés AOL OpenID-vel
     logout:
       title: Kijelentkezés
       heading: Kijelentkezés az OpenStreetMapból
@@ -1626,7 +1761,7 @@ hu:
       title: Felhasználói fiók létrehozása
       no_auto_account_create: Sajnos jelenleg nem tudunk neked létrehozni automatikusan
         egy felhasználói fiókot.
-      contact_webmaster: Kérlek fordulj a <a href="mailto:webmaster@openstreetmap.org">webmesterhez</a>
+      contact_webmaster: Kérlek fordulj a <a href="%{webmaster}">webmesterhez</a>
         (angolul), hogy lehetővé tegye felhasználói fiók létrehozását - mi igyekszünk
         olyan gyorsan foglalkozni a kéréssel, amilyen gyorsan csak lehet.
       about:
@@ -1647,6 +1782,7 @@ hu:
         később megváltoztathatod.
       password: 'Jelszó:'
       confirm password: 'Jelszó megerősítése:'
+      use external auth: Alternatívaként használhatsz külső fiókokat a bejelentkezéshez
       continue: Regisztráció
       terms accepted: Köszönjük, hogy elfogadtad az új hozzájárulási feltételeket!
       terms declined: Sajnáljuk, hogy úgy döntöttél, nem fogadod el az új hozzájárulási
@@ -1753,6 +1889,7 @@ hu:
       current email address: 'Jelenlegi e-mail cím:'
       new email address: 'Új e-mail cím:'
       email never displayed publicly: (soha nem jelenik meg nyilvánosan)
+      external auth: 'Külső Hitelesítés:'
       openid:
         link: http://wiki.openstreetmap.org/wiki/OpenID
         link text: mi ez?
@@ -1824,16 +1961,17 @@ hu:
       success: Elküldtünk egy új megerősítő üzenetet a(z) %{email} címre, és amint
         megerősíted a felhasználói fiókodat, hozzákezdhetsz a térképezéshez.<br /><br
         />Ha használsz olyan antispam rendszert, amely megerősítési kérelmeket küld,
-        akkor győződj meg róla, hogy engedélylistára tetted a webmaster@openstreetmap.org
-        címet, mivel nem tudunk válaszolni megerősítési kérelmekre.
+        akkor győződj meg róla, hogy engedélylistára tetted a %{sender} címet, mivel
+        nem tudunk válaszolni megerősítési kérelmekre.
       failure: '%{name} felhasználó nem található.'
     confirm_email:
       heading: E-mail cím módosításának megerősítése
       press confirm button: Új e-mail címed megerősítéséhez nyomd meg az alábbi megerősítés
         gombot.
       button: Megerősítés
-      success: E-mail címed megerősítve, köszönjük a regisztrációt!
+      success: Az e-mail címed módosítása megerősítve!
       failure: Egy e-mail cím már megerősítésre került ezzel az utalvánnyal.
+      unknown_token: Ez a megerősítő kódo lejárt, vagy nem létezik.
     set_home:
       flash success: Otthon helye sikeresen mentve
     go_public:
@@ -1877,6 +2015,9 @@ hu:
           Ezt a döntést rövidesen felül fogja vizsgálni egy adminisztrátor, vagy
           kapcsolatba léphetsz a %{webmaster}rel, ha meg szeretnéd vitatni ezt.
         </p>
+    auth_failure:
+      no_authorization_code: Nem engedély kód
+      unknown_signature_algorithm: Ismeretlen aláírási algoritmus
   user_role:
     filter:
       not_an_administrator: Csak adminisztrátorok végezhetik a felhasználói szerepek
@@ -1993,6 +2134,8 @@ hu:
       heading: '%{block_by} blokkolta %{block_on} felhasználót'
       time_future: Véget ér %{time} múlva
       time_past: Véget ért %{time} óta
+      created: Létrehozva
+      ago: '%{time} ezelőtt'
       status: Állapot
       show: Megjelenítés
       edit: Szerkesztés
@@ -2082,6 +2225,13 @@ hu:
       createnote_disabled_tooltip: Nagyíts térképes jegyzet hozzáadásához
       map_notes_zoom_in_tooltip: Nagyítsd fel a térképet a jegyzetek megjelenítéséhez
       map_data_zoom_in_tooltip: Nagyítsd fel a térképet a térképadatok megjelenítéséhez
+    changesets:
+      show:
+        comment: Megjegyzés
+        subscribe: Feliratkozás
+        unsubscribe: Leiratkozás
+        hide_comment: elrejt
+        unhide_comment: megjelenít
     notes:
       new:
         intro: Hibát találtál vagy valami hiányzik? Tudasd a többi térképezővel, hogy
@@ -2097,6 +2247,43 @@ hu:
         reactivate: Újraaktiválás
         comment_and_resolve: Hozzászólás és lezárás
         comment: Hozzászólás
+    edit_help: Mozgassa a térképet, nagyítson ott ahol módosítani szeretne, majd kattintson
+      ide.
+    directions:
+      engines:
+        graphhopper_bicycle: Kerékpár (GraphHopper)
+        graphhopper_foot: Gyalog (GraphHopper)
+        mapquest_bicycle: Kerékpár (MapQuest)
+        mapquest_car: Autó (MapQuest)
+        mapquest_foot: Gyalog (MapQuest)
+        osrm_car: Autó (OSRM)
+        mapzen_bicycle: Kerékpár (Mapzen)
+        mapzen_car: Autó (Mapzen)
+        mapzen_foot: Gyalog (Mapzen)
+      directions: Irányok
+      distance: Távolság
+      errors:
+        no_route: Nem található útvonal a két hely között.
+        no_place: Sajnálom – a hely nem található.
+      instructions:
+        continue_without_exit: Folyamatosan %{name}
+        slight_right_without_exit: Enyhén jobbra %{name}
+        turn_right_without_exit: Forduljon jobbra %{name}
+        sharp_right_without_exit: Élesen jobbra %{name}
+        uturn_without_exit: Forduljon vissza %{name}
+        sharp_left_without_exit: Élesen balra %{name}
+        turn_left_without_exit: Forduljon balra %{name}
+        slight_left_without_exit: Enhén balra %{name}
+        follow_without_exit: Kövesse %{name}
+        leave_roundabout_without_exit: Hagyja el körforgalmat - %{name}
+        stay_roundabout_without_exit: Maradjon a körforgalomban - %{name}
+        unnamed: névtelen út
+      time: Időpont
+    query:
+      node: Csomópont
+      way: Vonal
+      relation: Kapcsolat
+      nothing_found: Nem találhatóak jellemzők
   redaction:
     edit:
       description: Leírás

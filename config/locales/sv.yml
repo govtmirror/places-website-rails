@@ -18,6 +18,7 @@
 # Author: Liftarn
 # Author: Lokal Profil
 # Author: Luen
+# Author: Macofe
 # Author: Magol
 # Author: Malmis
 # Author: Nastoshka
@@ -25,6 +26,8 @@
 # Author: Per
 # Author: Pladask
 # Author: Poxnar
+# Author: Rockyfelle
+# Author: Ruila
 # Author: Sannab
 # Author: Sendelbach
 # Author: Sertion
@@ -192,6 +195,7 @@ sv:
         way: sträcka
         relation: relation
         changeset: ändringsset
+        note: not
     timeout:
       sorry: Tyvärr tog data för %{type} med id %{id} för lång tid att hämta.
       type:
@@ -199,6 +203,7 @@ sv:
         way: sträcka
         relation: relation
         changeset: ändringsset
+        note: not
     redacted:
       redaction: Omarbetning %{id}
       message_html: Version %{version} av denna %{type} kan inte visas då den har
@@ -240,9 +245,10 @@ sv:
         sedan</abbr>
       hidden_by: Gömd av %{user} <abbr title='%{exact_time}'>%{when} sedan</abbr>
     query:
-      title: Frågan Funktioner
+      title: Undersök kartobjekt
       introduction: Klicka på kartan för att hitta närliggande funktioner.
       nearby: Finns i närheten
+      enclosing: Omgivande kartobjekt
   changeset:
     changeset_paging_nav:
       showing_page: Sida %{page}
@@ -283,6 +289,7 @@ sv:
   diary_entry:
     new:
       title: Nytt dagboksinlägg
+      publish_button: Publicera
     list:
       title: Användardagböcker
       title_friends: Vänners dagböcker
@@ -583,7 +590,7 @@ sv:
           primary_link: På-/avfart till riksväg (primär väg)
           proposed: Föreslagen väg
           raceway: Racerbana
-          residential: Bostadsområde
+          residential: Bostadsgata
           rest_area: Rastplats
           road: Väg
           secondary: Länsväg (sekundärväg)
@@ -805,7 +812,7 @@ sv:
           spur: Sidospår
           station: Tågstation
           stop: Järnvägshållplats
-          subway: Tunnelbanestation
+          subway: Tunnelbana
           subway_entrance: Tunnelbaneingång
           switch: Järnvägsväxel
           tram: Spårväg
@@ -1015,9 +1022,9 @@ sv:
     legal_babble:
       title_html: Upphovsrätt och licens
       intro_1_html: |-
-        OpenStreetMap är <i>öppen data</i>, gjord tillgänglig under licensen <a
-        href="http://opendatacommons.org/licenses/odbl/">Open Data
-        Commons Open Database License</a> (ODbL).
+        OpenStreetMap<sup><a href="#trademarks">&reg;</a></sup> är <i>öppen data</i>, gjord tillgänglig under licensen <a
+        href="http://opendatacommons.org/licenses/odbl/">Open Data Commons Open Database License</a> (ODbL) av <a
+        href="http://osmfoundation.org/">OpenStreetMap Foundation</a> (OSMF).
       intro_2_html: |-
         Du är fri att kopiera, distribuera, överföra och anpassa vår data,
         så länge du anger OpenStreetMap och dess bidragsgivare som källa.
@@ -1050,7 +1057,8 @@ sv:
         title: Exempel på källhänvisning.
       more_title_html: Mer information
       more_1_html: |-
-        Läs mer om användning av vår data, och hur du anger oss som källa, på vår <a
+        Läs mer om användning av vår data, och hur du anger oss som källa, på <a
+        href="http://osmfoundation.org/Licence">OSMF licenssida</a> och gemenskapens <a
         href="http://wiki.openstreetmap.org/wiki/Legal_FAQ">juridiska
         FAQ</a>.
       more_2_html: |-
@@ -1086,6 +1094,11 @@ sv:
       contributors_nz_html: |-
         <strong>Nya Zeeland</strong>: Innehåller data från
         Land Information New Zealand. Crown Copyright reserved.
+      contributors_si_html: |-
+        <strong>Slovenien</strong>: Innehåller uppgifter från
+        <a href="http://www.gu.gov.si/en/">Surveying and Mapping Authority</a> och
+        <a href="http://www.mkgp.gov.si/en/">Ministry of Agriculture, Forestry and Food</a>
+        (offentlig information i Slovenien).
       contributors_za_html: |-
         <strong>Sydafrika</strong>: Innehåller data från
         <a href="http://www.ngi.gov.za/">Chief Directorate:
@@ -1112,6 +1125,11 @@ sv:
         lagts in i OpenStreetMaps databas eller till den här webbplatsen, se
         vårt <a href="http://www.osmfoundation.org/wiki/License/Takedown_procedure">borttagningsförfarande</a>
         eller fyll i vårt <a href="http://dmca.openstreetmap.org/">online-formulär</a> direkt.
+      trademarks_title_html: <span id="trademarks"></span>Varumärken
+      trademarks_1_html: OpenStreetMap och förstoringsglas-logotypen är registrerade
+        varumärken hos OpenStreetMap Foundation. Om du har frågor gällande din användning
+        av varumärkena, vänligen skicka frågorna till <a href="http://wiki.osmfoundation.org/wiki/Licensing_Working_Group">arbetsgruppen
+        för licenser</a>.
   welcome_page:
     title: Välkommen!
     introduction_html: Välkommen till OpenStreetMap, den fria och redigerbara kartan
@@ -1139,6 +1157,14 @@ sv:
         en väg, bäck, sjö eller byggnad.
       tag_html: En <strong>tagg</strong> är en bit data om en nod eller väg, till
         exempel en restaurangs namn eller en vägs hastighetsbegränsning.
+    rules:
+      title: Regler!
+      paragraph_1_html: "OpenStreetMap har få formella regler, men vi förväntar oss
+        att alla deltagare samarbetar och kommunicerar med gemenskapen. Om du funderar
+        på\nnågon annan aktivitet än manuell redigering av sidan, läs och följ anvisningarna
+        på \n<a href=\"http://wiki.openstreetmap.org/wiki/Import/Guidelines\">Import</a>
+        och \n<a href=\"http://wiki.openstreetmap.org/wiki/Automated_Edits_code_of_conduct\">Automatiserade
+        redigeringar</a>."
     questions:
       title: Några frågor?
       paragraph_1_html: |-
@@ -1181,11 +1207,30 @@ sv:
       url: /welcome
       title: Välkommen till OSM
       description: Börja med den här snabbguiden som täcker grunderna i OpenStreetMap.
+    beginners_guide:
+      url: http://wiki.openstreetmap.org/wiki/Sv:Beginners%27_guide
+      title: Guide för nybörjare
+      description: Guide för nybörjare som underhålls av gemenskapen.
     help:
       url: https://help.OpenStreetMap.org/
       title: help.openstreetmap.org
       description: Ställ en fråga eller kolla upp svar på OSM:s sida med svar på ofta
         förekommande frågor.
+    mailing_lists:
+      title: E-postlistor
+      description: Ställ en fråga eller diskutera intressanta saker på ett brett utbud
+        av lokala eller regionala e-postlistor.
+    forums:
+      title: Forum
+      description: Frågor och diskussioner för de som föredrar ett gränssnitt liknande
+        en anslagstavla.
+    irc:
+      title: IRC
+      description: Interaktiv chatt på flera olika språk rörande mängder av ämnen.
+    switch2osm:
+      title: switch2osm
+      description: Hjälp för företag och organisationer att byta till OpenStreetMap-baserade
+        kartor och andra tjänster.
     wiki:
       url: http://wiki.openstreetmap.org/
       title: wiki.openstreetmap.org
@@ -1193,7 +1238,7 @@ sv:
   about_page:
     next: Nästa
     copyright_html: <span>&copy;</span>OpenStreetMap<br>bidragsgivare
-    used_by: '%{name} förser hundratals webbsidor, mobilappar och fysiska apparater
+    used_by: '%{name} förser tusentals webbsidor, mobilappar och fysiska apparater
       med kartdata'
     lede_text: OpenStreetMap är byggt av en gemenskap av kartografer som bidrar och
       underhåller data om vägar, stigar, caféer, järnvägsstationer och mycket mer,
@@ -1213,6 +1258,12 @@ sv:
       källa. Om du förändrar eller bygger vidare på datan på vissa sätt, kan du endast
       distribuera resultatet under samma licens. Se <a href=''%{copyright_path}''>sidan
       för Upphovsrätt och Licens</a> för detaljer.'
+    legal_title: Juridik
+    legal_html: "Denna sida och många andra liknande tjänster drivs formellt av \n<a
+      href=\"http://osmfoundation.org/\">OpenStreetMap Foundation</a> (OSMF) \npå
+      gemenskapens vägnar.\n<br> \nVänligen <a href=\"http://osmfoundation.org/Contact\">kontakta
+      OSMF</a> \nom du har frågor eller funderingar om licenser, upphovsrätt eller
+      andra rättsliga frågor."
     partners_title: Partners
   notifier:
     diary_comment_notification:
@@ -1319,6 +1370,8 @@ sv:
           du är intresserad av'
         your_changeset: '%{commenter} har lämnat en kommentar på ett av dina ändringsset
           skapas den %{time}'
+        commented_changeset: '%{commenter} har lämnat en kommentar på ändringarna
+          på en karta du bevakar, skapad av %{changeset_author} %{time}'
         partial_changeset_with_comment: med kommentar '%{changeset_comment}'
         partial_changeset_without_comment: utan kommentar
       details: Mer detaljer om ändringssetet finns på %{url}.
@@ -1444,13 +1497,12 @@ sv:
       table:
         entry:
           motorway: Motorväg
+          main_road: Huvudväg
           trunk: Nationell stamväg/motortrafikled
           primary: Primär väg (riksväg)
           secondary: Sekundär väg (större länsväg)
           unclassified: Oklassificerad väg
-          unsurfaced: Oasfalterad väg
           track: Spår
-          byway: Förbifart
           bridleway: Ridstig
           cycleway: Cykelväg
           footway: Gångväg
@@ -1474,7 +1526,6 @@ sv:
           golf: Golfbana
           park: Park
           resident: Bostadsområde
-          tourist: Turistattraktion
           common:
           - Allmänning
           - äng
@@ -1504,7 +1555,6 @@ sv:
           tunnel: Streckade kanter = tunnel
           bridge: Svarta kanter = bro
           private: Privat tillgång
-          permissive: Endast tillträde för behöriga
           destination: Förbjuden genomfart
           construction: Vägar under konstruktion
     richtext_area:
@@ -1663,6 +1713,7 @@ sv:
       allow_read_gpx: läs dina privata GPS-spår.
       allow_write_gpx: ladda upp GPS-spår
       allow_write_notes: ändra anteckningar.
+      grant_access: Bevilja åtkomst
     oauthorize_success:
       title: Auktoriseringsbegäran tillåten
       allowed: Du har beviljat en applikation %{app_name} tillgång till ditt konto.
@@ -1748,6 +1799,7 @@ sv:
       register now: Registrera dig nu
       with username: 'Har du redan ett OpenStreetMap-konto? Logga in med ditt användarnamn
         och lösenord:'
+      with external: 'Alternativt kan du använda en tredje part för att logga in:'
       new to osm: Ny på OpenStreetMap?
       to make changes: För att göra ändringar i OpenStreetMaps data måste du ha ett
         konto.
@@ -1761,6 +1813,28 @@ sv:
         {webmaster}">webbansvarig</a> om du vill diskutera saken.
       auth failure: Kunde inte logga in med de uppgifterna.
       openid_logo_alt: Logga in med ett OpenID
+      auth_providers:
+        openid:
+          title: Logga in med OpenID
+          alt: Logga in med en OpenID-URL
+        google:
+          title: Logga in med Google
+          alt: Logga in med ett Google OpenID
+        facebook:
+          title: Logga in med Facebook
+          alt: Logga in med ett Facebook-konto
+        windowslive:
+          title: Logga in med Windows Live
+          alt: Logga in med ett Windows Live-konto
+        yahoo:
+          title: Logga in med Yahoo
+          alt: Logga in med ett Yahoo OpenID
+        wordpress:
+          title: Logga in med Wordpress
+          alt: Logga in med ett Wordpress OpenID
+        aol:
+          title: Logga in med AOL
+          alt: Logga in med ett AOL OpenID
     logout:
       title: Logga ut
       heading: Logga ut från OpenStreetMap
@@ -1786,9 +1860,8 @@ sv:
       title: Registrera
       no_auto_account_create: Tyvärr kan vi för närvarande inte kan skapa ett konto
         åt dig automatiskt.
-      contact_webmaster: Kontakta <a href="mailto:webmaster@openstreetmap.org">webbansvarig</a>
-        för att få ett konto skapat – vi kommer att behandla ansökan så snart som
-        möjligt.
+      contact_webmaster: Kontakta <a href="%{webmaster}">webbansvarig</a> för att
+        få ett konto skapat – vi kommer att behandla ansökan så snart som möjligt.
       about:
         header: Fri och redigerbar
         html: |-
@@ -1802,8 +1875,12 @@ sv:
       display name: 'Visat namn:'
       display name description: Ditt offentligt visade användarnamn. Du kan ändra
         detta senare i inställningarna.
+      external auth: 'Tredjepartsautentisering:'
       password: 'Lösenord:'
       confirm password: 'Bekräfta lösenord:'
+      use external auth: Alternativt kan du använda en tredje part för att logga in
+      auth no password: Med autentisering av tredje part krävs inte lösenord, men
+        en del extra verktyg eller server kan fortfarande behöva det.
       continue: Skapa ett konto
       terms accepted: Tack för att du accepterat de nya villkoren för bidrag till
         kartan!
@@ -1834,6 +1911,7 @@ sv:
       heading: Användaren %{user} finns inte
       body: Det finns ingen användare med namnet %{user}. Kontrollera stavningen,
         eller så kanske länken är trasig.
+      deleted: raderad
     view:
       my diary: Min dagbok
       new diary entry: nytt dagboksinlägg
@@ -1886,16 +1964,16 @@ sv:
         revoke:
           administrator: Återkalla administratörsrättigheter
           moderator: Återkalla moderatorrättigheter
-      block_history: tilldelade blockeringar
-      moderator_history: utdelade blockeringar
+      block_history: Aktiva blockeringar
+      moderator_history: Utdelade blockeringar
       comments: Kommentarer
-      create_block: blockera denna användare
-      activate_user: aktivera denna användare
-      deactivate_user: avaktivera denna användare
-      confirm_user: bekräfta denna användare
-      hide_user: dölj denna användare
-      unhide_user: sluta dölja användaren
-      delete_user: radera denna användare
+      create_block: Blockera denna användare
+      activate_user: Aktivera denna användare
+      deactivate_user: Inaktivera denna användare
+      confirm_user: Bekräfta denna användare
+      hide_user: Dölj denna användare
+      unhide_user: Sluta dölja användaren
+      delete_user: Radera denna användare
       confirm: Bekräfta
       friends_changesets: vänners ändringsset
       friends_diaries: vänners dagboksinlägg
@@ -1911,6 +1989,7 @@ sv:
       current email address: 'Nuvarande e-postadress:'
       new email address: 'Ny e-postadress:'
       email never displayed publicly: (visas aldrig offentligt)
+      external auth: 'Extern autentisering:'
       openid:
         link: http://wiki.openstreetmap.org/wiki/OpenID
         link text: vad är detta?
@@ -1981,16 +2060,16 @@ sv:
       success: Vi har skickat ett nytt bekräftelsemeddelande till %{email} och så
         snart du bekräftat ditt konto kommer du kunna börja kartera.<br /><br />Om
         du använder ett antispamsystem som skickar bekräftelsemeddelanden se till
-        att du vitlistar webmaster@openstreetmap.org då vi inte kan svara på några
-        sådana begäranden.
+        att du vitlistar %{sender} då vi inte kan svara på några sådana begäranden.
       failure: Användaren %{name} hittades inte.
     confirm_email:
       heading: Bekräfta byte av e-postadress
       press confirm button: Klicka på bekräftaknappen nedan för att bekräfta din nya
         e-postadress.
       button: Bekräfta
-      success: E-postadressen är bekräftad. Tack för att du registrerade dig!
+      success: Ditt byte av e-postadress har bekräftats!
       failure: En e-postadress har redan bekräftats med den här nyckeln.
+      unknown_token: Den bekräftelsekoden har löpt ut eller existerar inte.
     set_home:
       flash success: Hemposition sparad
     go_public:
@@ -2017,7 +2096,7 @@ sv:
       summary: '%{name} skapades från %{ip_address} den %{date}'
       summary_no_ip: '%{name} skapad %{date}'
       confirm: Bekräfta valda användare
-      hide: Göm valda användare
+      hide: Dölj valda användare
       empty: Inga användare hittades
     suspended:
       title: Kontot avstängt
@@ -2032,6 +2111,21 @@ sv:
           Detta beslut kommer granskas av en administratör inom kort, eller
           så kan du kontakta %{webmaster} om vill diskutera saken.
         </p>
+    auth_failure:
+      connection_failed: Anslutning till autentiseringsleverantören misslyckades
+      invalid_credentials: Ogiltiga autentiseringsuppgifter
+      no_authorization_code: Ingen behörighetskod
+      unknown_signature_algorithm: Okänd signaturalgoritm
+      invalid_scope: Ogiltiga omfattning
+    auth_association:
+      heading: Ditt ID är inte associerat med ett OpenStreetMap-konto ännu.
+      option_1: |-
+        Om du är ny på OpenStreetMap, vänligen skapa ett nytt konto
+        med hjälp av formuläret nedan.
+      option_2: |-
+        Om du redan har ett konto, kan du logga in på ditt konto
+        med hjälp av ditt användarnamn och lösenord och sedan koppla kontot
+        med ditt ID i dina användarinställningar.
   user_role:
     filter:
       not_an_administrator: Endast adminstratörer kan ändra användares roller och
@@ -2147,6 +2241,8 @@ sv:
       heading: '%{block_on} blockerad av %{block_by}'
       time_future: Upphör om %{time}
       time_past: Slutade för %{time} sedan
+      created: Skapad
+      ago: '%{time} sedan'
       status: Status
       show: Visa
       edit: Redigera
@@ -2197,6 +2293,7 @@ sv:
       link: Länk eller HTML
       long_link: Länk
       short_link: Kort länk
+      geo_uri: Geo-URI
       embed: HTML
       custom_dimensions: Ange anpassade dimensioner
       format: 'Format:'
@@ -2208,6 +2305,9 @@ sv:
       center_marker: Centrera kartan på markören
       paste_html: Klistra in HTML-koden för att publicera på en webbsida
       view_larger_map: Visa större karta
+      only_standard_layer: Endast standardlagret kan exporteras som en bild
+    embed:
+      report_problem: Rapportera ett problem
     key:
       title: Kartnyckel
       tooltip: Kartnyckel
@@ -2239,8 +2339,8 @@ sv:
       createnote_disabled_tooltip: Zooma in för att lägga till anteckningar på kartan
       map_notes_zoom_in_tooltip: Zooma in för att se kartanteckningar
       map_data_zoom_in_tooltip: Zooma in för att se kartdata
-      queryfeature_tooltip: Fråge funktioner
-      queryfeature_disabled_tooltip: Zooma in för att fråga om funktioner
+      queryfeature_tooltip: Undersök kartobjekt
+      queryfeature_disabled_tooltip: Zooma in för att undersöka kartobjekt
     changesets:
       show:
         comment: Kommentera
@@ -2273,30 +2373,34 @@ sv:
         mapquest_car: Bil (MapQuest)
         mapquest_foot: Gående (MapQuest)
         osrm_car: Bil (OSRM)
+        mapzen_bicycle: Cykel (Mapzen)
+        mapzen_car: Bil (Mapzen)
+        mapzen_foot: Fot (Mapzen)
       directions: Vägbeskrivning
       distance: Avstånd
       errors:
         no_route: Kunde inte hitta en väg mellan dessa två platser.
         no_place: Ledsen - kunde inte hitta platsen.
       instructions:
-        continue_on: Fortsätt
-        slight_right: Svag höger in på
-        turn_right: Sväng höger in på
-        sharp_right: Skarp höger in på
-        uturn: U-sväng längs
-        sharp_left: Skarp vänster in på
-        turn_left: Sväng vänster in på
-        slight_left: Svagt vänster till
-        via_point: (via punkten)
-        follow: Följ
-        roundabout: I rondellen ta
-        leave_roundabout: Lämna rondellen
-        stay_roundabout: Vistelse på rondellen -
-        start: Börja vid slutet av
-        destination: Nå målet
-        against_oneway: Kör mot enkelriktat på
-        end_oneway: Slutet av en väg på
-        unnamed: (namnlös)
+        continue_without_exit: Fortsätt på %{name}
+        slight_right_without_exit: Svag högersväng in på %{name}
+        turn_right_without_exit: Högersväng in på %{name}
+        sharp_right_without_exit: Skarp högersväng in på %{name}
+        uturn_without_exit: U-sväng längs %{name}
+        sharp_left_without_exit: Skarp vänstersväng in på %{name}
+        turn_left_without_exit: Vänstersväng in på %{name}
+        slight_left_without_exit: Svag vänstersväng in på %{name}
+        via_point_without_exit: (via punkt)
+        follow_without_exit: Följ %{name}
+        roundabout_without_exit: I rondellen ta av mot %{name}
+        leave_roundabout_without_exit: Lämna rondellen - %{name}
+        stay_roundabout_without_exit: Stanna kvar i rondellen - %{name}
+        start_without_exit: Börja vid slutet av %{name}
+        destination_without_exit: Nå destination
+        against_oneway_without_exit: Kör mot enkelriktat på %{name}
+        end_oneway_without_exit: Slutet av enkelriktat på %{name}
+        roundabout_with_exit: Vid rondellen, ta avfart %{exit} mot %{name}
+        unnamed: namnlös
         courtesy: Vägbeskrivning med tillstånd av %{link}
       time: Tid
     query:

@@ -15,9 +15,15 @@ fieldset,img { border: 0; }
 
 legend { color: #000; }
 
-sup { vertical-align: text-top; }
+sup {
+  vertical-align: super;
+  font-size: smaller;
+}
 
-sub { vertical-align: text-bottom; }
+sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
 
 table {
   border-collapse: collapse;
@@ -145,13 +151,14 @@ small, aside {
 /* Rules for icons */
 
 .icon {
-  display:inline-block;
-  vertical-align:top;
-  width:20px;
-  height:20px;
-  background:transparent image-url("sprite.png") no-repeat 0 0;
-  text-indent:-9999px;
-  overflow:hidden;
+  display: inline-block;
+  vertical-align: top;
+  width: 20px;
+  height: 20px;
+  background: transparent image-url("sprite.png") no-repeat 0 0;
+  background-image: image-url("sprite.svg");
+  text-indent: -9999px;
+  overflow: hidden;
 }
 
 .icon.search      { background-position: 0 0; }
@@ -169,6 +176,7 @@ small, aside {
 .icon.close:hover { background-position: -200px -20px; }
 .icon.check       { background-position: -220px 0; }
 .icon.note        { background-position: -240px 0; }
+.icon.note.grey   { background-position: -240px -20px; }
 .icon.query       { background-position: -260px 0; }
 
 /* Rules for links */
@@ -222,7 +230,7 @@ table {
 
 /* Rules for the header */
 
-#menu-icon { 
+#menu-icon {
   display: none !important;
   float: right;
   background: image-url("menu-icon.png") no-repeat;
@@ -284,7 +292,7 @@ nav.primary {
     > li {
       border-right: $border;
       float: left;
-      &:last-child { 
+      &:last-child {
         border-right: 0;
       }
       > a:hover { background: lighten($green, 30%); }
@@ -365,12 +373,12 @@ nav.secondary {
     > li {
       border-right: $border;
       float: left;
-      &:last-child { 
+      &:last-child {
         border-right: 0;
 
         > a {
           border-radius: 0 $border-radius $border-radius 0;
-        } 
+        }
       }
       &:first-child > a { border-radius: $border-radius 0 0 $border-radius; }
       &:hover a { background: lighten($darkgrey, 30%); }
@@ -438,7 +446,7 @@ nav.secondary {
   }
 }
 
-@media only screen and (max-width:960px) {
+body.compact {
   #compact-secondary-nav {
     display: inline-block;
   }
@@ -610,7 +618,7 @@ nav.secondary {
     &.query-disabled {
       cursor: not-allowed;
     }
-    
+
     .leaflet-marker-draggable {
       cursor: move;
     }
@@ -671,7 +679,7 @@ nav.secondary {
       margin-bottom: 8px;
       position: relative;
       transition: border-color 0.08s ease-in;
-      
+
       label {
         position: absolute;
         top: 0;
@@ -715,6 +723,7 @@ nav.secondary {
       text-decoration: none;
       background-color: $lightblue;
       padding: 5px 10px;
+      border-right: 1px solid #fff;
     }
 
     a:first-child {
@@ -723,7 +732,6 @@ nav.secondary {
     }
 
     a:last-child {
-      border-left: 1px solid #fff;
       border-radius: 0 4px 4px 0;
     }
 
@@ -807,10 +815,10 @@ nav.secondary {
   padding: $lineheight/2 $lineheight;
   // background: $offwhite;
   // border-bottom: 1px solid #ccc;
-  > .close { 
+  > .close {
     float: right;
     margin-top: 2px;
-    cursor: pointer; 
+    cursor: pointer;
   }
 }
 
@@ -978,6 +986,7 @@ header .search_forms,
 
 .search_results_error {
   color: #f00;
+  padding: 10px 20px;
 }
 
 /* Rules for routing */
@@ -994,7 +1003,7 @@ div.direction {
   height: 20px;
   background-repeat: no-repeat;
 }
-@for $i from 1 through 17 {
+@for $i from 1 through 18 {
 div.direction.i#{$i} { background-position: #{($i)*-20+20}px 0px; }
 }
 
@@ -1051,6 +1060,15 @@ tr.turn:hover {
     a {
       color: #000;
     }
+  }
+
+  .comments {
+    float: right;
+    color: #999;
+  }
+
+  .comments-0 {
+    opacity: 0.5;
   }
 }
 
@@ -1289,7 +1307,7 @@ tr.turn:hover {
 
 .content-heading {
   background: $lightgrey;
-  
+
   h1 { font-size: 22px; }
 }
 
@@ -1317,6 +1335,11 @@ tr.turn:hover {
 .user-terms {
   .content-body .content-inner {
     padding: 0;
+
+    .message {
+      margin-top: 80px;
+      padding: 20px;
+    }
   }
 }
 
@@ -1570,10 +1593,6 @@ tr.turn:hover {
     float: left;
     display: block;
   }
-
-  ul.secondary-actions {
-    display: inline-block;
-  }
 }
 
 .content-heading .hide_unless_logged_in { // hacky selector, better to just add a new class to this div
@@ -1806,6 +1825,19 @@ tr.turn:hover {
     display: inline-block;
     margin-left: $lineheight / 2;
     vertical-align: middle;
+
+    p {
+      margin-top: $lineheight * 0.5;
+      margin-bottom: $lineheight * 0.5;
+
+      &:first-child {
+        margin-top: 0px;
+      }
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
   }
 }
 
@@ -1885,7 +1917,7 @@ tr.turn:hover {
     padding-top: $lineheight;
     border-top: 1px solid $lightgrey;
   }
-  .horizontal-list .form-row { 
+  .horizontal-list .form-row {
     float: left;
     padding-right: 10px;
   }
@@ -2453,7 +2485,7 @@ input.richtext_title[type="text"] {
 .site-welcome, .site-fixthemap {
   .center {
     text-align: center;
-    .sprite { 
+    .sprite {
       float: none;
       margin: auto;
     }
@@ -2466,7 +2498,7 @@ input.richtext_title[type="text"] {
     float: left;
   }
 
-  .icon-list { 
+  .icon-list {
     padding-bottom: 20px;
     div {
       margin-bottom: 10px;
@@ -2507,6 +2539,10 @@ input.richtext_title[type="text"] {
 
   .sprite.question {
     background-position: -300px 0;
+  }
+
+  .sprite.rules {
+    background-position: -350px 0;
   }
 
   .start-mapping {
@@ -2659,6 +2695,7 @@ input.richtext_title[type="text"] {
     &.open         { background-position: 0px  -80px; }
     &.partners     { background-position: 0px -120px; }
     &.infringement { background-position: 0px -160px; }
+    &.legal        { background-position: -45px -160px; }
   }
 }
 
@@ -2669,4 +2706,3 @@ input.richtext_title[type="text"] {
     display: none;
   }
 }
-

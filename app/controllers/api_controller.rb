@@ -136,12 +136,14 @@ class ApiController < ApplicationController
     doc = OSM::API.new.get_xml_doc
 
     # add bounds
-    doc.root << bbox.add_bounds_to(XML::Node.new "bounds")
+    doc.root << bbox.add_bounds_to(XML::Node.new("bounds"))
 
     # get ways
     # find which ways are needed
     ways = []
-    if node_ids.length > 0
+    if node_ids.empty?
+      list_of_way_nodes = []
+    else
       way_nodes = WayNode.where(:node_id => node_ids)
       way_ids = way_nodes.collect { |way_node| way_node.id[0] }
       ways = Way.preload(:way_nodes, :way_tags).find(way_ids)
@@ -150,15 +152,12 @@ class ApiController < ApplicationController
         way.way_nodes.collect(&:node_id)
       end
       list_of_way_nodes.flatten!
-
-    else
-      list_of_way_nodes = []
     end
 
     # - [0] in case some thing links to node 0 which doesn't exist. Shouldn't actually ever happen but it does. FIXME: file a ticket for this
     nodes_to_fetch = (list_of_way_nodes.uniq - node_ids) - [0]
 
-    if nodes_to_fetch.length > 0
+    unless nodes_to_fetch.empty?
       nodes += Node.includes(:node_tags).find(nodes_to_fetch)
     end
 
@@ -258,8 +257,8 @@ class ApiController < ApplicationController
 
     api = XML::Node.new "api"
     version = XML::Node.new "version"
-    version["minimum"] = "#{API_VERSION}"
-    version["maximum"] = "#{API_VERSION}"
+    version["minimum"] = API_VERSION.to_s
+    version["maximum"] = API_VERSION.to_s
     api << version
     area = XML::Node.new "area"
     area["maximum"] = MAX_REQUEST_AREA.to_s

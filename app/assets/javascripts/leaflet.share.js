@@ -120,6 +120,21 @@ L.OSM.share = function (options) {
           .text(I18n.t('javascripts.share.paste_html'))
           .appendTo($linkSection));
 
+    // Geo URI
+
+    var $geoUriSection = $('<div>')
+      .attr('class', 'section share-geo-uri')
+      .appendTo($ui);
+
+    $('<h4>')
+      .text(I18n.t('javascripts.share.geo_uri'))
+      .appendTo($geoUriSection);
+
+    $('<div>')
+      .appendTo($geoUriSection)
+      .append($('<a>')
+        .attr('id', 'geo_uri'));
+
     // Image
 
     var $imageSection = $('<div>')
@@ -130,7 +145,14 @@ L.OSM.share = function (options) {
       .text(I18n.t('javascripts.share.image'))
       .appendTo($imageSection);
 
+    $('<div>')
+      .attr('id', 'export-warning')
+      .attr('class', 'deemphasize')
+      .text(I18n.t('javascripts.share.only_standard_layer'))
+      .appendTo($imageSection);
+
     $form = $('<form>')
+      .attr('id', 'export-image')
       .attr('class', 'standard-form')
       .attr('action', '/export/finish')
       .attr('method', 'post')
@@ -320,6 +342,12 @@ L.OSM.share = function (options) {
           '<small><a href="' + escapeHTML(map.getUrl(marker)) + '">' +
           escapeHTML(I18n.t('javascripts.share.view_larger_map')) + '</a></small>');
 
+      // Geo URI
+
+      $('#geo_uri')
+        .attr('href', map.getGeoUri(marker))
+        .html(map.getGeoUri(marker));
+
       // Image
 
       if (locationFilter.isEnabled()) {
@@ -343,6 +371,14 @@ L.OSM.share = function (options) {
 
       $("#mapnik_image_width").text(Math.round(size.x / scale / 0.00028));
       $("#mapnik_image_height").text(Math.round(size.y / scale / 0.00028));
+
+      if (map.getMapBaseLayerId() === 'mapnik') {
+        $('#export-image').show();
+        $('#export-warning').hide();
+      } else {
+        $('#export-image').hide();
+        $('#export-warning').show();
+      }
     }
 
     function select() {

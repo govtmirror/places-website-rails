@@ -6,6 +6,8 @@
 # Author: Ianlopez1115
 # Author: Jewel457
 # Author: Jojit fb
+# Author: Leeheonjin
+# Author: Macofe
 # Author: 아라
 ---
 tl:
@@ -1081,13 +1083,12 @@ tl:
       table:
         entry:
           motorway: Daanan ng Sasakyang may Motor
+          main_road: Pangunahing daan
           trunk: Punong Kalsada
           primary: Pangunahing kalsada
           secondary: Pampangalawang kalsada
           unclassified: Kalsadang walang kaurian
-          unsurfaced: Kalsadang hindi patag
           track: Bakas
-          byway: Landas na hindi madaanan
           bridleway: Daanan ng Kabayo
           cycleway: Daanan ng motorsiklo o bisikleta
           footway: Lakaran ng tao
@@ -1111,7 +1112,6 @@ tl:
           golf: Kurso ng golp
           park: Liwasan
           resident: Pook na panuluyan
-          tourist: Pang-akit ng turista
           common:
           - Karaniwan
           - kaparangan
@@ -1141,7 +1141,6 @@ tl:
           tunnel: Ginitlingang pambalot = lagusan
           bridge: Itim na pambalot = tulay
           private: Pribadong pagpunta
-          permissive: Mapagpaubayang pagpapapunta
           destination: Pagpapapunta sa patutunguhan
           construction: Mga kalsadang ginagawa
     richtext_area:
@@ -1418,7 +1417,7 @@ tl:
       title: Likhain ang akawnt
       no_auto_account_create: Sa kasamaang-palad pangkasalukuyang hindi namin magawang
         kusang lumikha ng akawnt para sa iyo.
-      contact_webmaster: Mangyaring makipag-uganay sa <a href="mailto:webmaster@openstreetmap.org">panginoon
+      contact_webmaster: Mangyaring makipag-uganay sa <a href="%{webmaster}">panginoon
         ng web</a> upang makipagkasundo para sa isang lilikhaing akawnt - susubukan
         namin at harapin ang kahilingan sa lalong madaling panahon.
       license_agreement: Kapag tiniyak mo ang iyong akawnt kakailanganin mong sumang-ayon
@@ -1616,8 +1615,8 @@ tl:
         tiniyak mo nang iyong akawnt sa lalong madaling panahon maaari ka nang magsimula
         sa pagmamapa.<br /><br />Kung gumagamit ka ng isang sistemang panlaban sa
         basurang liham na nagpapadala ng mga kahilingan ng pagtitiyak, pakitiyak na
-        itala mo sa puting-talaan ang webmaster@openstreetmap.org dahil hindi namin
-        magagawang tumugon sa anumang mga kahilingan ng pagtitiyak.
+        itala mo sa puting-talaan ang %{sender} dahil hindi namin magagawang tumugon
+        sa anumang mga kahilingan ng pagtitiyak.
       failure: Hindi natagpuan ang tagagamit na si %{name}.
     confirm_email:
       heading: Tiyakin ang isang pagpapalit ng tirahan ng e-liham

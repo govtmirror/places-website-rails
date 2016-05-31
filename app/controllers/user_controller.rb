@@ -45,7 +45,7 @@ class UserController < ApplicationController
         @user.terms_seen = true
 
         if @user.save
-          flash[:notice] = t "user.new.terms declined", :url => t("user.new.terms declined url")
+          flash[:notice] = t("user.new.terms declined", :url => t("user.new.terms declined url")).html_safe
         end
 
         if params[:referer]
@@ -182,7 +182,7 @@ class UserController < ApplicationController
           if @user.save
             token.destroy
             flash[:notice] = t "user.reset_password.flash changed"
-            redirect_to :action => "login"
+            successful_login(@user)
           end
         end
       else
@@ -213,7 +213,7 @@ class UserController < ApplicationController
                        :auth_provider => params[:auth_provider],
                        :auth_uid => params[:auth_uid])
 
-      flash.now[:notice] = t "user.new.auth association"
+      flash.now[:notice] = render_to_string :partial => "auth_association"
     else
       check_signup_allowed
     end
@@ -257,7 +257,7 @@ class UserController < ApplicationController
       password_authentication(params[:username], params[:password])
     elsif params[:openid_url].present?
       session[:remember_me] ||= params[:remember_me_openid]
-      redirect_to auth_url("openid", params[:openid_url])
+      redirect_to auth_url("openid", params[:openid_url], params[:referer])
     end
   end
 
@@ -318,16 +318,19 @@ class UserController < ApplicationController
     else
       user = User.find_by_display_name(params[:display_name])
 
-      redirect_to root_path if !user || user.active?
+      redirect_to root_path if user.nil? || user.active?
     end
   end
 
   def confirm_resend
-    if user = User.find_by_display_name(params[:display_name])
-      Notifier.signup_confirm(user, user.tokens.create).deliver_now
-      flash[:notice] = t "user.confirm_resend.success", :email => user.email
-    else
+    user = User.find_by_display_name(params[:display_name])
+    token = UserToken.find_by_token(session[:token])
+
+    if user.nil? || token.nil? || token.user != user
       flash[:error] = t "user.confirm_resend.failure", :name => params[:display_name]
+    else
+      Notifier.signup_confirm(user, user.tokens.create).deliver_now
+      flash[:notice] = t("user.confirm_resend.success", :email => user.email, :sender => SUPPORT_EMAIL).html_safe
     end
 
     redirect_to :action => "login"
@@ -400,13 +403,11 @@ class UserController < ApplicationController
         friend.friend_user_id = @new_friend.id
         if @user.is_friends_with?(@new_friend)
           flash[:warning] = t "user.make_friend.already_a_friend", :name => @new_friend.display_name
+        elsif friend.save
+          flash[:notice] = t "user.make_friend.success", :name => @new_friend.display_name
+          Notifier.friend_notification(friend).deliver_now
         else
-          if friend.save
-            flash[:notice] = t "user.make_friend.success", :name => @new_friend.display_name
-            Notifier.friend_notification(friend).deliver_now
-          else
-            friend.add_error(t("user.make_friend.failed", :name => @new_friend.display_name))
-          end
+          friend.add_error(t("user.make_friend.failed", :name => @new_friend.display_name))
         end
 
         if params[:referer]
@@ -494,7 +495,7 @@ class UserController < ApplicationController
     when "openid"
       email_verified = uid.match(%r{https://www.google.com/accounts/o8/id?(.*)}) ||
                        uid.match(%r{https://me.yahoo.com/(.*)})
-    when "google"
+    when "google", "facebook"
       email_verified = true
     else
       email_verified = false
@@ -513,9 +514,9 @@ class UserController < ApplicationController
       when "pending" then
         unconfirmed_login(user)
       when "active", "confirmed" then
-        successful_login(user)
+        successful_login(user, env["omniauth.params"]["referer"])
       when "suspended" then
-        failed_login t("user.login.account is suspended", :webmaster => "mailto:webmaster@openstreetmap.org")
+        failed_login t("user.login.account is suspended", :webmaster => "mailto:#{SUPPORT_EMAIL}")
       else
         failed_login t("user.login.auth failure")
       end
@@ -558,20 +559,27 @@ class UserController < ApplicationController
     elsif user = User.authenticate(:username => username, :password => password, :pending => true)
       unconfirmed_login(user)
     elsif User.authenticate(:username => username, :password => password, :suspended => true)
-      failed_login t("user.login.account is suspended", :webmaster => "mailto:webmaster@openstreetmap.org")
+      failed_login t("user.login.account is suspended", :webmaster => "mailto:#{SUPPORT_EMAIL}"), username
     else
-      failed_login t("user.login.auth failure")
+      failed_login t("user.login.auth failure"), username
     end
   end
 
   ##
   # return the URL to use for authentication
-  def auth_url(provider, uid)
-    if provider == "openid"
-      auth_path(:provider => "openid", :openid_url => openid_expand_url(uid), :origin => request.path)
+  def auth_url(provider, uid, referer = nil)
+    params = { :provider => provider }
+
+    params[:openid_url] = openid_expand_url(uid) if provider == "openid"
+
+    if referer.nil?
+      params[:origin] = request.path
     else
-      auth_path(:provider => provider, :origin => request.path)
+      params[:origin] = request.path + "?referer=" + CGI.escape(referer)
+      params[:referer] = referer
     end
+
+    auth_path(params)
   end
 
   ##
@@ -593,11 +601,11 @@ class UserController < ApplicationController
 
   ##
   # process a successful login
-  def successful_login(user)
+  def successful_login(user, referer = nil)
     session[:user] = user.id
     session_expires_after 28.days if session[:remember_me]
 
-    target = session[:referer] || url_for(:controller => :site, :action => :index)
+    target = referer || session[:referer] || url_for(:controller => :site, :action => :index)
 
     # The user is logged in, so decide where to send them:
     #
@@ -619,10 +627,11 @@ class UserController < ApplicationController
 
   ##
   # process a failed login
-  def failed_login(message)
+  def failed_login(message, username = nil)
     flash[:error] = message
 
-    redirect_to :action => "login", :referer =>  session[:referer]
+    redirect_to :action => "login", :referer => session[:referer],
+                :username => username, :remember_me => session[:remember_me]
 
     session.delete(:remember_me)
     session.delete(:referer)
@@ -631,6 +640,8 @@ class UserController < ApplicationController
   ##
   #
   def unconfirmed_login(user)
+    session[:token] = user.tokens.create.token
+
     redirect_to :action => "confirm", :display_name => user.display_name
 
     session.delete(:remember_me)
@@ -643,7 +654,7 @@ class UserController < ApplicationController
     user.display_name = params[:user][:display_name]
     user.new_email = params[:user][:new_email]
 
-    if params[:user][:pass_crypt].length > 0 || params[:user][:pass_crypt_confirmation].length > 0
+    unless params[:user][:pass_crypt].empty? && params[:user][:pass_crypt_confirmation].empty?
       user.pass_crypt = params[:user][:pass_crypt]
       user.pass_crypt_confirmation = params[:user][:pass_crypt_confirmation]
     end
@@ -670,11 +681,11 @@ class UserController < ApplicationController
     user.home_lat = params[:user][:home_lat]
     user.home_lon = params[:user][:home_lon]
 
-    if params[:user][:preferred_editor] == "default"
-      user.preferred_editor = nil
-    else
-      user.preferred_editor = params[:user][:preferred_editor]
-    end
+    user.preferred_editor = if params[:user][:preferred_editor] == "default"
+                              nil
+                            else
+                              params[:user][:preferred_editor]
+                            end
 
     if params[:user][:auth_provider].nil? || params[:user][:auth_provider].blank?
       user.auth_provider = nil
@@ -766,11 +777,11 @@ class UserController < ApplicationController
   ##
   # check signup acls
   def check_signup_allowed(email = nil)
-    if email.nil?
-      domain = nil
-    else
-      domain = email.split("@").last
-    end
+    domain = if email.nil?
+               nil
+             else
+               email.split("@").last
+             end
 
     if blocked = Acl.no_account_creation(request.remote_ip, domain)
       logger.info "Blocked signup from #{request.remote_ip} for #{email}"

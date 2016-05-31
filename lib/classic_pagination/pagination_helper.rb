@@ -13,7 +13,7 @@ module ActionView
           :always_show_anchors => true,
           :link_to_current_page => false,
           :params => {}
-        }
+        }.freeze
       end
 
       # Creates a basic HTML link bar for the given +paginator+.  Links will be created
@@ -97,9 +97,10 @@ module ActionView
 
         current_page = paginator.current_page
         window_pages = current_page.window(options[:window_size]).pages
-        return if window_pages.length <= 1 unless link_to_current_page
+        return unless link_to_current_page || window_pages.length > 1
 
-        first, last = paginator.first, paginator.last
+        first = paginator.first
+        last = paginator.last
 
         html = ""
 
@@ -112,11 +113,11 @@ module ActionView
         end
 
         window_pages.each do |page|
-          if current_page == page && !link_to_current_page
-            html << page.number.to_s
-          else
-            html << yield(page.number)
-          end
+          html << if current_page == page && !link_to_current_page
+                    page.number.to_s
+                  else
+                    yield(page.number)
+                  end
           html << " "
         end
 

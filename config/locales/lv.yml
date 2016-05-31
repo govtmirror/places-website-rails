@@ -3,14 +3,18 @@
 # Export driver: phpyaml
 # Author: Admresdeserv.
 # Author: Cuu508
+# Author: Edgars2007
 # Author: GreenZeb
 # Author: Jmg.cmdi
 # Author: Karlis
 # Author: Lafriks
+# Author: Macofe
 # Author: Nemo bis
 # Author: Papuass
 # Author: PeterisP
 # Author: Raitisx
+# Author: Ruila
+# Author: Silraks
 # Author: Ttdnet
 ---
 lv:
@@ -163,6 +167,7 @@ lv:
         way: līnija
         relation: relācija
         changeset: izmaiņu kopa
+        note: piezīme
     timeout:
       sorry: Diemžēl dati %{type} ar id %{id}, prasīja pārāk daudz laika, lai ielādētu.
       type:
@@ -170,6 +175,7 @@ lv:
         way: līnija
         relation: relācija
         changeset: izmaiņu kopa
+        note: piezīme
     redacted:
       redaction: Redakcijas %{id}
       message_html: Versija %{version} no šī %{type} nevar tikt parādīta, jo tika
@@ -245,6 +251,7 @@ lv:
   diary_entry:
     new:
       title: Jauns dienasgrāmatas ieraksts
+      publish_button: Publicēt
     list:
       title: Lietotāju dienasgrāmatas
       title_friends: Draugu dienasgrāmatas
@@ -402,6 +409,7 @@ lv:
           bicycle_parking: Velosipēdu novietne
           bicycle_rental: Velosipēdu noma
           biergarten: Alus dārzs
+          boat_rental: Laivu noma
           brothel: Bordelis
           bureau_de_change: Valūtas maiņas punkts
           bus_station: Autoosta
@@ -431,6 +439,7 @@ lv:
           food_court: Ēstuves
           fountain: Strūklaka
           fuel: Degviela
+          gambling: Azartspēles
           grave_yard: Kapsēta
           gym: Fitnesa centrs / Sporta zāle
           health_centre: Veselības centrs
@@ -441,11 +450,14 @@ lv:
           library: Bibliotēka
           market: Tirgus
           marketplace: Tirgus
+          monastery: Klosteris
+          motorcycle_parking: Motociklu stāvvieta
           nightclub: Naktsklubs
           nursery: Pirmsskolas mācību iestāde
           nursing_home: Pansionāts
           office: Birojs
           parking: Autostāvvieta
+          parking_entrance: Autostāvvietas iebrauktuve
           pharmacy: Aptieka
           place_of_worship: Dievnams
           police: Policija
@@ -493,6 +505,17 @@ lv:
           "yes": Tilts
         building:
           "yes": Ēka
+        craft:
+          brewery: Alus darītava
+          carpenter: Galdnieks
+          electrician: Elektriķis
+          gardener: Dārznieks
+          painter: Krāsotājs
+          photographer: Fotogrāfs
+          plumber: Santehniķis
+          shoemaker: Kurpnieks
+          tailor: Drēbnieks
+          "yes": Amatnieks
         emergency:
           phone: Telefons ārkārtas situācijai
         highway:
@@ -501,6 +524,7 @@ lv:
           bus_stop: Autobusa pietura
           construction: Automaģistrāle būvniecības stadijā
           cycleway: Veloceliņš
+          elevator: Lifts
           emergency_access_point: Ārkārtas piekļuves punkts
           footway: Taka
           ford: Fjords
@@ -538,9 +562,11 @@ lv:
           archaeological_site: Arheoloģisku izrakumu vieta
           battlefield: Kaujas lauks
           boundary_stone: Robežstabs
-          building: Ēka
+          building: Vēsturiska ēka
+          bunker: Bunkurs
           castle: Pils
           church: Baznīca
+          city_gate: Pilsētas vārti
           citywalls: Pilsētas Sienas
           fort: Forts
           house: Māja
@@ -549,7 +575,9 @@ lv:
           memorial: Memoriāls
           mine: Raktuves
           monument: Piemineklis
+          roman_road: Romiešu ceļš
           ruins: Drupas
+          stone: Akmens
           tomb: Kaps
           tower: Tornis
           wayside_cross: Krusts ceļmalā
@@ -590,10 +618,13 @@ lv:
           beach_resort: Pludmales kūrorts
           bird_hide: Putnu Slēptuve
           common: Koplietošanas zeme
+          dog_park: Suņu laukums
           fishing: Zvejas apgabals
+          fitness_centre: Fitnesa centrs
           fitness_station: Fitnesa Stacija
           garden: Dārzs
           golf_course: Golfa laukums
+          horse_riding: Zirgu izjādes
           ice_rink: Ledus halle
           marina: Osta
           miniature_golf: Minigolfs
@@ -602,6 +633,7 @@ lv:
           pitch: Sporta laukums
           playground: Spēļu laukums
           recreation_ground: Atpūtas Zona
+          resort: Kūrorts
           sauna: Pirts
           slipway: Stāpelis
           sports_centre: Sporta centrs
@@ -609,6 +641,10 @@ lv:
           swimming_pool: Peldbaseins
           track: Skrejceļš
           water_park: Ūdens atrakciju parks
+        man_made:
+          pipeline: Cauruļvads
+          tower: Tornis
+          works: Rūpnīca
         military:
           airfield: Militārais lidlauks
           barracks: Barakas
@@ -640,6 +676,7 @@ lv:
           reef: Rifs
           ridge: Grēda
           rock: Klints
+          sand: Smiltis
           scree: Nogāze
           scrub: Krūmājs
           spring: Avots
@@ -798,6 +835,7 @@ lv:
           camp_site: Nometnes vieta
           caravan_site: Kempings
           chalet: Kotedža
+          gallery: Galerija
           guest_house: Viesu nams
           hostel: Hostelis
           hotel: Viesnīca
@@ -829,6 +867,7 @@ lv:
           wadi: Izkaltusi upes gultne
           waterfall: Ūdenskritums
           weir: Dambis
+          "yes": Ūdensceļš
       admin_levels:
         level2: Valsts robeža
         level4: Štata robeža
@@ -1030,6 +1069,8 @@ lv:
         vai māja.
       tag_html: <strong>Birka</strong> ir dati par punktu vai ceļu, kā restorāna nosaukums
         vai ceļa ātruma ierobežojums.
+    rules:
+      title: Noteikumi!
     questions:
       title: Kādi jautājumi?
       paragraph_1_html: Nepieciešama palīdzība kartējot, vai nav skaidrs kā lietot
@@ -1058,11 +1099,17 @@ lv:
       url: /sveicināts
       title: Laipni lūgti iekš OSM
       description: Sāc ar šo īso ceļvedi, kurš aptver OpenStreetMap pamatus.
+    beginners_guide:
+      url: http://wiki.openstreetmap.org/wiki/Lv:Beginners%27_guide
     help:
       url: http://forum.openstreetmap.org/viewforum.php?id=59
       title: help.openstreetmap.org
       description: Uzdod jautājumu vai atrodi atbildes iekš OSM jautājumu un atbilžu
         lapas.
+    forums:
+      title: Forumi
+    irc:
+      title: IRC
     wiki:
       url: http://wiki.openstreetmap.org/
       title: wiki.openstreetmap.org
@@ -1191,6 +1238,9 @@ lv:
         commented_note: '[OpenStreetMap] %{commenter} ir atkal aktivizējis kādu piezīmi,
           kur esi komentējis. Piezīme ir netālu no %{place}.'
       details: Vairāk informācijas par piezīmēm var atrast %{url}.
+    changeset_comment_notification:
+      commented:
+        partial_changeset_without_comment: bez komentāra
   message:
     inbox:
       title: iesūtne
@@ -1279,7 +1329,7 @@ lv:
       not_public: Tu neesi iestādījis, lai tavi labojumi būtu publiski.
       not_public_description: Tu vairs nevari rediģēt karti, ja vien tā neizdari.
         Tu vari uzstādīt savus labojumus kā publiskus no savas %{user_page}s.
-      user_page_link: lietotāja lapa
+      user_page_link: dalībnieka lapa
       anon_edits_link_text: Uzzini, kāpēc tā notiek.
       flash_player_required: Jums nepieciešams Flash playeris lai izmantotu Potlatch
         - OpenStreetMap Flash redaktoru. Jūs varat <a href="http://www.adobe.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">Lejupielādēt
@@ -1311,9 +1361,7 @@ lv:
           primary: Galvenais valsts ceļš
           secondary: Sekundāras nozīmes ceļš
           unclassified: Neklasificēts ceļš
-          unsurfaced: Ceļš bez seguma
           track: Zemesceļš
-          byway: Blakusceļš
           bridleway: Izjādes taka
           cycleway: Veloceliņš
           footway: Gājēju ceļš
@@ -1337,7 +1385,6 @@ lv:
           golf: Golfa laukums
           park: Parks
           resident: Dzīvojamā zona
-          tourist: Tūrisma atrakcija
           common:
           - Koplietošanas zeme
           - Pļava
@@ -1367,7 +1414,6 @@ lv:
           tunnel: Tunelis
           bridge: Tilts
           private: Privāta pieeja
-          permissive: Brīva pieeja
           destination: Galamērķa pieeja
           construction: Ceļi būvniecības stadijā
     richtext_area:
@@ -1650,9 +1696,9 @@ lv:
     new:
       title: Reģistrēties
       no_auto_account_create: Diemžēl mēs šobrīd nevaram izveidot kontu automātiski.
-      contact_webmaster: Lūdzu kontaktējies ar <a href="mailto:webmaster@openstreetmap.org">tīmekļa
-        pārzini</a>, lai organizētu lietotāja izveidi - mēs centīsimies un tiksim
-        galā ar tavu pieprasījumu, cik ātri vien iespējams.
+      contact_webmaster: Lūdzu kontaktējies ar <a href="%{webmaster}">tīmekļa pārzini</a>,
+        lai organizētu lietotāja izveidi - mēs centīsimies un tiksim galā ar tavu
+        pieprasījumu, cik ātri vien iespējams.
       about:
         header: Brīvs un rediģējams
         html: |-
@@ -1701,14 +1747,14 @@ lv:
       body: Atvaino, nav lietotāja ar lietotājvārdu %{user}. Lūdzu pārbaudi pareizrakstību,
         vai varbūt saite, uz kuras Tu uzspiedi, ir nepareiza.
     view:
-      my diary: Mana Dienasgrāmata
+      my diary: Mana dienasgrāmata
       new diary entry: jauns dienasgrāmatas ieraksts
-      my edits: Mani Labojumi
-      my traces: Manas Trases
-      my notes: Manas kartes Piezīmes
-      my messages: Manas Ziņas
-      my profile: Mans Profils
-      my settings: Mani Iestatījumi
+      my edits: Mani labojumi
+      my traces: Manas pēdas
+      my notes: Manas piezīmes
+      my messages: Manas ziņas
+      my profile: Mans profils
+      my settings: Mani iestatījumi
       my comments: Mani komentāri
       oauth settings: OAuth uzstādījumi
       blocks on me: Bloki uz mani
@@ -1758,9 +1804,9 @@ lv:
       activate_user: aktivizēt šo lietotāju
       deactivate_user: deaktivizēt šo lietotāju
       confirm_user: apstiprināt šo lietotāju
-      hide_user: slēpt šo lietotāju
-      unhide_user: parādīt šo lietotāju
-      delete_user: dzēst šo lietotāju
+      hide_user: Slēpt šo dalībnieku
+      unhide_user: Parādīt šo dalībnieku
+      delete_user: Dzēst šo dalībnieku
       confirm: Apstiprināt
       friends_changesets: Skatīt visas draugu izmaiņu kopas
       friends_diaries: Skatīt visus draugu dienasgrāmatu ierakstus
@@ -1842,7 +1888,7 @@ lv:
     confirm_resend:
       success: Mēs nosūtījām jaunu pārbaudes e-pastu uz %{email} un tiklīdz tu apstiprināsi
         savu lietotāju, tu varēti kartēt.<br /><br />Ja tu lieto pretmēstuļu sistēmu,
-        kura nosūta pārbaudes pieprasījumus, tad pārliecinies, ka esi ielicis webmaster@openstreetmap.org
+        kura nosūta pārbaudes pieprasījumus, tad pārliecinies, ka esi ielicis %{sender}
         baltajā sarakstā, jo mēs nevaram atbildēt uz pārbaudes pieprasījumiem.
       failure: Lietotājs %{name} nav atrasts.
     confirm_email:
@@ -2068,6 +2114,8 @@ lv:
       center_marker: Centrēt karti uz marķieri
       paste_html: Ielīmē HTML, lai ievietotu mājaslapā
       view_larger_map: Skatīt lielāku karti
+    embed:
+      report_problem: Ziņot par problēmu
     key:
       title: Apzīmējumi
       tooltip: Apzīmējumi
@@ -2109,7 +2157,7 @@ lv:
           lapas augšpusē. Piezīmes parādās citiem kartētājiem, tādēļ lūdzu, cik vien
           iespējams precīzāk un detalizētāk visu izklāsti, kā arī marķieri novieto
           pēc iespējas pareizākajā pozīcijā.
-        add: Pievienot Piezīmi
+        add: Pievienot piezīmi
       show:
         anonymous_warning: Šī piezīme ietver komentārus no anonīmiem lietotājiem,
           kurus nepieciešams pārbaudīt neatkarīgi.
@@ -2119,6 +2167,9 @@ lv:
         comment_and_resolve: Komentēt un Atrisināt
         comment: Komentēt
     edit_help: Pārvieto karti un pietuvini vietai, kuru vēlies labot, tad spied šeit.
+    directions:
+      instructions:
+        follow_without_exit: Sekot %{name}
   redaction:
     edit:
       description: Apraksts

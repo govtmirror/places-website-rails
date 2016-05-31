@@ -2,6 +2,8 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Carlosedepaula
+# Author: Julian Mendez
+# Author: Macofe
 # Author: McDutchie
 # Author: Nemo bis
 ---
@@ -118,11 +120,17 @@ ia:
       way_paginated: Vias (%{x}-%{y} de %{count})
       relation: Relationes (%{count})
       relation_paginated: Relationes (%{x}-%{y} de %{count})
+      comment: Commentos (%{count})
+      hidden_commented_by: Commento celate de %{user} <abbr title='%{exact_time}'>%{when}
+        retro</abbr>
+      commented_by: Commento de %{user} <abbr title='%{exact_time}'>%{when} retro</abbr>
       changesetxml: XML del gruppo de modificationes
       osmchangexml: XML osmChange
       feed:
         title: Gruppo de modificationes %{id}
         title_comment: Gruppo de modificationes %{id} - %{comment}
+      join_discussion: Aperi session pro unir te al discussion
+      discussion: Discussion
     node:
       title: 'Nodo: %{name}'
       history_title: 'Historia del nodo: %{name}'
@@ -153,6 +161,7 @@ ia:
         way: via
         relation: relation
         changeset: gruppo de modificationes
+        note: nota
     timeout:
       sorry: Pardono, le datos pro le %{type} con le ID %{id} ha prendite troppo de
         tempore pro esser recuperate.
@@ -161,6 +170,7 @@ ia:
         way: via
         relation: relation
         changeset: gruppo de modificationes
+        note: nota
     redacted:
       redaction: Obscuration %{id}
       message_html: Le version %{version} de iste %{type} non pote esser monstrate
@@ -179,7 +189,7 @@ ia:
       wiki_link:
         key: Le pagina wiki que describe le etiquetta %{key}
         tag: Le pagina wiki que describe le etiquetta %{key}=%{value}
-      wikidata_link: Le elemento %{page} in Wikidatos
+      wikidata_link: Le elemento %{page} in Wikidata
       wikipedia_link: Le articulo %{page} in Wikipedia
       telephone_link: Telephonar %{phone_number}
     note:
@@ -203,6 +213,11 @@ ia:
       reopened_by_anonymous: Reactivate per un anonymo <abbr title='%{exact_time}'>%{when}
         retro</abbr>
       hidden_by: Celate per %{user} <abbr title='%{exact_time}'>%{when} retro</abbr>
+    query:
+      title: Cercar objectos proxime
+      introduction: Clicca sur le carta pro cercar elementos a proximitate.
+      nearby: Objectos proxime
+      enclosing: Objectos inglobante
   changeset:
     changeset_paging_nav:
       showing_page: Pagina %{page}
@@ -233,9 +248,19 @@ ia:
     timeout:
       sorry: Le lista de gruppos de modificationes que tu requestava tardava troppo
         de tempore pro esser recuperate.
+    rss:
+      title_all: Discussion sur le gruppo de modificationes OpenStreetMap
+      title_particular: Discussion sur le gruppo de modificationes OpenStreetMap №
+        %{changeset_id}
+      comment: Nove commento sur le gruppo de modificationes № %{changeset_id} per
+        %{author}
+      commented_at_html: Actualisate %{when} retro
+      commented_at_by_html: Actualisate %{when} retro per %{user}
+      full: Discussion complete
   diary_entry:
     new:
       title: Nove entrata de diario
+      publish_button: Publicar
     list:
       title: Diarios de usatores
       title_friends: Diarios de amicos
@@ -373,8 +398,10 @@ ia:
     search_osm_nominatim:
       prefix:
         aerialway:
+          cable_car: Telepherico
           chair_lift: Telesedia
           drag_lift: Teleski
+          gondola: Telecabina
           station: Station de telecabina
         aeroway:
           aerodrome: Aerodromo
@@ -385,6 +412,7 @@ ia:
           taxiway: Via de circulation pro aviones
           terminal: Terminal
         amenity:
+          animal_shelter: Refugio pro animales
           arts_centre: Centro artistic
           atm: Cassa automatic
           bank: Banca
@@ -394,6 +422,7 @@ ia:
           bicycle_parking: Stationamento pro bicyclettas
           bicycle_rental: Location de bicyclettas
           biergarten: Terrassa
+          boat_rental: Location de barcas
           brothel: Bordello
           bureau_de_change: Officio de cambio
           bus_station: Station de autobus
@@ -403,8 +432,10 @@ ia:
           car_wash: Lavage de automobiles
           casino: Casino
           charging_station: Station de cargamento
+          childcare: Guarda de infantes
           cinema: Cinema
           clinic: Clinica
+          clock: Horologio
           college: Schola superior
           community_centre: Centro communitari
           courthouse: Tribunal
@@ -423,6 +454,7 @@ ia:
           food_court: Zona de restaurantes
           fountain: Fontana
           fuel: Carburante
+          gambling: Joco de hasardo
           grave_yard: Cemeterio
           gym: Centro de fitness / Gymnasio
           health_centre: Centro de sanitate
@@ -433,11 +465,14 @@ ia:
           library: Bibliotheca
           market: Mercato
           marketplace: Mercato
+          monastery: Monasterio
+          motorcycle_parking: Parking a motocyclo
           nightclub: Club nocturne
           nursery: Sala recreative pro parve infantes
           nursing_home: Casa de convalescentia
           office: Officio
           parking: Parking
+          parking_entrance: Entrata de autoparco
           pharmacy: Pharmacia
           place_of_worship: Loco de adoration
           police: Policia
@@ -471,6 +506,7 @@ ia:
           veterinary: Clinica veterinari
           village_hall: Casa communal
           waste_basket: Corbe a papiro
+          waste_disposal: Tractamento de immunditias
           youth_centre: Centro pro le juventute
         boundary:
           administrative: Limite administrative
@@ -485,14 +521,30 @@ ia:
           "yes": Ponte
         building:
           "yes": Edificio
+        craft:
+          brewery: Fabrica de bira
+          carpenter: Carpentero
+          electrician: Electricista
+          gardener: Jardinero
+          painter: Pictor
+          photographer: Photographo
+          plumber: Plumbero
+          shoemaker: Scarpero
+          tailor: Sartor
+          "yes": Boteca de artisanato
         emergency:
+          ambulance_station: Station de ambulantias
+          defibrillator: Defibrillator
+          landing_site: Loco de atterrage de emergentia
           phone: Telephono de emergentia
         highway:
+          abandoned: Via abandonate
           bridleway: Sentiero pro cavallos
           bus_guideway: Via guidate de autobus
           bus_stop: Halto de autobus
           construction: Strata in construction
           cycleway: Pista cyclabile
+          elevator: Ascensor
           emergency_access_point: Puncto de accesso de emergentia
           footway: Sentiero pro pedones
           ford: Vado
@@ -508,7 +560,7 @@ ia:
           primary_link: Via principal
           proposed: Strata proponite
           raceway: Circuito
-          residential: Residential
+          residential: Strata residential
           rest_area: Area de reposo
           road: Via
           secondary: Via secundari
@@ -521,32 +573,41 @@ ia:
           tertiary: Via tertiari
           tertiary_link: Via tertiari
           track: Pista
+          traffic_signals: Lumines de traffico
           trail: Pista
           trunk: Via national
           trunk_link: Via national
           unclassified: Via non classificate
           unsurfaced: Cammino de terra
+          "yes": Cammino
         historic:
           archaeological_site: Sito archeologic
           battlefield: Campo de battalia
           boundary_stone: Lapide de frontiera
-          building: Edificio
+          building: Edificio historic
+          bunker: Bunker
           castle: Castello
           church: Ecclesia
+          city_gate: Porta de citate
           citywalls: Muro del citate
           fort: Forte
+          heritage: Sito de patrimonio
           house: Casa
           icon: Icone
           manor: Casa seniorial
           memorial: Memorial
           mine: Mina
           monument: Monumento
+          roman_road: Via roman
           ruins: Ruinas
+          stone: Petra
           tomb: Tumba
           tower: Turre
           wayside_cross: Cruce juxta le via
           wayside_shrine: Reliquario juxta le via
           wreck: Naufragio
+        junction:
+          "yes": Intersection
         landuse:
           allotments: Jardines familial
           basin: Bassino
@@ -578,14 +639,19 @@ ia:
           road: Area de cammino
           village_green: Parco de village
           vineyard: Vinia
+          "yes": Uso de terreno
         leisure:
           beach_resort: Loco de vacantias al plagia
           bird_hide: Observatorio de aves
+          club: Club
           common: Terreno commun
+          dog_park: Parco pro canes
           fishing: Area de pisca
+          fitness_centre: Centro de fitness
           fitness_station: Gymnasio
           garden: Jardin
           golf_course: Campo de golf
+          horse_riding: Equitation
           ice_rink: Patinatorio
           marina: Porto de yachts
           miniature_golf: Minigolf
@@ -594,6 +660,7 @@ ia:
           pitch: Campo sportive
           playground: Area de jocos
           recreation_ground: Terreno de recreation
+          resort: Centro touristic
           sauna: Sauna
           slipway: Rampa de barca
           sports_centre: Centro sportive
@@ -601,6 +668,13 @@ ia:
           swimming_pool: Piscina
           track: Pista de athletismo
           water_park: Parco aquatic
+          "yes": Tempore libere
+        man_made:
+          lighthouse: Pharo
+          pipeline: Tubulatura
+          tower: Turre
+          works: Fabrica
+          "yes": Artificial
         military:
           airfield: Aerodromo militar
           barracks: Barracas
@@ -620,6 +694,7 @@ ia:
           forest: Foreste
           geyser: Geyser
           glacier: Glaciero
+          grassland: Prato
           heath: Landa
           hill: Collina
           island: Insula
@@ -632,6 +707,8 @@ ia:
           reef: Scolio
           ridge: Cresta
           rock: Rocca
+          saddle: Sella
+          sand: Sablo
           scree: Detrito cadite
           scrub: Arbusto
           spring: Fontana
@@ -645,6 +722,7 @@ ia:
           wood: Bosco
         office:
           accountant: Contabile
+          administrative: Administration
           architect: Architecto
           company: Compania
           employment_agency: Agentia de empleo
@@ -657,6 +735,8 @@ ia:
           travel_agent: Agentia de viages
           "yes": Officio
         place:
+          allotments: Jardines familial
+          block: Bloco
           airport: Aeroporto
           city: Citate
           country: Pais
@@ -681,6 +761,7 @@ ia:
           town: Urbe
           unincorporated_area: Area sin municipalitate
           village: Village
+          "yes": Loco
         railway:
           abandoned: Ferrovia abandonate
           construction: Ferrovia in construction
@@ -701,7 +782,7 @@ ia:
           spur: Ramification de ferrovia
           station: Station ferroviari
           stop: Halto ferroviari
-          subway: Station de metro
+          subway: Metro
           subway_entrance: Entrata al metro
           switch: Agulia
           tram: Tramvia
@@ -783,6 +864,7 @@ ia:
           "yes": Boteca
         tourism:
           alpine_hut: Cabana alpin
+          apartment: Appartamento
           artwork: Obra de arte
           attraction: Attraction
           bed_and_breakfast: Bed and Breakfast
@@ -790,6 +872,7 @@ ia:
           camp_site: Terreno de camping
           caravan_site: Terreno pro caravanas
           chalet: Chalet
+          gallery: Galeria
           guest_house: Albergo
           hostel: Albergo
           hotel: Hotel
@@ -821,6 +904,7 @@ ia:
           wadi: Wadi
           waterfall: Cascada
           weir: Barrage
+          "yes": Curso de aqua
       admin_levels:
         level2: Frontiera de pais
         level4: Frontiera de stato
@@ -907,9 +991,10 @@ ia:
     legal_babble:
       title_html: Copyright e Licentia
       intro_1_html: |-
-        OpenStreetMap es <i>datos aperte</i>, licentiate sub le <a
+        OpenStreetMap<sup><a href="#trademarks">&reg;</a></sup> es <i>datos aperte</i>, licentiate sub le <a
         href="http://opendatacommons.org/licenses/odbl/">Open Data
-        Commons Open Database License</a> (ODbL).
+        Commons Open Database License</a> (ODbL) per le <a
+        href="http://osmfoundation.org/">Fundation OpenStreetMap</a> (OSMF).
       intro_2_html: |2-
           Vos es libere de copiar, distribuer, transmitter e adaptar nostre cartas
           e datos, a condition que vos da recognoscentia a OpenStreetMap e su
@@ -934,10 +1019,9 @@ ia:
         alt: Exemplo de como recognoscer OpenStreetMap in un pagina web
         title: Exemplo de recognoscentia
       more_title_html: Pro saper plus
-      more_1_html: |2-
-          Lege plus super le uso de nostre datos, e como recognoscer nos, al <a
-          href="http://wiki.openstreetmap.org/wiki/Legal_FAQ">FAQ
-          Legal</a>.
+      more_1_html: |-
+        Lege plus sur le uso de nostre datos, e como recognoscer nos, in le <a
+        href="http://osmfoundation.org/Licence">pagina de licentia OSMF</a> e in le <a href="http://wiki.openstreetmap.org/wiki/Legal_FAQ">FAQ juridic</a> communitari.
       more_2_html: |-
         Ben que OpenStreetMap es datos aperte, nos non pote fornir un API cartographic gratuite pro disveloppatores tertie. Vide nostre <a href="http://wiki.openstreetmap.org/wiki/API_usage_policy">politica pro le uso del API</a>,
         <a href="http://wiki.openstreetmap.org/wiki/Tile_usage_policy">politica pro le uso de tegulas</a>
@@ -969,6 +1053,11 @@ ia:
       contributors_nz_html: |-
         <strong>Nove Zelandia</strong>: Contine datos proveniente de
            Land Information New Zealand. Crown Copyright reservate.
+      contributors_si_html: |-
+        <strong>Slovenia</strong>: Contine datos ab le
+        <a href="http://www.gu.gov.si/en/">Surveying and Mapping Authority</a> e del
+        <a href="http://www.mkgp.gov.si/en/">Ministerio del Agricultura, Silvicultura e Alimento</a>
+        (information public de Slovenia).
       contributors_za_html: |-
         <strong>Africa del Sud</strong>: Contine datos proveniente del
            <a href="http://www.ngi.gov.za/">Chief Directorate:
@@ -996,6 +1085,11 @@ ia:
         favor consulta nostre <a href="http://www.osmfoundation.org/wiki/License/Takedown_procedure">procedura
         de remotion</a> o submitte un plancto immediate usante nostre <a href="http://dmca.openstreetmap.org/">formulario
         in linea</a>.
+      trademarks_title_html: <span id="trademarks"></span>Marcas commercial
+      trademarks_1_html: OpenStreetMap e le logotypo con le lupa es marcas registrate
+        del Fundation OpenStreetMap. Si vos ha questiones sur le uso de iste marcas,
+        invia los al <a href="http://wiki.osmfoundation.org/wiki/Licensing_Working_Group">gruppo
+        de labor sur licentias</a>.
   welcome_page:
     title: Benvenite!
     introduction_html: Bevenite a OpenStreetMap, le carta libere e modificabile del
@@ -1022,6 +1116,14 @@ ia:
       tag_html: Un <strong>etiquetta</strong> es un unitate de information sur un
         nodo o via, como le nomine de un restaurante o le limite de velocitate de
         un strata.
+    rules:
+      title: Regulas!
+      paragraph_1_html: OpenStreetMap ha poc regulas formal, ma nos expecta que tote
+        le participantes collabora e communica con le communitate. Si vos considera
+        un activitate altere que modification per mano, lege e seque le directivas
+        sur le <a href='http://wiki.openstreetmap.org/wiki/Import/Guidelines'>importation</a>
+        e sur le <a href='http://wiki.openstreetmap.org/wiki/Automated_Edits_code_of_conduct'>modification
+        automatisate</a>.
     questions:
       title: Questiones?
       paragraph_1_html: |-
@@ -1064,11 +1166,29 @@ ia:
       url: /welcome
       title: Benvenite a OSM
       description: Comencia con iste guida rapide sur le fundamentos de OpenStreetMap.
+    beginners_guide:
+      title: Guida pro comenciantes
+      description: Guida pro comenciantes, mantenite per le communitate.
     help:
       url: https://help.openstreetmap.org/
       title: help.openstreetmap.org
       description: Pone un question o cerca responsas sur le sito de questiones e
         responsas de OSM.
+    mailing_lists:
+      title: Listas de diffusion
+      description: Pone un question o discute cosas interessante sur un varietate
+        de listas de diffusion thematic o regional.
+    forums:
+      title: Foros
+      description: Questiones e discussiones pro qui prefere un interfacie in stilo
+        de tabuliero de bulletines.
+    irc:
+      title: IRC
+      description: Conversation interactive in multe linguas differente e sur multe
+        themas.
+    switch2osm:
+      description: Adjuta pro companias e organisationes qui vole migrar a cartas
+        e altere servicios a base de OpenStreetMap.
     wiki:
       url: http://wiki.openstreetmap.org/
       title: wiki.openstreetmap.org
@@ -1076,7 +1196,7 @@ ia:
   about_page:
     next: Sequente
     copyright_html: <span>&copy;</span>Contributores de<br>OpenStreetMap
-    used_by: '%{name} forni datos cartographic a centenas de sitos web, applicationes
+    used_by: '%{name} forni datos cartographic a milles de sitos web, applicationes
       mobile e dispositivos physic'
     lede_text: OpenStreetMap es construite per un communitate de cartographos que
       contribue e mantene datos sur stratas, sentieros, cafés, stationes ferroviari
@@ -1087,6 +1207,21 @@ ia:
       imageria aeree, apparatos GPS e cartas ordinari de terreno pro verificar que OSM
       es accurate e actual.
     community_driven_title: Dirigite per le communitate
+    community_driven_html: |-
+      Le communitate de OpenStreetMap es diverse, passionate e cresce cata die. Nostre contributores include cartographos enthusiasta, professionales de GIS, ingenieros gerente le servitores de OSM, humanitarios cartographiante areas devastate per un disastro, e multe alteres.
+      Pro apprender plus sur le communitate, vide le <a href='%{diary_path}'>diarios del usatores</a>, le
+      <a href='http://blogs.openstreetmap.org/'>blogs del communitate</a> e le sito web del <a href='http://www.osmfoundation.org/'>Fundation OSM</a>.
+    open_data_title: Datos aperte
+    open_data_html: |-
+      OpenStreetMap es constituite per <i>datos aperte</i>: tu es libere de usar lo pro qualcunque scopo a condition que tu da credito a OpenStreetMap e su contributores. Si tu altera o extende le datos in certe manieras, tu pote distribuer le resultato solmente sub le mesme licentia. Vide le pagina <a href='%{copyright_path}'>Copyright e
+      Licentia</a> pro detalios.
+    legal_title: Juridic
+    legal_html: "Iste sito e multe altere servicios associate es formalmente gerite
+      per le  \n<a href=\"http://osmfoundation.org/\">Fundation OpenStreetMap</a>
+      (OSMF) \nin nomine del communitate.\n<br> \n<a href=\"http://osmfoundation.org/Contact\">Contacta
+      OSMF</a> \nsi vos ha questiones sur licentias, derectos de autor o altere themas
+      juridic."
+    partners_title: Partners
   notifier:
     diary_comment_notification:
       subject: '[OpenStreetMap] %{user} commentava un entrata de tu diario'
@@ -1129,7 +1264,8 @@ ia:
       confirm: 'Ante de facer altere cosa, nos debe confirmar que iste requesta proveniva
         de te. Dunque, si tu lo faceva, per favor clicca sur le ligamine sequente
         pro confirmar tu conto:'
-      welcome: Benvenite! Ecce alcun information supplementari pro adjutar te a comenciar.
+      welcome: Post le confirmation de tu conto, nos te fornira alcun information
+        supplementari pro adjutar te a comenciar.
     email_confirm:
       subject: '[OpenStreetMap] Confirma tu adresse de e-mail'
     email_confirm_plain:
@@ -1181,7 +1317,24 @@ ia:
         subject_other: '[OpenStreetMap] %{commenter} ha reactivate un nota de tu interesse'
         your_note: '%{commenter} ha reactivate un de tu notas de carta in le vicinitate
           de %{place}.'
+        commented_note: '%{commenter} ha reactivate un nota de carta que tu ha commentate.
+          Le nota es in le vicinitate de %{place}.'
       details: Plus detalios sur le nota pote esser trovate a %{url}.
+    changeset_comment_notification:
+      greeting: Salute,
+      commented:
+        subject_own: '[OpenStreetMap] %{commenter} ha commentate un de tu gruppos
+          de modificationes'
+        subject_other: '[OpenStreetMap] %{commenter} ha commentate un gruppo de modificationes
+          que te interessa'
+        your_changeset: '%{commenter} ha commentate un de tu gruppos de modificationes
+          create le %{time}'
+        commented_changeset: '%{commenter} ha commentate un gruppo de modificationes
+          que tu observa, create per %{changeset_author} le %{time}'
+        partial_changeset_with_comment: con commento '%{changeset_comment}'
+        partial_changeset_without_comment: sin commento
+      details: Plus detalios sur le gruppo de modificationes pote esser trovate a
+        %{url}.
   message:
     inbox:
       title: Cassa de entrata
@@ -1292,6 +1445,10 @@ ia:
       close: Clauder
     search:
       search: Cercar
+      get_directions: Obtener itinerario
+      get_directions_title: Indicar le cammino inter duo punctos
+      from: De
+      to: A
       where_am_i: Ubi es io?
       where_am_i_title: Describer le position actual per medio del motor de recerca
       submit_text: Va
@@ -1299,13 +1456,12 @@ ia:
       table:
         entry:
           motorway: Autostrata
+          main_road: Strata principal
           trunk: Via national
           primary: Via primari
           secondary: Via secundari
           unclassified: Via non classificate
-          unsurfaced: Cammino de terra
           track: Pista
-          byway: Via minor
           bridleway: Sentiero pro cavallos
           cycleway: Via cyclabile
           footway: Sentiero pro pedones
@@ -1329,7 +1485,6 @@ ia:
           golf: Percurso de golf
           park: Parco
           resident: Area residential
-          tourist: Attraction touristic
           common:
           - Commun
           - prato
@@ -1359,7 +1514,6 @@ ia:
           tunnel: Bordo a lineettas = tunnel
           bridge: Bordo nigre = ponte
           private: Accesso private
-          permissive: Accesso subjecte a permission
           destination: Traffico local
           construction: Vias in construction
     richtext_area:
@@ -1489,6 +1643,13 @@ ia:
     offline:
       heading: Immagazinage GPX foras de linea
       message: Le systema pro immagazinar e incargar files GPX es actualmente indisponibile.
+    georss:
+      title: Tracias GPS de OpenStreetMap
+    description:
+      description_with_count:
+        one: File GPX con %{count} puncto de %{user}
+        other: File GPX con %{count} punctos de %{user}
+      description_without_count: File GPX de %{user}
   application:
     require_cookies:
       cookies_needed: Tu pare haber disactivate le cookies. Per favor activa le cookies
@@ -1503,6 +1664,7 @@ ia:
         Non es necessari declarar se de accordo, ma es obligatori haber legite los.
   oauth:
     oauthorize:
+      title: Autorisar accesso a tu conto
       request_access: Le application %{app_name} requesta accesso a tu conto "%{user}".
         Per favor verifica si tu vole que le application ha le sequente possibilitates.
         Tu pote seliger tantes o si poches como tu vole.
@@ -1514,6 +1676,15 @@ ia:
       allow_read_gpx: leger tu tracias GPS private.
       allow_write_gpx: incargar tracias GPS.
       allow_write_notes: modificar notas.
+      grant_access: Conceder accesso
+    oauthorize_success:
+      title: Requesta de autorisation acceptate
+      allowed: Tu ha concedite al application %{app_name} le accesso a tu conto.
+      verification: Le codice de verification es %{code}.
+    oauthorize_failure:
+      title: Requesta de autorisation fallite
+      denied: Tu ha refusate al application %{app_name} le accesso a tu conto.
+      invalid: Le indicio de autorisation non es valide.
     revoke:
       flash: Tu ha revocate le indicio pro %{application}
   oauth_clients:
@@ -1591,6 +1762,7 @@ ia:
       register now: Registrar ora
       with username: 'Ha tu jam un conto de OpenStreetMap? Per favor aperi session
         con tu nomine de usator e contrasigno:'
+      with external: 'Alternativemente, usa un tertio pro aperir session:'
       new to osm: Nove a OpenStreetMap?
       to make changes: Pro facer modificationes in le datos de OpenStreetMap, es necessari
         haber un conto.
@@ -1604,6 +1776,28 @@ ia:
         si tu vole discuter isto.
       auth failure: Pardono, non poteva aperir un session con iste detalios.
       openid_logo_alt: Aperir session con OpenID
+      auth_providers:
+        openid:
+          title: Aperir session con OpenID
+          alt: Aperir session con un URL de OpenID
+        google:
+          title: Aperir session con Google
+          alt: Aperir session con un OpenID de Google
+        facebook:
+          title: Aperir session con Facebook
+          alt: Aperir session con un conto de Facebook
+        windowslive:
+          title: Aperir session con Windows Live
+          alt: Aperir session con un conto de Windows Live
+        yahoo:
+          title: Aperir session con Yahoo
+          alt: Aperir session con un OpenID de Yahoo
+        wordpress:
+          title: Aperir session con WordPress
+          alt: Aperir session con un OpenID de WordPress
+        aol:
+          title: Aperir session con AOL
+          alt: Aperir session con un OpenID de AOL
     logout:
       title: Clauder session
       heading: Clauder le session de OpenStreetMap
@@ -1630,9 +1824,15 @@ ia:
       title: Crear conto
       no_auto_account_create: Infortunatemente in iste momento non es possibile crear
         un conto pro te automaticamente.
-      contact_webmaster: Per favor contacta le <a href="mailto:webmaster@openstreetmap.org">webmaster</a>
+      contact_webmaster: Per favor contacta le <a href="%{webmaster}">webmaster</a>
         pro arrangiar le creation de un conto. Nos tentara tractar vostre requesta
         le plus rapidemente possibile.
+      about:
+        header: Libere e modificabile
+        html: |-
+          <p>A differentia de altere cartas, OpenStreetMap es completemente create per gente como tu,
+          e cata uno es libere de modificar, actualisar, discargar e usar lo.</p>
+          <p>Crea un conto pro comenciar a contribuer. Nos te inviara un e-mail pro confirmar tu conto.</p>
       license_agreement: Quando tu confirma tu conto, tu debera acceptar le <a href="http://www.osmfoundation.org/wiki/License/Contributor_Terms">conditiones
         de contributor</a>.
       email address: 'Adresse de e-mail:'
@@ -1643,9 +1843,13 @@ ia:
       display name: 'Nomine public:'
       display name description: Tu nomine de usator monstrate publicamente. Tu pote
         cambiar lo plus tarde in le preferentias.
+      external auth: 'Authentication per tertios:'
       password: 'Contrasigno:'
       confirm password: 'Confirmar contrasigno:'
-      continue: Continuar
+      use external auth: Alternativemente, usa un tertio pro aperir session
+      auth no password: Con authentication per tertio, un contrasigno non es necessari,
+        ma alcun instrumentos o servitores supplementari pote totevia necessitar un.
+      continue: Crear conto
       terms accepted: Gratias pro acceptar le nove conditiones de contributor!
       terms declined: Nos regretta que tu ha decidite de non acceptar le nove Conditiones
         de contributor. Pro plus informationes, per favor vide <a href="%{url}">iste
@@ -1676,24 +1880,27 @@ ia:
       heading: Le usator %{user} non existe
       body: Non existe un usator con le nomine %{user}. Per favor verifica le orthographia,
         o pote esser que le ligamine que tu sequeva es incorrecte.
+      deleted: delite
     view:
-      my diary: mi diario
+      my diary: Mi diario
       new diary entry: nove entrata de diario
-      my edits: mi modificationes
-      my traces: mi tracias
-      my notes: mi notas de carta
-      my settings: mi configurationes
-      my comments: mi commentos
+      my edits: Mi modificationes
+      my traces: Mi tracias
+      my notes: Mi notas
+      my messages: Mi messages
+      my profile: Mi profilo
+      my settings: Mi preferentias
+      my comments: Mi commentos
       oauth settings: configuration oauth
-      blocks on me: blocadas super me
-      blocks by me: blocadas per me
-      send message: inviar message
-      diary: diario
-      edits: modificationes
-      traces: tracias
-      notes: notas de carta
-      remove as friend: remover amico
-      add as friend: adder amico
+      blocks on me: Blocadas concernente me
+      blocks by me: Blocadas facite per me
+      send message: Inviar message
+      diary: Diario
+      edits: Modificationes
+      traces: Tracias
+      notes: Notas de carta
+      remove as friend: Remover amico
+      add as friend: Adder amico
       mapper since: 'Cartographo depost:'
       ago: (%{time_in_words_ago} retro)
       ct status: 'Conditiones de contributor:'
@@ -1725,16 +1932,16 @@ ia:
         revoke:
           administrator: Revocar accesso de administrator
           moderator: Revocar accesso de moderator
-      block_history: blocadas recipite
-      moderator_history: blocadas date
-      comments: commentos
-      create_block: blocar iste usator
-      activate_user: activar iste usator
-      deactivate_user: disactivar iste usator
-      confirm_user: confirmar iste usator
-      hide_user: celar iste usator
-      unhide_user: revelar iste usator
-      delete_user: deler iste usator
+      block_history: Blocadas active
+      moderator_history: Blocadas imponite
+      comments: Commentos
+      create_block: Blocar iste usator
+      activate_user: Activar iste usator
+      deactivate_user: Disactivar iste usator
+      confirm_user: Confirmar iste usator
+      hide_user: Celar iste usator
+      unhide_user: Revelar iste usator
+      delete_user: Deler iste usator
       confirm: Confirmar
       friends_changesets: gruppos de modificationes de tu amicos
       friends_diaries: articulos de diario de tu amicos
@@ -1750,6 +1957,7 @@ ia:
       current email address: 'Adresse de e-mail actual:'
       new email address: 'Adresse de e-mail nove:'
       email never displayed publicly: (nunquam monstrate publicamente)
+      external auth: 'Authentication externe:'
       openid:
         link: http://wiki.openstreetmap.org/wiki/OpenID
         link text: que es isto?
@@ -1805,27 +2013,33 @@ ia:
         successo. Tu recipera in e-mail un nota pro confirmar tu nove adresse de e-mail.
       flash update success: Informationes del usator actualisate con successo.
     confirm:
-      heading: Confirmar un conto de usator
+      heading: Verifica tu e-mail!
+      introduction_1: Nos te ha inviate un message de confirmation.
+      introduction_2: Confirma tu conto con un clic sur le ligamine in le message
+        e tu potera comenciar a cartographiar.
       press confirm button: Preme le button de confirmation ci infra pro activar tu
         conto.
       button: Confirmar
       success: Tu conto ha essite confirmate, gratias pro inscriber te!
       already active: Iste conto ha ja essite confirmate.
-      unknown token: Iste indicio non pare exister.
+      unknown token: Iste codice de confirmation ha expirate o non existe.
+      reconfirm_html: Pro reciper un altere message de confirmation, <a href="%{reconfirm}">clicca
+        hic</a>.
     confirm_resend:
       success: Nos ha inviate un nove message de confirmation a %{email} e si tosto
-        que tu confirma le conto, tu potera comenciar a cartographiar.<br /><br />Si
+        que tu confirma le conto, tu potera comenciar a cartographar.<br /><br />Si
         tu usa un systema anti-spam que invia requestas de confirmation, alora per
-        favor assecura te de adder webmaster@openstreetmap.org al lista blanc, post
-        que nos non pote responder a requestas de confirmation.
+        favor assecura te de adder %{sender} al lista blanc, alteremente nos non pote
+        responder a requestas de confirmation.
       failure: Usator %{name} non trovate.
     confirm_email:
       heading: Confirmar un cambio de adresse de e-mail
       press confirm button: Preme le button Confirmar ci infra pro confirmar tu nove
         adresse de e-mail.
       button: Confirmar
-      success: Tu adresse de e-mail ha essite confirmate, gratias pro inscriber te!
+      success: Le cambio del adresse de e-mail ha essite confirmate.
       failure: Un adresse de e-mail ha ja essite confirmate con iste indicio.
+      unknown_token: Iste codice de confirmation ha expirate o non existe.
     set_home:
       flash success: Position de origine confirmate con successo
     go_public:
@@ -1868,6 +2082,18 @@ ia:
           Iste decision essera revidite per un administrator tosto, o
           tu pote contactar le %{webmaster} si tu desira discuter isto.
         </p>
+    auth_failure:
+      connection_failed: Le connexion al fornitor de authentication ha fallite
+      invalid_credentials: Datos de authentication non valide
+      no_authorization_code: Nulle codice de autorisation
+      unknown_signature_algorithm: Algorithmo de signatura non cognoscite
+      invalid_scope: Ambito non valide
+    auth_association:
+      heading: Tu ID non es ancora associate a un conto de OpenStreetMap.
+      option_1: Si tu es nove in OpenStreetMap, per favor crea un conto per medio
+        del formulario sequente.
+      option_2: Si tu jam ha un conto, tu pote aperir session con tu nomine de usator
+        e contrasigno e postea associar le conto a tu ID in tu preferentias de usator.
   user_role:
     filter:
       not_an_administrator: Solmente administratores pote gerer le rolos de usator,
@@ -1982,6 +2208,8 @@ ia:
       heading: '%{block_on} blocate per %{block_by}'
       time_future: Expira in %{time}
       time_past: Expirava %{time} retro
+      created: Create
+      ago: '%{time} retro'
       status: Stato
       show: Monstrar
       edit: Modificar
@@ -2006,7 +2234,10 @@ ia:
       description_area: Un lista de notas reportate, commentate o claudite in tu area
         [(%{min_lat}|%{min_lon}) -- (%{max_lat}|%{max_lon})]
       description_item: Syndication RSS pro le nota %{id}
+      opened: nove nota (a presso de %{place})
+      commented: nove commento (a presso de %{place})
       closed: nota claudite (a presso de %{place})
+      reopened: nota reactivate (a presso de %{place})
     entry:
       comment: Commento
       full: Nota complete
@@ -2021,22 +2252,76 @@ ia:
       last_changed: Ultime modification
       ago_html: '%{when} retro'
   javascripts:
+    close: Clauder
+    share:
+      title: Divider
+      cancel: Cancellar
+      image: Imagine
+      link: Ligamine o HTML
+      long_link: Ligamine
+      short_link: Ligamine curte
+      geo_uri: Geo URI
+      embed: HTML
+      custom_dimensions: Personalisar dimensiones
+      format: 'Formato:'
+      scale: 'Scala:'
+      image_size: Le imagine monstrara le strato standard in
+      download: Discargar
+      short_url: URL curte
+      include_marker: Includer marcator
+      center_marker: Centrar le carta sur le marcator
+      paste_html: Colla HTML pro incorporar in sito web
+      view_larger_map: Vider carta plus grande
+      only_standard_layer: Solmente le strato standard pote esser exportate como imagine
+    embed:
+      report_problem: Reportar problema
+    key:
+      title: Legenda
+      tooltip: Legenda
+      tooltip_disabled: Le legenda es disponibile solmente pro le strato Standard
     map:
+      zoom:
+        in: Zoom avante
+        out: Zoom retro
+      locate:
+        title: Monstrar mi position
+        popup: Tu es intra {distance} {unit} de iste puncto
       base:
         standard: Standard
         cycle_map: Carta cyclista
         transport_map: Carta de transporto
         mapquest: MapQuest Open
+        hot: Humanitario
+      layers:
+        header: Stratos de carta
+        notes: Notas de carta
+        data: Datos de carta
+        overlays: Activar superpositiones pro resolver problemas in le carta
+        title: Stratos
+      copyright: © <a href='%{copyright_url}'>contributores de OpenStreetMap</a>
+      donate_link_text: <a class='donate-attr' href='%{donate_url}'>Facer un donation</a>
     site:
       edit_tooltip: Modificar le carta
       edit_disabled_tooltip: Face zoom avante pro modificar le carta
       createnote_tooltip: Adder un nota al carta
       createnote_disabled_tooltip: Face zoom avante pro adder un nota al carta
+      map_notes_zoom_in_tooltip: Face zoom avante pro vider le notas del carta
+      map_data_zoom_in_tooltip: Face zoom avante pro vider le datos del carta
+      queryfeature_tooltip: Cercar objectos proxime
+      queryfeature_disabled_tooltip: Face zoom avante pro cercar objectos a proximitate
+    changesets:
+      show:
+        comment: Commento
+        subscribe: Subscriber
+        unsubscribe: Cancellar subscription
+        hide_comment: celar
+        unhide_comment: revelar
     notes:
       new:
-        intro: Pro meliorar le carta, le information que tu scribe es monstrate a
-          altere cartographos. Dunque, per favor sia tanto descriptive e precise como
-          possibile quando tu positiona le marcator e scribe tu nota hic infra.
+        intro: Tu ha trovate un error? Qualcosa manca? Face lo saper al altere cartographos
+          a fin que nos pote corriger lo. Displacia le marcator al position correcte
+          e scribe un nota pro explicar le problema. (Non entra informationes personal
+          o proveniente de cartas o catalogos sub derecto de autor.)
         add: Adder nota
       show:
         anonymous_warning: Iste nota include commentos de usatores anonyme que debe
@@ -2046,6 +2331,53 @@ ia:
         reactivate: Reactivar
         comment_and_resolve: Commentar e resolver
         comment: Commento
+    edit_help: Displacia le carta e face zoom avante in un loco que tu vole modificar,
+      postea clicca hic.
+    directions:
+      engines:
+        graphhopper_bicycle: Bicycletta (GraphHopper)
+        graphhopper_foot: Pedestre (GraphHopper)
+        mapquest_bicycle: Bicycletta (MapQuest)
+        mapquest_car: Auto (MapQuest)
+        mapquest_foot: Pedestre (MapQuest)
+        osrm_car: Auto (OSRM)
+        mapzen_bicycle: Bicycletta (Mapzen)
+        mapzen_car: Auto (Mapzen)
+        mapzen_foot: Pedestre (Mapzen)
+      directions: Itinerario
+      distance: Distantia
+      errors:
+        no_route: Nulle route ha essite trovate inter iste duo locos.
+        no_place: Iste loco non ha essite trovate.
+      instructions:
+        continue_without_exit: Continuar sur %{name}
+        slight_right_without_exit: Curva suave a dextra verso %{name}
+        turn_right_without_exit: Girar a dextra verso %{name}
+        sharp_right_without_exit: Curva acute a dextra verso %{name}
+        uturn_without_exit: Retornar preter %{name}
+        sharp_left_without_exit: Curva acute a sinistra verso %{name}
+        turn_left_without_exit: Girar a sinistra verso %{name}
+        slight_left_without_exit: Curva suave a sinistra verso %{name}
+        via_point_without_exit: (puncto intermedie)
+        follow_without_exit: Sequer %{name}
+        roundabout_without_exit: Al rotunda prender %{name}
+        leave_roundabout_without_exit: Quitar rotunda - %{name}
+        stay_roundabout_without_exit: Remaner sur rotunda - %{name}
+        start_without_exit: Comenciar al fin de %{name}
+        destination_without_exit: Attinger destination
+        against_oneway_without_exit: Ir contra direction obligatori sur %{name}
+        end_oneway_without_exit: Fin del direction obligatori sur %{name}
+        roundabout_with_exit: Al rotunda prende le exito %{exit} sur %{name}
+        unnamed: cammino sin nomine
+        courtesy: Itinerario fornite per %{link}
+      time: Tempore
+    query:
+      node: Nodo
+      way: Via
+      relation: Relation
+      nothing_found: Nulle elemento trovate
+      error: 'Error al contactar %{server}: %{error}'
+      timeout: Tempore limite excedite contactante %{server}
   redaction:
     edit:
       description: Description

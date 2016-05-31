@@ -4,9 +4,9 @@ xml.item do
   if note.closed?
     xml.title t('note.rss.closed', :place => location)
   elsif note.comments.length > 1
-    xml.title t('note.rss.comment', :place => location)
+    xml.title t('note.rss.commented', :place => location)
   else
-    xml.title t('note.rss.new', :place => location)
+    xml.title t('note.rss.opened', :place => location)
   end
 
   xml.link browse_note_url(note)

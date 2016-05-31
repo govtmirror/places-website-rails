@@ -63,7 +63,7 @@ class Changeset < ActiveRecord::Base
     doc.find("//osm/changeset").each do |pt|
       return Changeset.from_xml_node(pt, create)
     end
-    fail OSM::APIBadXMLError.new("changeset", xml, "XML doesn't contain an osm/changeset element.")
+    raise OSM::APIBadXMLError.new("changeset", xml, "XML doesn't contain an osm/changeset element.")
   rescue LibXML::XML::Error, ArgumentError => ex
     raise OSM::APIBadXMLError.new("changeset", xml, ex.message)
   end
@@ -80,8 +80,8 @@ class Changeset < ActiveRecord::Base
     end
 
     pt.find("tag").each do |tag|
-      fail OSM::APIBadXMLError.new("changeset", pt, "tag is missing key") if tag["k"].nil?
-      fail OSM::APIBadXMLError.new("changeset", pt, "tag is missing value") if tag["v"].nil?
+      raise OSM::APIBadXMLError.new("changeset", pt, "tag is missing key") if tag["k"].nil?
+      raise OSM::APIBadXMLError.new("changeset", pt, "tag is missing value") if tag["v"].nil?
       cs.add_tag_keyval(tag["k"], tag["v"])
     end
 
@@ -137,7 +137,7 @@ class Changeset < ActiveRecord::Base
 
     # duplicate tags are now forbidden, so we can't allow values
     # in the hash to be overwritten.
-    fail OSM::APIDuplicateTagsError.new("changeset", id, k) if @tags.include? k
+    raise OSM::APIDuplicateTagsError.new("changeset", id, k) if @tags.include? k
 
     @tags[k] = v
   end
@@ -146,7 +146,7 @@ class Changeset < ActiveRecord::Base
     # do the changeset update and the changeset tags update in the
     # same transaction to ensure consistency.
     Changeset.transaction do
-      self.save!
+      save!
 
       tags = self.tags
       ChangesetTag.delete_all(:changeset_id => id)
@@ -166,12 +166,12 @@ class Changeset < ActiveRecord::Base
   # that would make it more than 24h long, in which case clip to
   # 24h, as this has been decided is a reasonable time limit.
   def update_closed_at
-    if self.is_open?
-      if (closed_at - created_at) > (MAX_TIME_OPEN - IDLE_TIMEOUT)
-        self.closed_at = created_at + MAX_TIME_OPEN
-      else
-        self.closed_at = Time.now.getutc + IDLE_TIMEOUT
-      end
+    if is_open?
+      self.closed_at = if (closed_at - created_at) > (MAX_TIME_OPEN - IDLE_TIMEOUT)
+                         created_at + MAX_TIME_OPEN
+                       else
+                         Time.now.getutc + IDLE_TIMEOUT
+                       end
     end
   end
 
@@ -241,10 +241,10 @@ class Changeset < ActiveRecord::Base
   # bounding box, only the tags of the changeset.
   def update_from(other, user)
     # ensure that only the user who opened the changeset may modify it.
-    fail OSM::APIUserChangesetMismatchError.new unless user.id == user_id
+    raise OSM::APIUserChangesetMismatchError.new unless user.id == user_id
 
     # can't change a closed changeset
-    fail OSM::APIChangesetAlreadyClosedError.new(self) unless is_open?
+    raise OSM::APIChangesetAlreadyClosedError.new(self) unless is_open?
 
     # copy the other's tags
     self.tags = other.tags

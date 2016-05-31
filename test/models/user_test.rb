@@ -163,7 +163,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   def test_visible
-    assert_equal 17, User.visible.count
+    assert_equal 19, User.visible.count
     assert_raise ActiveRecord::RecordNotFound do
       User.visible.find(users(:suspended_user).id)
     end
@@ -173,7 +173,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   def test_active
-    assert_equal 16, User.active.count
+    assert_equal 18, User.active.count
     assert_raise ActiveRecord::RecordNotFound do
       User.active.find(users(:inactive_user).id)
     end
@@ -186,7 +186,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   def test_identifiable
-    assert_equal 18, User.identifiable.count
+    assert_equal 20, User.identifiable.count
     assert_raise ActiveRecord::RecordNotFound do
       User.identifiable.find(users(:normal_user).id)
     end
@@ -199,7 +199,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal %w(de fr en), user.languages
     user.languages = %w(fr de sl)
     assert_equal "de", user.preferred_language
-    assert_equal "de", user.preferred_language_from(%w(en sl de es))
+    assert_equal %w(fr de sl), user.preferred_languages.map(&:to_s)
     user = users(:public_user)
     assert_equal %w(en de), user.languages
   end

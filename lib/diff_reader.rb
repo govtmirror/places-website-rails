@@ -11,7 +11,7 @@ class DiffReader
     "node"     => Node,
     "way"      => Way,
     "relation" => Relation
-  }
+  }.freeze
 
   ##
   # Construct a diff reader by giving it a bunch of XML +data+ to parse
@@ -57,7 +57,7 @@ class DiffReader
         # care of that for us.
         if @reader.node_type == 1 # element
           name = @reader.name
-          attributes =  {}
+          attributes = {}
 
           if @reader.has_attributes?
             while @reader.move_to_next_attribute == 1
@@ -85,7 +85,7 @@ class DiffReader
   def with_model
     with_element do |model_name, _model_attributes|
       model = MODELS[model_name]
-      fail OSM::APIBadUserInput.new("Unexpected element type #{model_name}, " +
+      raise OSM::APIBadUserInput.new("Unexpected element type #{model_name}, " +
                                      "expected node, way or relation.") if model.nil?
       # new in libxml-ruby >= 2, expand returns an element not associated
       # with a document. this means that there's no encoding parameter,
@@ -109,9 +109,9 @@ class DiffReader
   # Checks a few invariants. Others are checked in the model methods
   # such as save_ and delete_with_history.
   def check(model, xml, new)
-    fail OSM::APIBadXMLError.new(model, xml) if new.nil?
+    raise OSM::APIBadXMLError.new(model, xml) if new.nil?
     unless new.changeset_id == @changeset.id
-      fail OSM::APIChangesetMismatchError.new(new.changeset_id, @changeset.id)
+      raise OSM::APIChangesetMismatchError.new(new.changeset_id, @changeset.id)
     end
   end
 
@@ -124,12 +124,11 @@ class DiffReader
   # an exception subclassing OSM::APIError will be thrown.
   def commit
     # data structure used for mapping placeholder IDs to real IDs
-    node_ids, way_ids, rel_ids = {}, {}, {}
-    ids = { :node => node_ids, :way => way_ids, :relation => rel_ids }
+    ids = { :node => {}, :way => {}, :relation => {} }
 
     # take the first element and check that it is an osmChange element
     @reader.read
-    fail OSM::APIBadUserInput.new("Document element should be 'osmChange'.") if @reader.name != "osmChange"
+    raise OSM::APIBadUserInput.new("Document element should be 'osmChange'.") if @reader.name != "osmChange"
 
     result = OSM::API.new.get_xml_doc
     result.root.name = "diffResult"
@@ -146,12 +145,12 @@ class DiffReader
           # when this element is saved it will get a new ID, so we save it
           # to produce the mapping which is sent to other elements.
           placeholder_id = xml["id"].to_i
-          fail OSM::APIBadXMLError.new(model, xml) if placeholder_id.nil?
+          raise OSM::APIBadXMLError.new(model, xml) if placeholder_id.nil?
 
           # check if the placeholder ID has been given before and throw
           # an exception if it has - we can't create the same element twice.
           model_sym = model.to_s.downcase.to_sym
-          fail OSM::APIBadUserInput.new("Placeholder IDs must be unique for created elements.") if ids[model_sym].include? placeholder_id
+          raise OSM::APIBadUserInput.new("Placeholder IDs must be unique for created elements.") if ids[model_sym].include? placeholder_id
 
           # some elements may have placeholders for other elements in the
           # diff, so we must fix these before saving the element.
@@ -210,7 +209,7 @@ class DiffReader
           # delete doesn't have to contain a full payload, according to
           # the wiki docs, so we just extract the things we need.
           new_id = xml["id"].to_i
-          fail OSM::APIBadXMLError.new(model, xml, "ID attribute is required") if new_id.nil?
+          raise OSM::APIBadXMLError.new(model, xml, "ID attribute is required") if new_id.nil?
 
           # if the ID is a placeholder then map it to the real ID
           model_sym = model.to_s.downcase.to_sym
@@ -251,7 +250,7 @@ class DiffReader
 
       else
         # no other actions to choose from, so it must be the users fault!
-        fail OSM::APIChangesetActionInvalid.new(action_name)
+        raise OSM::APIChangesetActionInvalid.new(action_name)
       end
     end
 

@@ -5,6 +5,7 @@
 # Author: Avjoska
 # Author: Kanne
 # Author: Luckas
+# Author: Macofe
 # Author: RM87
 # Author: WikedKentaur
 ---
@@ -164,6 +165,7 @@ et:
         way: joont
         relation: relatsiooni
         changeset: muutuskogumit
+        note: märkuse
     timeout:
       sorry: Kahjuks võttis andmete (%{type} id-ga %{id}) laadimine liiga kaua aega.
       type:
@@ -171,6 +173,7 @@ et:
         way: joone
         relation: relatsiooni
         changeset: muutuskogumi
+        note: märkuse
     redacted:
       redaction: Redaktsioon %{id}
       message_html: Selle %{type} versiooni %{version} ei saa kuvada, sest seda on
@@ -403,6 +406,8 @@ et:
           bench: Pink
           bicycle_parking: Jalgrattaparkla
           bicycle_rental: Jalgrattarent
+          biergarten: Õlleaed
+          boat_rental: Paadilaenutus
           brothel: Lõbumaja
           bureau_de_change: Rahavahetus
           bus_station: Bussijaam
@@ -413,6 +418,7 @@ et:
           charging_station: Laadimisjaam
           cinema: Kino
           clinic: Kliinik
+          clock: Kell
           courthouse: Kohtuhoone
           crematorium: Krematoorium
           dentist: Hambaarst
@@ -437,6 +443,7 @@ et:
           library: Raamatukogu
           market: Turg
           marketplace: Turg
+          monastery: Klooster
           nightclub: Ööklubi
           nursing_home: Hooldekodu
           office: Kontor
@@ -479,12 +486,27 @@ et:
           "yes": Sild
         building:
           "yes": Hoone
+        craft:
+          brewery: Pruulikoda
+          carpenter: Puusepp
+          electrician: Elektrik
+          gardener: Aednik
+          painter: Maaler
+          photographer: Fotograaf
+          plumber: Torulukksepp
+          shoemaker: Kingsepp
+          tailor: Rätsep
+          "yes": Käsitööpood
         emergency:
+          ambulance_station: Kiirabijaam
+          defibrillator: Defibrillaator
           phone: Hädaabi telefon
         highway:
           bridleway: Ratsatee
           bus_stop: Bussipeatus
+          construction: Ehitusjärgus tee
           cycleway: Jalgrattatee
+          elevator: Elevaator
           emergency_access_point: Hädaabi punkt
           footway: Jalgrada
           ford: Koolmekoht
@@ -502,13 +524,17 @@ et:
           steps: Trepp
           street_lamp: Tänavavalgusti
           tertiary: Kohalik maantee
+          traffic_signals: Valgusfoor
           unsurfaced: Katteta tee
+          "yes": Tee
         historic:
           battlefield: Lahinguväli
           boundary_stone: Piirikivi
           building: Ajalooline hoone
+          bunker: Punker
           castle: Kindlus
           church: Kirik
+          city_gate: Linnavärav
           citywalls: Linnamüürid
           fort: Kindlus
           house: Maja
@@ -517,7 +543,9 @@ et:
           memorial: Memoriaal
           mine: Kaevandus
           monument: Mälestusmärk
+          roman_road: Rooma tee
           ruins: Varemed
+          stone: Kivi
           tower: Torn
           wayside_cross: Teeäärne rist
           wayside_shrine: Teeäärne altar
@@ -530,6 +558,7 @@ et:
           industrial: Tööstuspiirkond
           landfill: Prügimägi
           meadow: Niit
+          military: Militaarala
           mine: Kaevandus
           orchard: Viljapuuaed
           quarry: Karjäär
@@ -538,7 +567,10 @@ et:
           reservoir: Veehoidla
           residential: Elamurajoon
           vineyard: Viinamarjaistandus
+          "yes": Maakasutus
         leisure:
+          club: Klubi
+          dog_park: Koerapark
           fishing: Kalapüügipiirkond
           garden: Aed
           golf_course: Golfiväljak
@@ -556,6 +588,7 @@ et:
           track: Jooksurada
           water_park: Veepark
         man_made:
+          lighthouse: Tuletorn
           tower: Torn
           works: Vabrik
         military:
@@ -576,16 +609,19 @@ et:
           forest: Mets
           geyser: Geiser
           glacier: Liustik
+          grassland: Rohumaa
           heath: Nõmm
           hill: Mägi
           island: Saar
           land: Maa
+          marsh: Soo
           moor: Raba
           mud: Muda
           peak: Mäetipp
           point: Neem
           reef: Riff
           rock: Kivi
+          sand: Liiv
           spring: Allikas
           stone: Kivi
           strait: Väin
@@ -598,7 +634,13 @@ et:
         office:
           accountant: Raamatupidaja
           architect: Arhitekt
+          company: Ettevõte
+          employment_agency: Tööbüroo
+          insurance: Kindlustusbüroo
+          lawyer: Jurist
+          travel_agent: Reisibüroo
         place:
+          allotments: Suvilad
           airport: Lennujaam
           city: Linn
           country: Riik
@@ -640,6 +682,7 @@ et:
           tram_stop: Trammipeatus
         shop:
           antiques: Antikvariaat
+          art: Kunstipood
           bakery: Pagariäri
           bicycle: Rattapood
           books: Raamatupood
@@ -680,6 +723,7 @@ et:
           music: Muusikapood
           newsagent: Ajalehekiosk
           optician: Prillipood
+          outdoor: Matkatarbed
           pet: Lemmikloomapood
           pharmacy: Apteek
           photo: Fotopood
@@ -696,10 +740,12 @@ et:
           "yes": Pood
         tourism:
           alpine_hut: Alpimaja
+          apartment: Korter
           artwork: Kunstiteos
           attraction: Turismiatraktsioon
           bed_and_breakfast: Kodumajutus
           camp_site: Laagriplats
+          gallery: Galerii
           guest_house: Külalistemaja
           hostel: Hostel
           hotel: Hotell
@@ -711,6 +757,7 @@ et:
           viewpoint: Vaatepunkt
           zoo: Loomaaed
         tunnel:
+          culvert: Truup
           "yes": Tunnel
         waterway:
           boatyard: Verf
@@ -807,9 +854,10 @@ et:
     legal_babble:
       title_html: Autoriõigused ja litsents
       intro_1_html: |-
-        OpenStreetMap on <i>avatud andmed</i>, mis on litsentseeritud <a
+        OpenStreetMap<sup><a href="#trademarks">&reg;</a></sup> on <i>avatud andmed</i>, mis on litsentseeritud <a
         href="http://opendatacommons.org/licenses/odbl/">Open Data
-        Commons Open Database License</a> (ODbL) tingimustel.
+        Commons Open Database License</a> (ODbL) tingimustel <a
+        href="http://osmfoundation.org/">OpenStreetMap Foundation</a> (OSMF) poolt.
       intro_2_html: |-
         Sa võid vabalt kopeerida, levitada, edastada ja kohandada meie andmeid
         seni kuni sa tunnustad OpenStreetMapi ja selle
@@ -844,9 +892,9 @@ et:
         title: Tunnustamise näide
       more_title_html: Lisateave
       more_1_html: |-
-        Rohkem infot, kuidas kasutada meie andmeid ja kuidas meid tunnustada leiab lehelt <a
-        href="http://wiki.openstreetmap.org/wiki/Legal_FAQ">Legal
-        FAQ</a>.
+        Rohkem infot, kuidas kasutada meie andmeid ja kuidas meid tunnustada leiab <a
+        href="http://osmfoundation.org/Licence">OSMF litsentsi leheküljelt</a> ja kogukonna <a
+        href="http://wiki.openstreetmap.org/wiki/Legal_FAQ">vastustes juriidilistele küsimustele</a>.
       more_2_html: |-
         Kuigi OpenStreetMap on vabad andmed, ei saa me pakkuda
         tasuta kaardi API-t kolmandate osapoolte arendajatele.
@@ -880,6 +928,11 @@ et:
       contributors_nz_html: |-
         <strong>Uus-Meremaa</strong>: Sisaldab kaardiandmeid
         Land Information New Zealand. Crown Copyright reserved.
+      contributors_si_html: |-
+        <strong>Sloveenia</strong>: Sisaldab
+        <a href="http://www.gu.gov.si/en/">Maamõõtmis- ja Kartograafiaameti</a> ning
+        <a href="http://www.mkgp.gov.si/en/">Põllu-, Metsa- ja Toidumajandusministeeriumi</a> kaardiandmeid
+        (Sloveenia avalik informatsioon).
       contributors_za_html: |-
         <strong>LAV</strong>: Sisaldab andmeid allikast
         <a href="http://www.ngi.gov.za/">Chief Directorate:
@@ -907,6 +960,11 @@ et:
         meie <a href="http://www.osmfoundation.org/wiki/License/Takedown_procedure">eemaldamise
         protseduuri</a> poole või otse meie
         <a href="http://dmca.openstreetmap.org/">onlain lehele</a>.
+      trademarks_title_html: <span id="trademarks"></span>Kaubamärgid
+      trademarks_1_html: OpenStreetMap ja suurendusklaasi logo on OpenStreetMap Sihtasutuse
+        registreeritud kaubamärgid. Kui teil on nende märkide kasutamise kohta küsimusi,
+        siis saatke küsimused <a href="http://wiki.osmfoundation.org/wiki/Licensing_Working_Group">Litsentsi
+        töörühmale</a>.
   welcome_page:
     title: Tere tulemast!
     introduction_html: Tere tulemast OpenStreetMappi, vabasse ja muudetavasse maailmakaarti.
@@ -933,6 +991,13 @@ et:
         järve või hoonet.
       tag_html: <strong>Silt</strong> sisaldab väikest hulka andmeid sõlme või joone
         kohta, näiteks restorani nime või tee kiiruspiirangut.
+    rules:
+      title: Reeglid!
+      paragraph_1_html: "OpenStreetMapil on vähe formaalseid reegleid kuid me eeldame,
+        et kõik osavõtjad teevad koostööd ja suhtlevad kogukonnaga. Kui plaanid tegevusi,
+        mis ei ole käsitsi redigeerimine, siis loe \n<a href='http://wiki.openstreetmap.org/wiki/Import/Guidelines'>importimise</a>
+        ja \n<a href='http://wiki.openstreetmap.org/wiki/Automated_Edits_code_of_conduct'>automaatsete
+        muudatuste</a> juhendeid."
     questions:
       title: Tekkis küsimusi?
       paragraph_1_html: |-
@@ -973,10 +1038,29 @@ et:
       url: /welcome
       title: Tere tulemast OSMi
       description: Alusta selle kiirjuhendiga, mis hõlmab OpenStreetMapi põhitõdesid.
+    beginners_guide:
+      url: http://wiki.openstreetmap.org/wiki/Et:Beginners%27_guide
+      title: Juhend algajatele
+      description: Kogukonna poolt loodud juhend algajatele.
     help:
       url: https://help.openstreetmap.org/
       title: help.openstreetmap.org
       description: Esita küsimus või otsi vastuseid OSMi küsimuste ja vastuste veebilehel.
+    mailing_lists:
+      title: Postiloendid
+      description: Esita küsimusi või arutle huvi pakkuvatel teemadel laias teemade
+        ringis või kohalikes postiloendites.
+    forums:
+      title: Foorumid
+      description: Küsimused ja arutelud nendele, kes eelistavad teadetetahvlile sarnanevat
+        kasutajaliidest.
+    irc:
+      title: IRC
+      description: Interaktiivne suhtluskanal paljudes keeltes ja paljudel teemadel.
+    switch2osm:
+      title: switch2osm
+      description: Abi ettevõtetele ja organisatsioonidele, kes plaanivad kasutusele
+        võtta OpenStreetMapil põhinevad kaardid ja muud teenused.
     wiki:
       url: http://wiki.openstreetmap.org/wiki/Et:Main_Page
       title: wiki.openstreetmap.org
@@ -984,7 +1068,7 @@ et:
   about_page:
     next: Edasi
     copyright_html: <span>&copy;</span>OpenStreetMap<br>kaastöölised
-    used_by: '%{name} varustab kaardiandmetega sadu veebisaite, mobiilside rakendusi
+    used_by: '%{name} varustab kaardiandmetega tuhandeid veebisaite, mobiilside rakendusi
       ja riistvara seadmeid'
     lede_text: OpenStreetMap on loodud kaardistajate kogukonna poolt, kes täiendavad
       ja hooldavad andmeid teede, radade, kohvikute, raudteejaamade ja paljude teiste
@@ -1007,6 +1091,12 @@ et:
       seni kuni sa tunnustad OpenStreetMapi ja selle kaastööliseid. Kui sa muudad või
       või lood midagi nende andmete põhjal, siis võid sa oma tulemust levitada ainult
       sama litsentsi alusel. Täpsemat infot vaata lehelt <a href='%{copyright_path}'>Autoriõigused ja litsents</a>.
+    legal_title: Juriidiline teave
+    legal_html: "Seda saiti ja paljusid teisi seotud teenuseid opereerib formaalselt
+      \n<a href='http://osmfoundation.org/'>OpenStreetMap Sihtasutus</a> (OSMF) \nkogukonna
+      nimel.\n<br> \nPalun <a href='http://osmfoundation.org/Contact'>võta ühendust
+      OSMF-ga</a> \nkui sul tekib küsimusi litsentseerimise, autoriõiguste või juriidika
+      osas."
     partners_title: Partnerid
   notifier:
     diary_comment_notification:
@@ -1215,6 +1305,7 @@ et:
       close: Sulge
     search:
       search: Otsi
+      get_directions_title: Juhised liikumiseks kahe punkti vahel
       from: Alguspunkt
       to: Sihtpunkt
       where_am_i: Kus ma asun?
@@ -1228,9 +1319,7 @@ et:
           primary: Põhimaantee
           secondary: Tugimaantee
           unclassified: Klassifitseerimata tee
-          unsurfaced: Katteta tee
           track: Rada
-          byway: Kõrvaltee
           bridleway: Ratsatee
           cycleway: Jalgrattatee
           footway: Jalgtee
@@ -1254,7 +1343,6 @@ et:
           golf: Golfiväljak
           park: Park
           resident: Elamurajoon
-          tourist: Turismimagnet
           common:
           - Heinamaa
           - luht
@@ -1284,7 +1372,6 @@ et:
           tunnel: Katkendlik ümbris = tunnel
           bridge: Must ümbris = sild
           private: Üksnes omanikule
-          permissive: Pääs ainult lubadega
           destination: Üksnes läbisõiduks
           construction: Ehitatavad teed
     richtext_area:
@@ -1499,6 +1586,7 @@ et:
       register now: 'Registreeru:'
       with username: Kas omad juba OpenStreetMap kasutajakontot? Palun logi sisse
         enda kasutajanime ja salasõnaga.
+      with external: 'Teise võimalusena võid sisse logida kolmanda osapoole kaudu:'
       new to osm: Oled uus OpenStreetMap kasutaja?
       to make changes: Muudatuste tegemiseks OpenStreetMap andmetes peab sul olema
         kasutajakonto.
@@ -1512,6 +1600,26 @@ et:
         kui soovid sellel teemal arutleda.
       auth failure: Vabandust, kahjuks ei saa nende andmetega sisse.
       openid_logo_alt: Sisene OpenID tunnusega
+      auth_providers:
+        openid:
+          title: Sisene OpenID tunnusega
+          alt: Sisene OpenID URL abil
+        google:
+          title: Sisene Google'i tunnusega
+          alt: Sisene Google'i OpenID tunnusega
+        facebook:
+          title: Sisene Facebook'i tunnusega
+        windowslive:
+          title: Sisene Windows Live tunnusega
+        yahoo:
+          title: Sisene Yahoo tunnusega
+          alt: Sisene Yahoo OpenID tunnusega
+        wordpress:
+          title: Sisene Wordpress tunnusega
+          alt: Sisene Wordpress OpenID tunnusega
+        aol:
+          title: Sisene AOL tunnusega
+          alt: Sisene AOL OpenID tunnusega
     logout:
       title: Logi välja
       heading: Välju OpenStreetMap -st
@@ -1538,7 +1646,7 @@ et:
       title: Registreerumine
       no_auto_account_create: Kahjuks ei ole meil võimalik luua hetkel sinu jaoks
         automaatselt kontot.
-      contact_webmaster: Palun võta ühendust <a href="mailto:webmaster@openstreetmap.org">veebimeistriga</a>,
+      contact_webmaster: Palun võta ühendust <a href="%{webmaster}">veebimeistriga</a>,
         et kasutajakonto luua - me üritame tegeleda selle taotlusega nii kiiresti
         kui võimalik.
       about:
@@ -1557,6 +1665,7 @@ et:
         eelistustes.
       password: 'Uus parool:'
       confirm password: 'Kinnita parool:'
+      use external auth: Teise võimalusena võid sisse logida kolmanda osapoole kaudu
       continue: Registreeru
       terms accepted: Täname, et nõustusid uute kaastöö tingimustega!
       terms declined: Meil on kahju, et otsustasid mitte nõustuda uute kaastöö tingimustega.
@@ -1637,16 +1746,16 @@ et:
         revoke:
           administrator: Eemalda administraatori õigused
           moderator: Eemalda moderaatori õigused
-      block_history: saadud blokeeringud
-      moderator_history: antud blokeeringud
+      block_history: Aktiivsed blokeeringud
+      moderator_history: Antud blokeeringud
       comments: kommentaarid
-      create_block: blokeeri see kasutaja
-      activate_user: aktiveeri see kasutaja
-      deactivate_user: desaktiveeri see kasutaja
-      confirm_user: kinnita see kasutaja
-      hide_user: peida see kasutaja
-      unhide_user: muuda see kasutaja nähtavaks
-      delete_user: kustuta see kasutaja
+      create_block: Blokeeri see kasutaja
+      activate_user: Aktiveeri see kasutaja
+      deactivate_user: Desaktiveeri see kasutaja
+      confirm_user: Kinnita see kasutaja
+      hide_user: Peida see kasutaja
+      unhide_user: Muuda see kasutaja nähtavaks
+      delete_user: Kustuta see kasutaja
       confirm: Kinnita
       friends_changesets: Sõprade muutuskogumid
       friends_diaries: Sõprade päevikusissekanded
@@ -1662,6 +1771,7 @@ et:
       current email address: 'Praegune e-posti aadress:'
       new email address: 'Uus e-posti aadress:'
       email never displayed publicly: (ei näidata mitte kunagi avalikult)
+      external auth: 'Väline autentimine:'
       openid:
         link: http://wiki.openstreetmap.org/wiki/OpenID
         link text: mis see on?
@@ -1722,6 +1832,7 @@ et:
       press confirm button: Vajuta allolevale kinnitamise nupule, et oma kasutajakonto
         aktiveerida.
       button: Kinnita
+      success: Sinu kasutajakonto on kinnitatud, täname registreerimast!
       already active: See konto on juba kinnitatud.
       unknown token: See kinnituskood on aegunud või seda pole olemas.
       reconfirm_html: Kui soovid, et saadaksime sulle uuesti kinnitusmeili, siis <a
@@ -1730,15 +1841,16 @@ et:
       success: Me saatsime sulle uue kinnitusmeili aadressile %{email} ja niipea kui
         oled oma konto kinnitanud saad alustada kaardistamist.<br /><br /> Kui sa
         kasutad rämpskirjade vastast süsteemi, mis saadab kinnitustaotluse, siis veendu,
-        et oled kandnud aadressi webmaster@openstreetmap.org valgesse nimekirja, sest
-        me ei ole võimelised vastama ühelegi kinnitustaotlusele.
+        et oled kandnud aadressi %{sender} valgesse nimekirja, sest me ei ole võimelised
+        vastama ühelegi kinnitustaotlusele.
       failure: Kasutajat %{name} ei leitud.
     confirm_email:
       heading: Kinnita e-posti aadressi muutmine
       press confirm button: Kliki nupul kinnita oma uue e-posti aadressi kinnitamiseks.
       button: Kinnita
-      success: Sinu eposti aadress on kinnitatud, tänan registreerimast!
+      success: Sinu eposti aadressi muudatus on kinnitatud, täname registreerimast!
       failure: E-posti aadress on juba antud pääsuloaga kinnitatud.
+      unknown_token: See kinnituskood on aegunud või seda pole olemas.
     set_home:
       flash success: Kodukoht edukalt salvestatud
     go_public:
@@ -1780,6 +1892,15 @@ et:
           Käesolev otsus vaadatakse administraatori poolt peatselt üle, või
           võite kontakteeruda %{webmaster} kui soovite seda arutada.
         </p>
+    auth_failure:
+      no_authorization_code: Autoriseerimiskood puudub
+    auth_association:
+      heading: Sinu ID ei ole veel seotud OpenStreetMapi kasutajakontoga.
+      option_1: Kui oled esimest korda OpenStreetMapis siis loo palun uus kasutajakonto,
+        täites allpool oleva vormi.
+      option_2: Kui sul juba on kasutajakonto, saad enda kontole siseneda, kasutades
+        oma kasutajatunnust ja parooli ning seejärel siduda kasutaja seadetes konto
+        oma ID-ga.
   user_role:
     filter:
       not_an_administrator: Kasutaja rollide haldamist saavad teostada ainult administraatorid,
@@ -1895,6 +2016,8 @@ et:
       heading: '%{block_on} blokeeritud kasutaja %{block_by} poolt'
       time_future: Lõpeb %{time}
       time_past: Lõppes %{time} tagasi
+      created: Loodud
+      ago: '%{time} tagasi'
       status: Olek
       show: Näita
       edit: Redigeeri
@@ -1945,6 +2068,7 @@ et:
       link: Link või HTML
       long_link: Link
       short_link: Lühilink
+      geo_uri: Geo URI
       embed: HTML
       custom_dimensions: Vali suurus käsitsi
       format: 'Vorming:'
@@ -1956,6 +2080,9 @@ et:
       center_marker: Tsentreeri kaart markerile
       paste_html: Kopeeri HTML-kood oma veebilehele
       view_larger_map: Vaata suuremat kaarti
+      only_standard_layer: Ainult tavakaarti saab pildina eksportida
+    embed:
+      report_problem: Teata probleemist
     key:
       title: Legend
       tooltip: Legend
@@ -1989,7 +2116,7 @@ et:
       map_data_zoom_in_tooltip: Suumi sisse, et näha kaardi andmeid
     changesets:
       show:
-        comment: Kommentaar
+        comment: Kommenteeri
         subscribe: Telli
         unsubscribe: Lõpeta tellimus
         hide_comment: peida
@@ -2020,17 +2147,15 @@ et:
         mapquest_car: Autoga (MapQuest)
         mapquest_foot: Jalgsi (MapQuest)
         osrm_car: Autoga (OSRM)
+        mapzen_car: Autoga (Mapzen)
+        mapzen_foot: Jalgsi (Mapzen)
       directions: Juhised
       distance: Vahemaa
       errors:
         no_route: Ei suutnud leida teekonda nende kahe koha vahel.
         no_place: Vabandust - ei suuda leida sellist kohta.
       instructions:
-        turn_right: Pööra paremale
-        turn_left: Pööra vasakule
-        roundabout: Ringristmikul keera
-        destination: Jõudsid sihtpunkti
-        unnamed: (nimetu)
+        unnamed: nimetu
       time: Kestus
     query:
       node: Sõlm

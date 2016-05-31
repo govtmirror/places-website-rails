@@ -189,7 +189,7 @@ OSM.Directions = function (map) {
         map.removeLayer(polyline);
 
         if (!dragging) {
-          alert(I18n.t('javascripts.directions.errors.no_route'));
+          $('#sidebar_content').html('<p class="search_results_error">' + I18n.t('javascripts.directions.errors.no_route') + '</p>');
         }
 
         return;
@@ -336,13 +336,8 @@ OSM.Directions = function (map) {
       setEngine(params.engine);
     }
 
-    if (params.from) {
-      endpoints[0].setValue(params.from);
-      endpoints[1].setValue("");
-    } else {
-      endpoints[0].setValue("");
-      endpoints[1].setValue("");
-    }
+    endpoints[0].setValue(params.from || "");
+    endpoints[1].setValue(params.to || "");
 
     var o = route[0] && L.latLng(route[0].split(',')),
         d = route[1] && L.latLng(route[1].split(','));

@@ -1,7 +1,10 @@
 <header class="closed">
   <h1>
     <a href="<%= root_path %>" class="geolink">
-      <%= image_tag "osm_logo.png", :alt => t('layouts.logo.alt_text'), :class => 'logo' %>
+      <picture>
+        <source srcset="<%= image_path "osm_logo.svg" %>" type="image/svg+xml"></source>
+        <%= image_tag "osm_logo.png", :srcset => image_path("osm_logo.svg"), :alt => t('layouts.logo.alt_text'), :class => 'logo' %>
+      </picture>
       <%= t 'layouts.project_name.h1' %>
     </a>
   </h1>
@@ -45,9 +48,9 @@
         <ul class="dropdown-menu">
           <li class="<%= current_page_class(traces_path) %>"><%= link_to t('layouts.gps_traces'), traces_path %></li>
           <li class="<%= current_page_class(diary_path) %>"><%= link_to t('layouts.user_diaries'), diary_path %></li>
+          <li class="<%= current_page_class(copyright_path) %>"><%= link_to t('layouts.copyright'), copyright_path %></li>
           <li class="<%= current_page_class(help_path) %>"><%= link_to t('layouts.help'), help_path %></li>
           <li class="<%= current_page_class(about_path) %>"><%= link_to t('layouts.about'), about_path %></li>
-          <li class="<%= current_page_class(copyright_path) %>"><%= link_to t('layouts.copyright'), copyright_path %></li>
         </ul>
       </li>
     </ul>

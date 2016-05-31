@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Anakmalaysia
+# Author: Boyuan Yang
 # Author: Dimension
 # Author: Duolaimi
 # Author: Hydra
@@ -17,11 +18,13 @@
 # Author: NigelSoft
 # Author: PhiLiP
 # Author: Qiyue2001
+# Author: RyRubyy
 # Author: Shizhao
 # Author: StephDC
 # Author: Xiaomingyan
 # Author: Yfdyh000
 # Author: 乌拉跨氪
+# Author: 阿pp
 # Author: 아라
 ---
 zh-CN:
@@ -183,6 +186,7 @@ zh-CN:
         way: 路径
         relation: 关系
         changeset: 修改集合
+        note: 注释
     timeout:
       sorry: 对不起，检索 id 为 %{id} 的 %{type} 的数据时间过长。
       type:
@@ -190,6 +194,7 @@ zh-CN:
         way: 路径
         relation: 关系
         changeset: 修改集合
+        note: 注释
     redacted:
       redaction: 编辑 %{id}
       message_html: 该 %{type} 版本 %{version} 无法显示，因为其已被编辑。详情请见%{redaction_link}。
@@ -264,11 +269,12 @@ zh-CN:
       title_particular: 'OpenStreetMap 修改集合 #%{changeset_id} 讨论'
       comment: '%{author} 对修改集合 #%{changeset_id} 的新评论'
       commented_at_html: 更新于 %{when} 前
-      commented_at_by_html: '%{user} 上传于 %{when} 前'
+      commented_at_by_html: 由 %{user} 更新于 %{when} 前
       full: 完整讨论
   diary_entry:
     new:
       title: 新日记文章
+      publish_button: 发布
     list:
       title: 用户日记
       title_friends: 朋友的日记
@@ -301,7 +307,7 @@ zh-CN:
       save_button: 保存
     no_such_entry:
       title: 没有这篇日记文章
-      heading: 没有文章 ID 为：%{id}
+      heading: 没有ID为 %{id} 的条目
       body: 对不起，没有 id 为 %{id} 的日记文章或评论。请检查您的拼写，或是您可能点击了错误的链接。
     diary_entry:
       posted_by: '%{link_user} 于 %{created} 以%{language_link}发表'
@@ -577,7 +583,7 @@ zh-CN:
           track: 小路
           traffic_signals: 交通信号灯
           trail: 小路
-          trunk: 干道
+          trunk: 主干道路
           trunk_link: 干道
           unclassified: 无等级道路
           unsurfaced: 无铺面道路
@@ -784,7 +790,7 @@ zh-CN:
           spur: 铁路支线
           station: 火车站
           stop: 火车停车点
-          subway: 地铁站
+          subway: 地铁
           subway_entrance: 地铁入口
           switch: 道岔
           tram: 电车轨道
@@ -989,8 +995,9 @@ zh-CN:
     legal_babble:
       title_html: 著作权与许可
       intro_1_html: |-
-        OpenStreetMap 是<i>开放数据</i>，采用<a
-        href="http://opendatacommons.org/licenses/odbl/">开放数据共享开放数据库许可协议</a> (ODbL)授权。
+        OpenStreetMap<sup><a href="#trademarks">&reg;</a></sup>是<i>开放数据</i>，由<a
+        href="http://osmfoundation.org/">OpenStreetMap基金会</a>（OSMF）采用<a
+        href="http://opendatacommons.org/licenses/odbl/">开放数据共享开放数据库许可协议</a>（ODbL）授权。
       intro_2_html: 只要您表明来源为 OpenStreetMap 及其贡献者，您就可以自由地复制、分发、传送和改编我们的数据。如果您想转换或者以我们的数据为基础进行创作，您只能采用相同的许可协议发表您的作品。完整的<a
         href="http://opendatacommons.org/licenses/odbl/1.0/">法律文本</a>阐明了您的权利和义务。
       intro_3_html: 我们的地图图块中的绘图数据以及我们的文档采用<a href="http://creativecommons.org/licenses/by-sa/2.0/deed.zh">知识共享“署名-相同方式共享
@@ -1009,6 +1016,7 @@ zh-CN:
       more_title_html: 了解更多
       more_1_html: |-
         请在<a
+        href="http://osmfoundation.org/Licence">OSMF许可协议页面</a>和<a
         href="http://wiki.openstreetmap.org/wiki/Legal_FAQ">法律常见问题</a>阅读更多关于使用我们的数据，以及如何表明我们是作者的信息。
       more_2_html: 尽管 OpenStreetMap 开放数据，但是我们无法为第三方开发人员提供免费的地图 API。详见我们的 <a href="http://wiki.openstreetmap.org/wiki/API_usage_policy">API使用政策</a>、<a
         href="http://wiki.openstreetmap.org/wiki/Tile_usage_policy">图块使用政策</a>及<a
@@ -1028,6 +1036,10 @@ zh-CN:
         的数据。
       contributors_nl_html: <strong>荷兰</strong>：含有&copy; AND data, 2007(<a href="http://www.and.com">www.and.com</a>)
       contributors_nz_html: <strong>新西兰</strong>：包含来自新西兰土地信息部的数据。Crown 版权所有。
+      contributors_si_html: |-
+        <strong>斯洛文尼亚</strong>：包含来自
+        <a href="http://www.gu.gov.si/en/">Surveying and Mapping Authority</a>和
+        <a href="http://www.mkgp.gov.si/en/">Ministry of Agriculture, Forestry and Food</a>（斯洛文尼亚公开信息）的数据。
       contributors_za_html: <strong>南非</strong>：包含来自<a href="http://www.ngi.gov.za/">行政局：国家地球空间信息</a>，国家版权所有。
       contributors_gb_html: <strong>英国</strong>：包含来自 Ordnance 的调查数据，&copy; Crown 版权所有及数据库权利，2010-12。
       contributors_footer_1_html: |-
@@ -1038,6 +1050,9 @@ zh-CN:
       infringement_1_html: OSM 的贡献者会被提醒，绝不要在没有著作权人的明确许可时添加来自任何有著作权的来源的数据(如谷歌地图或印刷地图)。
       infringement_2_html: 如果您认为版权的材料已被不恰当地添加的 OpenStreetMap 数据库或该网站，请参见我们的<a href="http://www.osmfoundation.org/wiki/License/Takedown_procedure">撤除程序</a>，或直接在我们的<a
         href="http://dmca.openstreetmap.org/">在线申报页面</a>上提出。
+      trademarks_title_html: <span id="trademarks"></span>商标
+      trademarks_1_html: OpenStreetMap和放大镜标志是OpenStreetMap基金会的注册商标。如果您对使用这些标志有任何问题，请在<a
+        href="http://wiki.osmfoundation.org/wiki/Licensing_Working_Group">授权工作组</a>提出您的问题。
   welcome_page:
     title: 欢迎！
     introduction_html: 欢迎访问 OpenStreeMap，自由且可编辑的世界地图。您已经登录，可以开始绘制地图。这里是含有您需要知道的最重要的信息的快速指南。
@@ -1052,6 +1067,10 @@ zh-CN:
       node_html: <strong>节点</strong>是地图上的点，例如一个餐馆或一棵树。
       way_html: <strong>路径</strong>是线或区域，例如一条路、一条溪、一个湖或一个建筑物。
       tag_html: <strong>标签</strong>是关于节点或路径的简短数据，例如餐馆的名字或者道路的速度限制。
+    rules:
+      title: 规则！
+      paragraph_1_html: OpenStreetMap很少有正式规则，但我们期待所有参与者能合作，并与社区沟通。如果你在考虑任何除手工编辑的活动，请阅读并遵守<a
+        href='http://wiki.openstreetmap.org/wiki/Import/Guidelines'>导入</a>和<a href='http://wiki.openstreetmap.org/wiki/Automated_Edits_code_of_conduct'>自动编辑</a>的指导。
     questions:
       title: 还有疑问吗？
       paragraph_1_html: OpenStreetMap 有若干资源用于学习该项目，提问和回答问题，以及讨论与制作地图相关的话题并且撰写相关文档。<a
@@ -1082,10 +1101,26 @@ zh-CN:
       url: /welcome
       title: 欢迎访问 OSM
       description: 本快速指南涵盖了快速入门 OpenStreetMap 的基本知识。
+    beginners_guide:
+      url: http://wiki.openstreetmap.org/wiki/Zh-hans:Beginners%27_guide
+      title: 初学者指南
+      description: 社群维护的新手指南。
     help:
       url: https://help.openstreetmap.org/
       title: help.openstreetmap.org
       description: 在 OSM 的问答网站提问或查找回答。
+    mailing_lists:
+      title: 邮件列表
+      description: 询问问题或在广泛或局部的邮件列表中讨论有趣事件
+    forums:
+      title: 论坛
+      description: 面向更喜欢电子公告栏样式界面的用户的问题和讨论。
+    irc:
+      title: IRC
+      description: 在很多不同的语言和在很多话题间交互聊天。
+    switch2osm:
+      title: switch2osm
+      description: 协助公司与组织改用 OpenStreetMap 为基础的地图与相关服务。
     wiki:
       url: http://wiki.openstreetmap.org/
       title: wiki.openstreetmap.org
@@ -1093,7 +1128,7 @@ zh-CN:
   about_page:
     next: 下一页
     copyright_html: <span>&copy;</span>OpenStreetMap<br> 贡献者
-    used_by: '%{name} 驱动了数以百计的网站，移动应用，以及硬件设备的地图数据。'
+    used_by: '%{name} 驱动了数以千计的网站，移动应用，以及硬件设备的地图数据。'
     lede_text: OpenStreetMap 是一个由地图制作爱好者组成的社区。这些爱好者提供并维护世界各地关于道路、小道、咖啡馆、铁路车站等各种各样的数据。
     local_knowledge_title: 本地知识库
     local_knowledge_html: OpenStreetMap 强调使用本地知识。贡献者们使用航空图像、GPS 设备与传统的地区地图来确保 OSM
@@ -1106,6 +1141,11 @@ zh-CN:
     open_data_title: 开放数据
     open_data_html: OpenStreetMap 是<i>开源数据</i>:只要您表明使用了 OpenStreetMap 并承认其贡献者的工作，您就可以使用
       OpenStreetMap。如果您改变或者使用这些数据，您必须按照相同的版权协议发布结果。详情请参见<a href='%{copyright_path}'>版权协议</a>。
+    legal_title: 法律
+    legal_html: |-
+      此网站和很多其他相关服务已由<a href='http://osmfoundation.org/'>OpenStreetMap基金会</a>（OSMF）正式代表社群运营。
+      <br>
+      如果您有许可协议、版权或其他法律问题，请<a href='http://osmfoundation.org/Contact'>联络OSMF</a>。
     partners_title: 合作伙伴
   notifier:
     diary_comment_notification:
@@ -1298,13 +1338,12 @@ zh-CN:
       table:
         entry:
           motorway: 高速公路
-          trunk: 城市快速道路
+          main_road: 主干道
+          trunk: 主干道路
           primary: 一级道路
           secondary: 二级道路
           unclassified: 无等级道路
-          unsurfaced: 无铺面道路
           track: 小路
-          byway: 小路
           bridleway: 马道
           cycleway: 自行车道
           footway: 步道
@@ -1328,7 +1367,6 @@ zh-CN:
           golf: 高尔夫球场
           park: 公园
           resident: 住宅区
-          tourist: 旅游景点
           common:
           - 公地
           - 草地
@@ -1358,7 +1396,6 @@ zh-CN:
           tunnel: 双虚线 = 隧道
           bridge: 双实线 = 桥
           private: 私人
-          permissive: 允许访问
           destination: 目标访问
           construction: 在建道路
     richtext_area:
@@ -1507,6 +1544,7 @@ zh-CN:
       allow_read_gpx: 读取您的私人 GPS 轨迹。
       allow_write_gpx: 上传 GPS 轨迹。
       allow_write_notes: 修改笔记。
+      grant_access: 授予访问权
     oauthorize_success:
       title: 已允许授权申请
       allowed: 您已授权 %{app_name} 应用访问您的账户。
@@ -1588,6 +1626,7 @@ zh-CN:
       login_button: 登录
       register now: 现在就注册
       with username: 已经有 OpenStreetMap 账户？请使用您的用户名和密码登录：
+      with external: 或者使用第三方服务登录：
       new to osm: 第一次来到 OpenStreetMap？
       to make changes: 要修改 OpenStreetMap 的数据，您必须拥有一个帐户。
       create account minute: 创建账户。只需花费一分钟。
@@ -1596,6 +1635,28 @@ zh-CN:
       account is suspended: 对不起，您的帐户因可疑活动已被暂停。<br />如果您想讨论这个，请联系<a href="%{webmaster}">网站管理员</a>。
       auth failure: 对不起，凭这些信息您无法登录。
       openid_logo_alt: 使用 OpenID 登录
+      auth_providers:
+        openid:
+          title: 使用OpenID登录
+          alt: 使用OpenID URL登录
+        google:
+          title: 使用Google登录
+          alt: 使用Google OpenID登录
+        facebook:
+          title: 使用脸书登录
+          alt: 使用Facebook账户登录
+        windowslive:
+          title: 使用Windows Live登录
+          alt: 使用一个Windows Live账户登录
+        yahoo:
+          title: 使用Yahoo登录
+          alt: 使用Yahoo OpenID登录
+        wordpress:
+          title: 使用Wordpress登录
+          alt: 使用 Wordpress OpenID 登录
+        aol:
+          title: 使用AOL登录
+          alt: 使用AOL OpenID登录
     logout:
       title: 退出
       heading: 退出 OpenStreetMap
@@ -1619,8 +1680,7 @@ zh-CN:
     new:
       title: 注册
       no_auto_account_create: 很遗憾，我们目前无法为您自动创建一个帐户。
-      contact_webmaster: 请联系<a href="mailto:webmaster@openstreetmap.org">网站管理员</a>来安排创建一个账户
-        - 我们将尽快尝试处理您的请求。
+      contact_webmaster: 请联系<a href="%{webmaster}">网站管理员</a>来安排创建一个账户 - 我们将尽快尝试处理您的请求。
       about:
         header: 自由且可编辑
         html: |-
@@ -1633,8 +1693,11 @@ zh-CN:
         title="wiki privacy policy including section on email addresses">隐私政策</a>)
       display name: 显示名称：
       display name description: 您公开显示的用户名。您可以稍后在首选项中进行修改。
+      external auth: 第三方身份验证：
       password: 密码：
       confirm password: 确认密码：
+      use external auth: 或者使用第三方服务登录
+      auth no password: 通过第三方身份验证，您不再需要密码，但一些额外工具或服务器可能仍然需要。
       continue: 注册
       terms accepted: 感谢您接受新的贡献条款！
       terms declined: 我们很遗憾您已决定不接受新的贡献者条款。有关详细信息，请参阅<a href="%{url}">此 wiki 页面</a>.
@@ -1660,6 +1723,7 @@ zh-CN:
       title: 没有此用户
       heading: 用户 %{user} 不存在
       body: 对不起，没有名为 %{user} 的用户。请检查您的拼写，或者可能是点击了错误的链接。
+      deleted: 已删除
     view:
       my diary: 我的日记
       new diary entry: 新日记文章
@@ -1710,12 +1774,12 @@ zh-CN:
         revoke:
           administrator: 撤销管理员权限
           moderator: 撤销管理员权限
-      block_history: 接受的封禁
+      block_history: 激活的封禁
       moderator_history: 执行封禁者
       comments: 评论
-      create_block: 阻止此用户
-      activate_user: 启用该用户
-      deactivate_user: 停用该用户
+      create_block: 封禁此用户
+      activate_user: 启用此用户
+      deactivate_user: 停用此用户
       confirm_user: 确认此用户
       hide_user: 隐藏此用户
       unhide_user: 取消隐藏此用户
@@ -1735,6 +1799,7 @@ zh-CN:
       current email address: 当前电子邮件地址：
       new email address: 新电子邮件地址：
       email never displayed publicly: (从不公开显示)
+      external auth: 外部身份验证：
       openid:
         link: http://wiki.openstreetmap.org/wiki/OpenID
         link text: 这是什么？
@@ -1791,15 +1856,15 @@ zh-CN:
       unknown token: 确认码已经过期或不存在。
       reconfirm_html: 如果您需要我们重新发送确认邮件，<a href="%{reconfirm}">请点击这里</a>。
     confirm_resend:
-      success: 我们已经发送一封新的确认电子邮件到 %{email}，只要您确认您的帐户，您就可以开始制图了。<br /><br />如果您使用的反垃圾邮件系统发送确认请求，那么请确保您的白名单中有
-        webmaster@openstreetmap.org，因为我们无法回复任何确认请求。
+      success: 我们已经发送一封新的确认电子邮件到 %{email}，只要您确认您的帐户，您就可以开始制图了。<br /><br />如果您使用的反垃圾邮件系统发送确认请求，那么请确保您的白名单中有%{sender}，因为我们无法回复任何确认请求。
       failure: 用户 %{name} 未找到。
     confirm_email:
       heading: 确认电子邮件地址修改
       press confirm button: 按下面的确认按钮以确认您的新电子邮件地址。
       button: 确认
-      success: 已确认您的电子邮件地址，感谢您的注册！
+      success: 已确认您对电子邮件地址的更改！
       failure: 具有此令牌的电子邮件地址已经确认过了。
+      unknown_token: 那个确认代码已过期或不存在。
     set_home:
       flash success: 成功保存您所在位置
     go_public:
@@ -1841,6 +1906,16 @@ zh-CN:
         这项决定将在短时间内由管理员审核，或者如果您想讨论这一点
         ，可以联系 %{webmaster}。
         </p>
+    auth_failure:
+      connection_failed: 连接身份验证提供方失败
+      invalid_credentials: 无效的身份验证凭证
+      no_authorization_code: 没有授权码
+      unknown_signature_algorithm: 未知签名算法
+      invalid_scope: 无效范围
+    auth_association:
+      heading: 您的ID尚未与OpenStreetMap账户相关联。
+      option_1: 如果您是OpenStreetMap的新手，请使用下面的表单创建一个新账户。
+      option_2: 如果您已拥有一个账户，您可以使用您的用户名和密码登录您的账户，然后在您的用户设置中将账户与您的ID相关联。
   user_role:
     filter:
       not_an_administrator: 只有管理员可以执行用户角色管理，而您不是管理员。
@@ -1941,6 +2016,8 @@ zh-CN:
       heading: '%{block_on} 被 %{block_by} 封禁'
       time_future: 结束于 %{time}
       time_past: 结束于 %{time} 前
+      created: 已创建
+      ago: '%{time}前'
       status: 状态
       show: 显示
       edit: 编辑
@@ -1991,6 +2068,7 @@ zh-CN:
       link: 链接或 HTML
       long_link: 链接
       short_link: 短链接
+      geo_uri: Geo URI
       embed: HTML
       custom_dimensions: 设定自定义尺寸
       format: 格式：
@@ -2002,6 +2080,9 @@ zh-CN:
       center_marker: 以标记作为地图中心
       paste_html: 粘贴HTML以嵌入网站
       view_larger_map: 查看更大的地图
+      only_standard_layer: 只有标准图层可被导出为图片
+    embed:
+      report_problem: 报告问题
     key:
       title: 图例
       tooltip: 图例
@@ -2040,7 +2121,7 @@ zh-CN:
       show:
         comment: 评论
         subscribe: 订阅
-        unsubscribe: 退订
+        unsubscribe: 取消订阅
         hide_comment: 隐藏
         unhide_comment: 取消隐藏
     notes:
@@ -2063,30 +2144,34 @@ zh-CN:
         mapquest_car: 汽车（MapQuest）
         mapquest_foot: 步行（MapQuest）
         osrm_car: 汽车（OSRM）
+        mapzen_bicycle: 自行车（Mapzen）
+        mapzen_car: 汽车（Mapzen）
+        mapzen_foot: 脚（Mapzen）
       directions: 方向
       distance: 距离
       errors:
-        no_route: 不能找到那两个地方之间的路径。
+        no_route: 找不到那两个地方之间的路径。
         no_place: 抱歉——找不到那个地方。
       instructions:
-        continue_on: 继续
-        slight_right: 稍向右转
-        turn_right: 右转
-        sharp_right: 向右急转
-        uturn: 掉头沿着
-        sharp_left: 向左急转
-        turn_left: 左转
-        slight_left: 稍向左转
-        via_point: （通过点）
-        follow: 关注
-        roundabout: 转盘行驶
-        leave_roundabout: 离开转盘 -
-        stay_roundabout: 保持转盘 -
-        start: 开始于终点
-        destination: 到达目的地
-        against_oneway: 单向走向
-        end_oneway: 单向终点
-        unnamed: （未命名）
+        continue_without_exit: 在%{name}上直走
+        slight_right_without_exit: 稍向右转至%{name}
+        turn_right_without_exit: 右转至%{name}
+        sharp_right_without_exit: 向右急转至%{name}
+        uturn_without_exit: 沿着%{name}掉头
+        sharp_left_without_exit: 向左急转至%{name}
+        turn_left_without_exit: 左转至%{name}
+        slight_left_without_exit: 稍向左转至%{name}
+        via_point_without_exit: （通过点）
+        follow_without_exit: 关注%{name}
+        roundabout_without_exit: 在转盘驶入%{name}
+        leave_roundabout_without_exit: 离开转盘 - %{name}
+        stay_roundabout_without_exit: 在转盘停留 - %{name}
+        start_without_exit: 在%{name}终点开始
+        destination_without_exit: 到达目的地
+        against_oneway_without_exit: '%{name}单向行驶'
+        end_oneway_without_exit: '%{name}单向终点'
+        roundabout_with_exit: 在环形交叉的%{exit}号出口离开前往%{name}
+        unnamed: 未命名道路
         courtesy: 方向经由%{link}
       time: 时间
     query:

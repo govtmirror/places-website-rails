@@ -82,13 +82,41 @@ diq:
     default: Hesabiyaye (%{name}yo nıkayên)
     potlatch:
       name: Potlatch 1
+      description: Potlatch 1 (browser vurnayoğ)
+    id:
+      name: iD
+      description: iD (browser vurnayoğ)
     potlatch2:
       name: Potlatch 1
+      description: Potlatch 2 (browser vurnayoğ)
+    remote:
+      name: Duri da qontrol
+      description: Duri ra Qonrtol (JOSM yana  Merkaartor)
   browse:
+    created: Vıraziye
+    closed: Racneya
+    created_html: <abbr title='%{title}'>%{time} veror</abbr> vıraziye
+    closed_html: <abbr title='%{title}'>%{time} veror</abbr> racneye
     version: Versiyon
+    anonymous: anonim
+    no_comment: (be vatış)
+    part_of: Letey
+    download_xml: XML ron
+    view_history: Verori bıvin
+    view_details: Teferruati bıvin
+    location: 'Lokasyon:'
     changeset:
       title: 'Koma vurnayışi: %{id}'
       belongs_to: Nuştekar
+      node: '%{count} noqtey'
+      node_paginated: pero piya (%{x}-%{y} - %{count}) noqtey
+      way: '%{count} ray'
+      comment: Mışewreyi (%{count})
+      discussion: Werênayış
+    node:
+      title: Noqta:%{name}
+    way:
+      title: Ray:%{name}
     relation:
       members: Ezay
     relation_member:
@@ -133,13 +161,15 @@ diq:
       no_edits: (vurnayış çıniyo)
     changesets:
       id: ID
-      saved_at: Deme qeydi
+      saved_at: Demê qeydi
       user: Karber
       comment: Mışewre
       area: Erz
     list:
       title: Seta vurnayışan
   diary_entry:
+    new:
+      publish_button: Vıla ke
     edit:
       subject: 'Mewzu:'
       body: 'Vêrey mesaci:'
@@ -453,7 +483,7 @@ diq:
       outbox: Rışteyan
       from: Kêra
       subject: Mewzu
-      date: Deme
+      date: Dem
     message_summary:
       reply_button: Cewab bıde
       delete_button: Bestere
@@ -467,10 +497,10 @@ diq:
       outbox: Rışteyan
       to: Kêrê
       subject: Mewzu
-      date: Deme
+      date: Dem
     read:
       subject: Mewzu
-      date: Deme
+      date: Dem
       reply_button: Cewab bıde
       to: Kêrê
     sent_message_summary:
@@ -487,7 +517,6 @@ diq:
       table:
         entry:
           track: Raya Herın
-          byway: Raya Bınêk
           bridleway: Raya Ancınıştan
           cycleway: Raya Bisiklet
           apron:
@@ -652,7 +681,7 @@ diq:
       traces: rêçi
       remove as friend: Embazan ra vec
       add as friend: Xo rê embaz ke
-      mapper since: 'Demê Xeritoğiney:'
+      mapper since: 'Demê herdnigarwaniye:'
       ago: (%{time_in_words_ago} veror)
       ct undecided: Darıdeyo
       ct declined: Red kerd
@@ -682,8 +711,8 @@ diq:
           moderator: Hesabê moderatori terkne
       block_history: kılitkerdışê gırewtey
       moderator_history: Bloqanê cı bıgi re
-      comments: vatışi
-      create_block: Ena karber blok bike
+      comments: Mışewreyi
+      create_block: nê karberi kılit ke
       activate_user: Nê karberi aktiv ke
       deactivate_user: Nê karberi aktiv meke
       confirm_user: nê karberi tesdiq ke
@@ -802,6 +831,9 @@ diq:
       revoke: Terkne!
       confirm: Vac welay?
       revoker: 'Terkner:'
+  note:
+    entry:
+      comment: Mışewre
   javascripts:
     map:
       base:
@@ -810,6 +842,12 @@ diq:
         transport_map: Xeritay Resnayışi
     site:
       edit_tooltip: Xeriti timar ke
+    changesets:
+      show:
+        comment: Mışewre
+    notes:
+      show:
+        comment: Mışewre
   redaction:
     edit:
       description: Şınasnayış

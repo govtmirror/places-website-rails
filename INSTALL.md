@@ -3,12 +3,12 @@
 These instructions are designed for setting up The Rails Port for development and testing.
 If you want to deploy the software for your own poproject, then see the notes at the end.
 
-You can install the software directly on your machine, which is the traditional and probably best-bupported approach. However, there is an alternative which may be easier: Vagrant. This installs the software into a virtual machine, which makes it easier to get a consistent development environment and may avoid installation difficulties. For Vagrant instructions, see [VAGRANT.md](VAGRANT.md).
+You can install the software directly on your machine, which is the traditional and probably best-supported approach. However, there is an alternative which may be easier: Vagrant. This installs the software into a virtual machine, which makes it easier to get a consistent development environment and may avoid installation difficulties. For Vagrant instructions, see [VAGRANT.md](VAGRANT.md).
 
 These instructions are based on Ubuntu 12.04 LTS, which is the platform used by the OSMF servers.
 The instructions also work, with only minor amendments, for all other current Ubuntu releases, Fedora and MacOSX
 
-We don't recommend attempting to develop or deploy this software on Windows. If you need to use Windows, then try developing this sofware using Ubuntu in a virtual machine, or use [Vagrant](VAGRANT.md).
+We don't recommend attempting to develop or deploy this software on Windows. If you need to use Windows, then try developing this software using Ubuntu in a virtual machine, or use [Vagrant](VAGRANT.md).
 
 ## Dependencies
 
@@ -18,25 +18,23 @@ of packages required before you can get the various gems installed.
 
 ## Minimum requirements
 
-* Ruby 1.9.3
+* Ruby 2.0
 * RubyGems 1.3.1+
-* Postgres 8.3+
+* PostgreSQL 9.1+
 * ImageMagick
 * Bundler
 * Javascript Runtime
 
-These can be installed on Ubuntu 10.10 or later with:
+These can be installed on Ubuntu 14.04 or later with:
 
 ```
-sudo apt-get install ruby1.9.1 libruby1.9.1 ruby1.9.1-dev ri1.9.1 \
+sudo apt-get install ruby2.0 libruby2.0 ruby2.0-dev \
                      libmagickwand-dev libxml2-dev libxslt1-dev nodejs \
                      apache2 apache2-threaded-dev build-essential git-core \
                      postgresql postgresql-contrib libpq-dev postgresql-server-dev-all \
-                     libsasl2-dev
-sudo gem1.9.1 install bundler
+                     libsasl2-dev imagemagick
+sudo gem2.0 install bundler
 ```
-
-Note that the "1.9.1" Ubuntu packages do in fact contain ruby 1.9.3.
 
 ### Alternative platforms
 
@@ -49,17 +47,17 @@ sudo yum install ruby ruby-devel rubygem-rdoc rubygem-bundler rubygems \
                  libxml2-devel js \
                  gcc gcc-c++ git \
                  postgresql postgresql-server postgresql-contrib postgresql-devel \
-                 perl-podlators
+                 perl-podlators ImageMagick
 ```
 
-If you didn't already have Postgres installed then create a Postgres instance and start the server:
+If you didn't already have PostgreSQL installed then create a PostgreSQL instance and start the server:
 
 ```
 sudo postgresql-setup initdb
 sudo systemctl start postgresql.service
 ```
 
-Optionally set Postgres to start on boot:
+Optionally set PostgreSQL to start on boot:
 
 ```
 sudo systemctl enable postgresql.service
@@ -69,10 +67,10 @@ sudo systemctl enable postgresql.service
 
 For MacOSX, you will need XCode installed from the Mac App Store; OS X 10.7 (Lion) or later; and some familiarity with Unix development via the Terminal.
 
-Installing Postgres:
+Installing PostgreSQL:
 
 * Install Postgres.app from http://postgresapp.com/
-* Add Postgres to your path, by editing your profile:
+* Add PostgreSQL to your path, by editing your profile:
 
 `nano ~/.profile`
 
@@ -174,15 +172,7 @@ RAILS_ENV=production rake db:create
 ### PostgreSQL Btree-gist Extension
 **If you're using the script below, this is not required**
 
-We need to load the btree-gist extension, which is needed for showing changesets on the history tab.
-
-For PostgreSQL < 9.1 (change the version number in the path as necessary):
-
-```
-psql -d openstreetmap < /usr/share/postgresql/9.0/contrib/btree_gist.sql
-```
-
-For PostgreSQL >= 9.1:
+We need to load the `btree-gist` extension, which is needed for showing changesets on the history tab.
 
 ```
 psql -d openstreetmap -c "CREATE EXTENSION btree_gist"
@@ -190,7 +180,7 @@ psql -d openstreetmap -c "CREATE EXTENSION btree_gist"
 
 ### PostgreSQL Functions
 
-We need to install special functions into the postgresql databases, and these are provided by a library that needs compiling first.
+We need to install special functions into the PostgreSQL databases, and these are provided by a library that needs compiling first.
 
 ```
 cd db/functions
@@ -228,7 +218,7 @@ rake db:migrate RAILS_ENV=test
 To ensure that everything is set up properly, you should now run:
 
 ```
-bundle exec rake test
+bundle exec rake test:db
 ```
 
 This test will take a few minutes, reporting tests run, assertions, and any errors. If you receive no errors, then your installation is successful.

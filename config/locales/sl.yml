@@ -5,7 +5,10 @@
 # Author: Dbc334
 # Author: Eleassar
 # Author: Lesko987
+# Author: Macofe
 # Author: Mateju
+# Author: Ruila
+# Author: Skalcaa
 # Author: Stefanb
 ---
 sl:
@@ -74,7 +77,7 @@ sl:
         body: Besedilo
         recipient: Prejemnik
       user:
-        email: Naslov e-pošte
+        email: Elektronski naslov
         active: Aktiven
         display_name: Prikazno ime
         description: Opis
@@ -166,7 +169,7 @@ sl:
         relation: zveza
         changeset: Paket sprememb
     timeout:
-      sorry: Oprostite, podatki za %{type}, ID %{id}, ID se predolgo prenašajo.
+      sorry: Oprostite, podatki za %{type} z ID-jem %{id} se predolgo prenašajo.
       type:
         node: vozlišče
         way: pot
@@ -209,6 +212,8 @@ sl:
       reopened_by_anonymous: Ponovno aktiviral anonimni <abbr title='%{exact_time}'>%{when}
         nazaj</abbr>
       hidden_by: Skril %{user} <abbr title='%{exact_time}'>%{when} nazaj</abbr>
+    query:
+      nearby: Značilnosti v neposredni bližini
   changeset:
     changeset_paging_nav:
       showing_page: Stran %{page}
@@ -229,6 +234,8 @@ sl:
       title_user: Paketi sprememb uporabnika %{user}
       title_friend: Paket sprememb vaših prijateljev
       title_nearby: Paketi sprememb bližnjih uporabnikov
+      empty: Ni najdenih množic sprememb.
+      empty_area: Na tem področju ni množic sprememb.
       load_more: Naloži več
     timeout:
       sorry: Žal je seznam zahtevanih sprememb predolg za prenos.
@@ -612,6 +619,7 @@ sl:
           club: Klub
           common: Javno zemljišče
           fishing: Ribolovno območje
+          fitness_centre: Fitnes center
           fitness_station: Fitnes center
           garden: Vrt
           golf_course: Igrišče za Golf
@@ -683,6 +691,7 @@ sl:
           wood: Pragozd
         office:
           accountant: Računovodja
+          administrative: Administracija
           architect: Arhitekt
           company: Podjetje
           employment_agency: Agencija za zaposlovanje
@@ -740,7 +749,7 @@ sl:
           spur: Tir
           station: Železniška postaja
           stop: Železniško postajališče
-          subway: Podzemna postaja
+          subway: Podzemna železnica
           subway_entrance: Vhod na podzemno
           switch: Kretnica
           tram: Tramvaj
@@ -945,9 +954,15 @@ sl:
       mapping_link: začnete kartirati
     legal_babble:
       title_html: Avtorske pravice in licenca
-      intro_1_html: OpenStreetMap so <i>prosti podatki</i> z <a href="http://opendatacommons.org/licenses/odbl/1.0/">Open
-        Data Commons Open Database License</a> (ODbL) licenco.
+      intro_1_html: OpenStreetMap<sup><a href="#trademarks">&reg;</a></sup> so <i>prosti
+        podatki</i> z dovoljenjem <a href="http://opendatacommons.org/licenses/odbl/1.0/">Open
+        Data Commons Open Database License</a> (ODbL) <a href="http://osmfoundation.org/">Fundacije
+        OpenStreetMap</a> (OSMF).
       contributors_title_html: Naši sodelavci
+      contributors_si_html: |-
+        <strong>Slovenija</strong>: Vsebuje javne podatke
+        <a href="http://www.gu.gov.si">Geodetske uprave republike slovenije</a> in
+        <a href="http://www.mkgp.gov.si">Ministrstva za kmetijsktvo, gozdarstvo in prehrano</a>.
       infringement_title_html: Kršitev avtorskih pravic
   welcome_page:
     title: Dobrodošli!
@@ -1006,6 +1021,8 @@ sl:
     welcome:
       title: Dobrodošli v OSM
       description: Začnite s tem hitrim vodičem, ki zajema osnove OpenStreetMap.
+    beginners_guide:
+      url: http://wiki.openstreetmap.org/wiki/Sl:Beginners%27_guide
     help:
       description: Zastavite vprašanje ali poiščete odgovore v OSM zbirki vprašanj
         in odgovorov.
@@ -1260,9 +1277,7 @@ sl:
           primary: Glavna cesta
           secondary: Regionalna cesta
           unclassified: Ostale ceste izven naselij
-          unsurfaced: Neasfaltirana cesta
           track: Kolovoz
-          byway: Obvoz
           bridleway: Jahalna pot
           cycleway: Kolesarska steza
           footway: Pešpot
@@ -1286,7 +1301,6 @@ sl:
           golf: Igrišče za Golf
           park: Park
           resident: Naselje
-          tourist: Turistična znamenitost
           common:
           - Travniki
           - travnik
@@ -1316,7 +1330,6 @@ sl:
           tunnel: Črtkana obroba = predor
           bridge: Krepka obroba = most
           private: Zasebni dostop
-          permissive: Dostopno z dovolilnico
           destination: Dovoljeno za dostavo
           construction: Ceste v gradnji
     richtext_area:
@@ -1576,6 +1589,19 @@ sl:
         obrnite se na <a href="%{webmaster}">webmaster</a>, če želite o tem razpravljati.
       auth failure: Oprostite, prijava s temi podatki ni uspela.
       openid_logo_alt: Prijavite se z OpenID
+      auth_providers:
+        openid:
+          title: Prijava z OpenID
+          alt: Prijava s povezavo OpenID
+        google:
+          title: Prijava z Googlom
+          alt: Prijava z Google OpenID-jem
+        yahoo:
+          title: Prijava z Yahoo
+          alt: Prijava z Yahoo OpenID
+        wordpress:
+          title: Prijava z Wordpressom
+          alt: Prijava z Wordpress OpenID-jem
     logout:
       title: Odjava
       heading: Odjava iz OpenStreetMap
@@ -1604,9 +1630,9 @@ sl:
       title: Prijavite se
       no_auto_account_create: Na žalost vam trenutno ne moremo samodejno ustvariti
         uporabniškega računa.
-      contact_webmaster: Prosimo, pišite <a href="mailto:webmaster@openstreetmap.org">webmastru</a>
-        (v angleščini) in se dogovorite za ustvarjenje uporabniškega računa - potrudili
-        se bomo za čimprejšnjo obravnavo vašega zahtevka.
+      contact_webmaster: Prosimo, pišite <a href="%{webmaster}">webmastru</a> (v angleščini)
+        in se dogovorite za ustvarjenje uporabniškega računa - potrudili se bomo za
+        čimprejšnjo obravnavo vašega zahtevka.
       about:
         header: Brezplačen, ki ga je mogoče urejati
         html: |-
@@ -1731,6 +1757,7 @@ sl:
       current email address: 'E-poštni naslov:'
       new email address: 'Nov e-poštni naslov:'
       email never displayed publicly: (nikoli javno objavljen)
+      external auth: 'Zunanje preverjanje pristnosti:'
       openid:
         link: http://wiki.openstreetmap.org/wiki/OpenID
         link text: kaj je to?
@@ -1800,17 +1827,17 @@ sl:
       success: Poslali smo potrditveno sporočilo na %{email} in takoj, ko boste potrdili
         vaš račun, boste lahko začeli kartirati.<br /><br />V kolikor vaš filter neželene
         pošte pred sprejemom sporočil neznanih pošiljateljev zahteva potrditev, vas
-        prosimo, da pošiljatelja webmaster@openstreetmap.org uvrstite na seznam dovoljenih
-        pošiljateljev. Sistem pač ne zmore dovolj inteligentno odgovarjati na vse
-        take zahtevke.
+        prosimo, da pošiljatelja %{sender} uvrstite na seznam dovoljenih pošiljateljev.
+        Sistem pač ne zmore dovolj inteligentno odgovarjati na vse take zahtevke.
       failure: Ne najdem uporabnika %{name}.
     confirm_email:
       heading: Potrdite spremembo naslova e-pošte
       press confirm button: Za potrditev spremembe vašega naslova elektronske pošte
         pritisnite na gumb Potrdi spodaj.
       button: Potrdi
-      success: Vaš naslov elektronske pošte je potrjen. Hvala, da ste se vpisali!
+      success: Potrdili smo vašo spremembo e-poštnega naslova!
       failure: Naslov elektronske pošte je že bil potrjen s tem žetonom.
+      unknown_token: Ta potrditvena koda je potekla ali pa ne obstaja.
     set_home:
       flash success: Domača lokacija uspešno shranjena
     go_public:
@@ -1846,6 +1873,9 @@ sl:
       body: |-
         <p>Žal je bil vaš račun avtomatično začasno ustavljen zaradi sumljivih dejavnosti.</p>
         <p>To odločitev bo pregledal administrator v kratkem ali pa se obrnete na %{webmaster}, če imate pripombe.</p>
+    auth_failure:
+      connection_failed: Povezava do storitve za preverjanje pristnosti ni uspela
+      invalid_credentials: Neveljavne poverilnice za preverjanje pristnosti
   user_role:
     filter:
       not_an_administrator: Samo skrbniki lahko upravljajo vlogo uporabnika, vi pa
@@ -2058,8 +2088,14 @@ sl:
         subscribe: Naroči me
         unsubscribe: Odjavi me
         hide_comment: skrij
+        unhide_comment: razkrij
     notes:
       new:
+        intro: Ste opazili napako ali pa kaj manjka? Obvestite ostale kartografe o
+          tem, da lahko to popravijo. Premaknite oznako na pravilno lokacijo in vpišite
+          opombo, kjer pojasnite problem. (Prosimo, ne vnašajte osebnih podatkov ali
+          informacij pridobljenih iz zemljevidov zaščitenih z avtorskimi pravicami
+          ali imeniških seznamov.)
         add: Dodaj opombo
       show:
         anonymous_warning: To opomba vključuje pripombe anonimnih uporabnikov, ki
@@ -2069,6 +2105,8 @@ sl:
         reactivate: Znova aktiviraj
         comment_and_resolve: Komentiraj in razreši
         comment: Komentar
+    edit_help: Premaknite zemljevid in približajte lokacijo, ki jo želite urediti,
+      nato pa kliknite tukaj.
     directions:
       engines:
         graphhopper_bicycle: Kolo (GraphHopper)
@@ -2079,19 +2117,10 @@ sl:
         osrm_car: Avto (OSRM)
       directions: Navodila
       distance: Razdalja
+      errors:
+        no_route: Ni mogoče najti poti med tema dvema položajema.
       instructions:
-        continue_on: Nadaljujte po
-        slight_right: Rahlo desno na
-        turn_right: Zavijte desno na
-        sharp_right: Ostro desno na
-        uturn: Polkrožno obrnite na
-        sharp_left: Ostro levo na
-        turn_left: Zavijte levo na
-        slight_left: Rahlo levo na
-        via_point: (preko)
-        follow: Sledite
-        destination: Prispete na cilj
-        unnamed: (neimenovano)
+        unnamed: neimenovano
         courtesy: Navodila je ponudil %{link}
       time: Čas
     query:

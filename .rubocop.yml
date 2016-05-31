@@ -1,10 +1,13 @@
 inherit_from: .rubocop_todo.yml
 
-AllCops:
-   RunRailsCops: true
+Rails:
+  Enabled: true
 
 Style/BracesAroundHashParameters:
   EnforcedStyle: context_dependent
+
+Style/ExtraSpacing:
+  AllowForAlignment: true
 
 Style/FileName:
   Exclude:
@@ -12,10 +15,16 @@ Style/FileName:
     - 'script/locale/reload-languages'
     - 'script/update-spam-blocks'
 
+Style/IfInsideElse:
+  Enabled: false
+
 Style/GlobalVars:
   Exclude:
     - 'lib/quad_tile/extconf.rb'
-    
+
+Style/GuardClause:
+  Enabled: false
+
 Style/HashSyntax:
   EnforcedStyle: hash_rockets
   Exclude:

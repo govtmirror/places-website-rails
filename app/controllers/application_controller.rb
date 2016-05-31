@@ -140,13 +140,13 @@ class ApplicationController < ActionController::Base
     unless Authenticator.new(self, [:token]).allow?
       username, passwd = get_auth_data # parse from headers
       # authenticate per-scheme
-      if username.nil?
-        @user = nil # no authentication provided - perhaps first connect (client should retry after 401)
-      elsif username == "token"
-        @user = User.authenticate(:token => passwd) # preferred - random token for user from db, passed in basic auth
-      else
-        @user = User.authenticate(:username => username, :password => passwd) # basic auth
-      end
+      @user = if username.nil?
+                nil # no authentication provided - perhaps first connect (client should retry after 401)
+              elsif username == "token"
+                User.authenticate(:token => passwd) # preferred - random token for user from db, passed in basic auth
+              else
+                User.authenticate(:username => username, :password => passwd) # basic auth
+              end
     end
 
     # have we identified the user?
@@ -276,7 +276,7 @@ class ApplicationController < ActionController::Base
     response.headers["Error"] = message
 
     if request.headers["X-Error-Format"] &&
-       request.headers["X-Error-Format"].downcase == "xml"
+       request.headers["X-Error-Format"].casecmp("xml").zero?
       result = OSM::API.new.get_xml_doc
       result.root.name = "osmError"
       result.root << (XML::Node.new("status") << "#{Rack::Utils.status_code(status)} #{Rack::Utils::HTTP_STATUS_CODES[status]}")
@@ -288,46 +288,29 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def preferred_languages
+    @languages ||= if params[:locale]
+                     Locale.list(params[:locale])
+                   elsif @user
+                     @user.preferred_languages
+                   else
+                     Locale.list(http_accept_language.user_preferred_languages)
+                   end
+  end
+
+  helper_method :preferred_languages
+
   def set_locale
-    response.header["Vary"] = "Accept-Language"
-
-    if @user && !@user.languages.empty?
-      http_accept_language.user_preferred_languages = @user.languages
-      response.header["Vary"] = "*"
-    end
-
-    I18n.locale = select_locale
-
     if @user && @user.languages.empty? && !http_accept_language.user_preferred_languages.empty?
       @user.languages = http_accept_language.user_preferred_languages
       @user.save
     end
 
+    I18n.locale = Locale.available.preferred(preferred_languages)
+
+    response.headers["Vary"] = "Accept-Language"
     response.headers["Content-Language"] = I18n.locale.to_s
   end
-
-  def select_locale(locales = I18n.available_locales)
-    if params[:locale]
-      http_accept_language.user_preferred_languages = [params[:locale]]
-    end
-
-    if http_accept_language.compatible_language_from(locales).nil?
-      http_accept_language.user_preferred_languages = http_accept_language.user_preferred_languages.collect do |pl|
-        pls = [pl]
-
-        while pl.match(/^(.*)-[^-]+$/)
-          pls.push($1) if locales.include?($1) || locales.include?($1.to_sym)
-          pl = $1
-        end
-
-        pls
-      end.flatten
-    end
-
-    http_accept_language.compatible_language_from(locales) || I18n.default_locale
-  end
-
-  helper_method :select_locale
 
   def api_call_handle_error
     yield
@@ -354,7 +337,7 @@ class ApplicationController < ActionController::Base
   # or raises a suitable error. +method+ should be a symbol, e.g: :put or :get.
   def assert_method(method)
     ok = request.send((method.to_s.downcase + "?").to_sym)
-    fail OSM::APIBadMethodError.new(method) unless ok
+    raise OSM::APIBadMethodError.new(method) unless ok
   end
 
   ##
@@ -435,10 +418,6 @@ class ApplicationController < ActionController::Base
                DEFAULT_EDITOR
              end
 
-    if request.env["HTTP_USER_AGENT"] =~ /MSIE|Trident/ && editor == "id"
-      editor = "potlatch2"
-    end
-
     editor
   end
 
@@ -448,11 +427,11 @@ class ApplicationController < ActionController::Base
 
   # extract authorisation credentials from headers, returns user = nil if none
   def get_auth_data
-    if request.env.key? "X-HTTP_AUTHORIZATION"          # where mod_rewrite might have put it
+    if request.env.key? "X-HTTP_AUTHORIZATION" # where mod_rewrite might have put it
       authdata = request.env["X-HTTP_AUTHORIZATION"].to_s.split
-    elsif request.env.key? "REDIRECT_X_HTTP_AUTHORIZATION"          # mod_fcgi
+    elsif request.env.key? "REDIRECT_X_HTTP_AUTHORIZATION" # mod_fcgi
       authdata = request.env["REDIRECT_X_HTTP_AUTHORIZATION"].to_s.split
-    elsif request.env.key? "HTTP_AUTHORIZATION"         # regular location
+    elsif request.env.key? "HTTP_AUTHORIZATION" # regular location
       authdata = request.env["HTTP_AUTHORIZATION"].to_s.split
     end
     # only basic authentication supported

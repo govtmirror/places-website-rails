@@ -1,7 +1,14 @@
 //= require leaflet
 //= require leaflet.osm
+//= require i18n/translations
 
 window.onload = function () {
+  if (navigator.languages) {
+    I18n.locale = navigator.languages[0];
+  } else if (navigator.language) {
+    I18n.locale = navigator.language;
+  }
+
   var query = (window.location.search || '?').substr(1),
       args  = {};
 
@@ -13,6 +20,7 @@ window.onload = function () {
 
   var map = L.map("map");
   map.attributionControl.setPrefix('');
+  map.removeControl(map.attributionControl);
 
   if (!args.layer || args.layer === "mapnik" || args.layer === "osmarender") {
     new L.OSM.Mapnik().addTo(map);
@@ -43,4 +51,31 @@ window.onload = function () {
   } else {
     map.fitWorld();
   }
+
+  map.addControl(new L.Control.OSMReportAProblem());
 };
+
+L.Control.OSMReportAProblem = L.Control.Attribution.extend({
+  options: {
+    position: 'bottomright',
+    prefix: '<a href="http://www.openstreetmap.org/fixthemap?lat={x}&lon={y}&zoom={z}" target="_blank">'+I18n.t('javascripts.embed.report_problem')+'</a>'
+  },
+
+  onAdd: function (map) {
+    var container = L.Control.Attribution.prototype.onAdd.call(this, map);
+
+    map.on('moveend', this._update, this);
+
+    return container;
+  },
+
+  _update: function () {
+    L.Control.Attribution.prototype._update.call(this);
+
+    this._container.innerHTML =
+      this._container.innerHTML
+        .replace('{x}', this._map.getCenter().lat)
+        .replace('{y}', this._map.getCenter().lng)
+        .replace('{z}', this._map.getZoom());
+  }
+});

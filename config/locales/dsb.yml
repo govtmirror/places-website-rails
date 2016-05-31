@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Derbeth
+# Author: Macofe
 # Author: Michawiki
 # Author: Shirayuki
 ---
@@ -1312,9 +1313,7 @@ dsb:
           primary: Zwězkowa droga
           secondary: Nakrajna droga
           unclassified: Njeklasificěrowana droga
-          unsurfaced: Njewobtwarźona droga
           track: Cera
-          byway: Bocna droga
           bridleway: Rejtarska drožka
           cycleway: Sćažka za kolesowarjow
           footway: Drožka
@@ -1338,7 +1337,6 @@ dsb:
           golf: Golfowišćo
           park: Park
           resident: Bydleński wobcerk
-          tourist: Turistowa atrakcija
           common:
           - Powšykny
           - łuka
@@ -1368,7 +1366,6 @@ dsb:
           tunnel: Smužkowane wobcerjenje = tunel
           bridge: Carne wobcerjenje = móst
           private: Priwatny pśistup
-          permissive: Dowólony pśistup
           destination: Jano za pśigranicujucych
           construction: Drogi w twari
     richtext_area:
@@ -1651,9 +1648,9 @@ dsb:
     new:
       title: Registrěrowaś
       no_auto_account_create: Bóžko njamóžomy tuchylu za tebje konto awtomatiski załožyś.
-      contact_webmaster: Pšosym staj so z <a href="mailto:webmaster@openstreetmap.org">webmasterom</a>
-        do zwiska, aby se śi konto załožyło - buźomy napšašowanje tak spěšnje ako
-        móžno wobźěłowaś.
+      contact_webmaster: Pšosym staj so z <a href="%{webmaster}">webmasterom</a> do
+        zwiska, aby se śi konto załožyło - buźomy napšašowanje tak spěšnje ako móžno
+        wobźěłowaś.
       about:
         header: Lichy a wobźěłujobny
         html: |-
@@ -1843,7 +1840,7 @@ dsb:
     confirm_resend:
       success: Smy nowu wobkšuśeński e-mail na %{email} póslali a gaž wobkšuśijoš
         swójo konto, móžoš kartěrowanje zachopiś.<br /><br />Jolic wužywaš pśeśiwospamowy
-        system, kótaryž sćelo wobkšuśeńske napšašowanja, pśewzij adresu webmaster@openstreetmap.org
+        system, kótaryž sćelo wobkšuśeńske napšašowanja, pśewzij adresu %{sender}
         do swójeje běłeje lisćiny, dokulaž njamóžomy na wobkšuśeńske napšašowanja
         wótegroniś.
       failure: Wuzywaŕ %{name} njejo se namakał.

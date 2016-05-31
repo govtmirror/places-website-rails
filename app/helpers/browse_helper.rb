@@ -1,10 +1,12 @@
+require "uri"
+
 module BrowseHelper
   def printable_name(object, version = false)
-    if object.id.is_a?(Array)
-      id = object.id[0]
-    else
-      id = object.id
-    end
+    id = if object.id.is_a?(Array)
+           object.id[0]
+         else
+           object.id
+         end
     name = t "printable_name.with_id", :id => id.to_s
     if version
       name = t "printable_name.with_version", :id => name, :version => object.version.to_s
@@ -23,6 +25,8 @@ module BrowseHelper
         name = t "printable_name.with_name_html", :name => content_tag(:bdi, object.tags["name:#{locale}"].to_s), :id => content_tag(:bdi, name)
       elsif object.tags.include? "name"
         name = t "printable_name.with_name_html", :name => content_tag(:bdi, object.tags["name"].to_s), :id => content_tag(:bdi, name)
+      elsif object.tags.include? "ref"
+        name = t "printable_name.with_name_html", :name => content_tag(:bdi, object.tags["ref"].to_s), :id => content_tag(:bdi, name)
       end
     end
 
@@ -48,6 +52,10 @@ module BrowseHelper
     else
       h(icon_tags(object).map { |k, v| k + "=" + v }.to_sentence)
     end
+  end
+
+  def link_follow(object)
+    "nofollow" if object.tags.empty?
   end
 
   def format_key(key)
@@ -86,7 +94,7 @@ module BrowseHelper
 
   private
 
-  ICON_TAGS = %w(aeroway amenity barrier building highway historic landuse leisure man_made natural railway shop tourism waterway)
+  ICON_TAGS = %w(aeroway amenity barrier building highway historic landuse leisure man_made natural railway shop tourism waterway).freeze
 
   def icon_tags(object)
     object.tags.find_all { |k, _v| ICON_TAGS.include? k }.sort
@@ -117,14 +125,14 @@ module BrowseHelper
     if key == "wikipedia"
       # This regex should match Wikipedia language codes, everything
       # from de to zh-classical
-      if value =~ /^([a-z-]{2,12}):(.+)$/i
-        # Value is <lang>:<title> so split it up
-        # Note that value is always left as-is, see: https://trac.openstreetmap.org/ticket/4315
-        lang  = $1
-      else
-        # Value is <title> so default to English Wikipedia
-        lang = "en"
-      end
+      lang = if value =~ /^([a-z-]{2,12}):(.+)$/i
+               # Value is <lang>:<title> so split it up
+               # Note that value is always left as-is, see: https://trac.openstreetmap.org/ticket/4315
+               $1
+             else
+               # Value is <title> so default to English Wikipedia
+               "en"
+             end
     elsif key =~ /^wikipedia:(\S+)$/
       # Language is in the key, so assume value is the title
       lang = $1
@@ -133,17 +141,19 @@ module BrowseHelper
       return nil
     end
 
-    if value =~ /^([^#]*)(#.*)/
+    if value =~ /^([^#]*)#(.*)/
       # Contains a reference to a section of the wikipedia article
       # Must break it up to correctly build the url
       value = $1
-      section = $2
+      section = "#" + $2
+      encoded_section = "#" + URI.encode($2.gsub(/ +/, "_"), /[^A-Za-z0-9:_]/).tr("%", ".")
     else
       section = ""
+      encoded_section = ""
     end
 
     {
-      :url => "http://#{lang}.wikipedia.org/wiki/#{value}?uselang=#{I18n.locale}#{section}",
+      :url => "http://#{lang}.wikipedia.org/wiki/#{value}?uselang=#{I18n.locale}#{encoded_section}",
       :title => value + section
     }
   end

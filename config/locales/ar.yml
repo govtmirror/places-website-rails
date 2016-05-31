@@ -3,8 +3,10 @@
 # Export driver: phpyaml
 # Author: Ali1
 # Author: Aude
+# Author: Ayatun
 # Author: Bassem JARKAS
 # Author: Fahad
+# Author: Faris knight
 # Author: Grille chompa
 # Author: Houcinee1
 # Author: Kuwaity26
@@ -13,12 +15,14 @@
 # Author: Mutarjem horr
 # Author: Omda4wady
 # Author: OsamaK
+# Author: Ruila
 # Author: TTMTT
 # Author: Yahya Sakhnini
 # Author: Zaher kadour
 # Author: ترجمان05
 # Author: عباد ديرانية
 # Author: عبد الرحمان أيمن
+# Author: محمد أحمد عبد الفتاح
 ---
 ar:
   html:
@@ -174,6 +178,7 @@ ar:
         way: طريق
         relation: علاقة
         changeset: حزمة التغييرات
+        note: ملحوظة
     timeout:
       sorry: عذرًا، بيانات %{type} بالمعرّف %{id} استغرقت وقتًا طويلا للاسترداد.
       type:
@@ -181,6 +186,7 @@ ar:
         way: الطريق
         relation: العلاقة
         changeset: حزمة التغييرات
+        note: ملحوظة
     redacted:
       redaction: التنقيح %{id}
       message_html: لا يمكن إظهار الإصدارة  %{version} من هذا %{type} لأن صياغتها
@@ -255,9 +261,12 @@ ar:
       load_more: حمِّل المزيد؟
     timeout:
       sorry: عذراً، لقد إستمرت لائحة حزم التغييرات اللتي طلبتها وقتاً طويلاً للسحب.
+    rss:
+      full: كامل النقاش
   diary_entry:
     new:
       title: مدخلة يومية جديدة
+      publish_button: نشر
     list:
       title: يوميات المستخدمين
       title_friends: يوميات الأصدقاء
@@ -358,8 +367,10 @@ ar:
             OpenStreetMap
         overpass:
           title: تجاوز API
+          description: تحميل مربع الإحاطة من مرآة قاعدة بيانات خريطة الشارع المفتوحة
         geofabrik:
           title: تنزيلات موقع جيوفابريك
+          description: مقتطفات محدثة بانتظام من القارات والبلدان والمدن المختارة
         other:
           title: مصادر أخرى
       options: خيارات
@@ -437,6 +448,7 @@ ar:
           food_court: مطعم وجبات سريعة
           fountain: نافورة
           fuel: وقود
+          gambling: مقامرة
           grave_yard: مقبرة
           gym: مركز للرشاقة/الرياضة
           health_centre: مركز صحي
@@ -951,6 +963,7 @@ ar:
       mapping_link: إبدأ التخطيط
     legal_babble:
       title_html: حقوق النشر والترخيص
+      more_title_html: معرفة المزيد
       contributors_title_html: المساهمين
   welcome_page:
     title: أهلاً بك.
@@ -964,7 +977,16 @@ ar:
   help_page:
     welcome:
       title: مرحبا بك في خرائط الشوارع " المفتوحة المصدر"
+    beginners_guide:
+      url: http://wiki.openstreetmap.org/wiki/Ar:Beginners%27_guide
+      title: دليل المبتدئين
+    mailing_lists:
+      title: القوائم البريدية
+    forums:
+      title: المنتديات
   about_page:
+    next: التالي
+    open_data_title: البيانات المفتوحة
     partners_title: الشركاء
   notifier:
     diary_comment_notification:
@@ -1126,9 +1148,7 @@ ar:
           primary: طريق رئيسي
           secondary: طريق ثانوي
           unclassified: طريق غير مصنّف
-          unsurfaced: طريق غير معبد
           track: مسار
-          byway: طريق فرعي
           bridleway: مسلك خيول
           cycleway: طريق دراجات
           footway: طريق مشاة
@@ -1152,7 +1172,6 @@ ar:
           golf: ملعب غولف
           park: منتزه
           resident: منطقة سكنية
-          tourist: مزار سياحي
           common:
           - شائع
           - مرج
@@ -1182,7 +1201,6 @@ ar:
           tunnel: غطاء متقطع = نفق
           bridge: غطاء أسود = جسر
           private: استخدام خصوصي
-          permissive: استخدام متسامح
           destination: استخدام إلى الوجهة
           construction: الطرق تحت الإنشاء
     richtext_area:
@@ -1461,6 +1479,8 @@ ar:
       new diary entry: مدخلة يومية جديدة
       my edits: المُساهمات
       my traces: آثاري
+      my messages: رسائلي
+      my profile: ملفي الشخصي
       my settings: الإعدادات
       my comments: التعليقات
       oauth settings: "\uFEFFإعدادات oauth"
@@ -1737,9 +1757,26 @@ ar:
       comment: تعليق
       full: ملاحظة كاملة
   javascripts:
+    close: أغلق
     share:
+      title: شارك
+      cancel: ألغ
       image: صورة
+      format: 'التنسيق:'
+      scale: 'المقياس:'
+      download: نزل
+      only_standard_layer: يمكن استيراد الطبقة القياسية فقط كصورة
+    embed:
+      report_problem: أبلغ عن مشكلة
+    key:
+      title: مفتاح الخريطة
+      tooltip: مفتاح الخريطة
     map:
+      zoom:
+        in: قرب
+        out: بعد
+      locate:
+        title: أظهر موقعي
       base:
         cycle_map: خريطة للدراجات
         transport_map: خريطة تنقلات

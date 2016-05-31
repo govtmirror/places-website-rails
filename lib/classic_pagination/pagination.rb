@@ -61,7 +61,7 @@ module ActionController
       DEFAULT_OPTIONS[:group] = nil
     else
       # A hash holding options for controllers using macro-style pagination
-      OPTIONS = {}
+      OPTIONS = {}.freeze
 
       # The default options for pagination
       DEFAULT_OPTIONS = {
@@ -78,7 +78,7 @@ module ActionController
         :select     => nil,
         :group      => nil,
         :parameter  => "page"
-      }
+      }.freeze
     end
 
     def self.included(base) #:nodoc:
@@ -93,8 +93,8 @@ module ActionController
       valid_options << :actions unless in_action
 
       unknown_option_keys = options.keys - valid_options
-      fail ActionController::ActionControllerError,
-           "Unknown options: #{unknown_option_keys.join(', ')}" unless
+      raise ActionController::ActionControllerError,
+            "Unknown options: #{unknown_option_keys.join(', ')}" unless
               unknown_option_keys.empty?
 
       options[:singular_name] ||= ActiveSupport::Inflector.singularize(collection_id.to_s)
@@ -155,8 +155,7 @@ module ActionController
 
     def create_paginators_and_retrieve_collections #:nodoc:
       Pagination::OPTIONS[self.class].each do |collection_id, options|
-        next unless options[:actions].include? action_name if
-          options[:actions]
+        next if options[:actions] && !options[:actions].include?(action_name)
 
         paginator, collection =
           paginator_and_collection_for(collection_id, options)
@@ -226,7 +225,7 @@ module ActionController
       # than or equal to zero). The page CGI parameter for links defaults to
       # "page" and can be overridden with +page_parameter+.
       def initialize(controller, item_count, items_per_page, current_page = 1)
-        fail ArgumentError, "must have at least one item per page" if
+        raise ArgumentError, "must have at least one item per page" if
           items_per_page <= 0
 
         @controller = controller
@@ -243,7 +242,7 @@ module ActionController
       # not belong to this Paginator, an ArgumentError is raised.
       def current_page=(page)
         if page.is_a? Page
-          fail ArgumentError, "Page/Paginator mismatch" unless
+          raise ArgumentError, "Page/Paginator mismatch" unless
             page.paginator == self
         end
         page = page.to_i
@@ -254,19 +253,19 @@ module ActionController
       def current_page
         @current_page ||= self[@current_page_number]
       end
-      alias_method :current, :current_page
+      alias current current_page
 
       # Returns a new Page representing the first page in this paginator.
       def first_page
         @first_page ||= self[1]
       end
-      alias_method :first, :first_page
+      alias first first_page
 
       # Returns a new Page representing the last page in this paginator.
       def last_page
         @last_page ||= self[page_count]
       end
-      alias_method :last, :last_page
+      alias last last_page
 
       # Returns the number of pages in this paginator.
       def page_count
@@ -278,7 +277,7 @@ module ActionController
                         end
       end
 
-      alias_method :length, :page_count
+      alias length page_count
 
       # Returns true if this paginator contains the page of index +number+.
       def has_page_number?(number)
@@ -311,7 +310,7 @@ module ActionController
           @number = 1 unless @paginator.has_page_number? @number
         end
         attr_reader :paginator, :number
-        alias_method :to_i, :number
+        alias to_i number
 
         # Compares two Page objects and returns true when they represent the
         # same page (i.e., their paginators are the same and they have the
@@ -327,7 +326,7 @@ module ActionController
         # left-hand page comes after the right-hand page. Raises ArgumentError
         # if the pages do not belong to the same Paginator object.
         def <=>(other)
-          fail ArgumentError unless @paginator == other.paginator
+          raise ArgumentError unless @paginator == other.paginator
           @number <=> other.number
         end
 
@@ -417,7 +416,7 @@ module ActionController
         def pages
           (@first.number..@last.number).to_a.collect! { |n| @paginator[n] }
         end
-        alias_method :to_a, :pages
+        alias to_a pages
       end
     end
   end

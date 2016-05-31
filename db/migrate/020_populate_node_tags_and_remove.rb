@@ -11,12 +11,12 @@ class PopulateNodeTagsAndRemove < ActiveRecord::Migration
       src = "#{cmd}.c"
       if !File.exist?(cmd) || File.mtime(cmd) < File.mtime(src)
         system("cc -O3 -Wall `mysql_config --cflags --libs` " +
-          "#{src} -o #{cmd}") || fail
+          "#{src} -o #{cmd}") || raise
       end
 
       conn_opts = ActiveRecord::Base.connection.instance_eval { @connection_options }
       args = conn_opts.map(&:to_s) + [prefix]
-      fail "#{cmd} failed" unless system cmd, *args
+      raise "#{cmd} failed" unless system cmd, *args
 
       tempfiles = %w(nodes node_tags current_nodes current_node_tags)
                   .map { |base| prefix + base }
@@ -31,8 +31,8 @@ class PopulateNodeTagsAndRemove < ActiveRecord::Migration
 
     create_table :current_node_tags, :id => false do |t|
       t.column :id,          :bigint, :null => false
-      t.column :k,	     :string, :default => "", :null => false
-      t.column :v,	     :string, :default => "", :null => false
+      t.column :k,           :string, :default => "", :null => false
+      t.column :v,           :string, :default => "", :null => false
     end
 
     create_table :node_tags, :id => false do |t|
@@ -56,7 +56,7 @@ class PopulateNodeTagsAndRemove < ActiveRecord::Migration
   end
 
   def self.down
-    fail ActiveRecord::IrreversibleMigration
+    raise ActiveRecord::IrreversibleMigration
     #    add_column :nodes, "tags", :text, :default => "", :null => false
     #    add_column :current_nodes, "tags", :text, :default => "", :null => false
   end

@@ -2,15 +2,18 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Aktron
+# Author: Macofe
 # Author: Magnumns
 # Author: Milicevic01
 # Author: Nemo bis
 # Author: Nikola Smolenski
 # Author: Rancher
 # Author: Sawa
+# Author: Srdjan m
 # Author: Жељко Тодоровић
 # Author: Милан Јелисавчић
 # Author: Обрадовић Горан
+# Author: Сербијана
 ---
 sr:
   html:
@@ -80,7 +83,7 @@ sr:
         body: Текст
         recipient: Прималац
       user:
-        email: Е-пошта
+        email: Имејл
         active: Активан
         display_name: Приказано име
         description: Опис
@@ -129,6 +132,8 @@ sr:
       feed:
         title: Скуп измена %{id}
         title_comment: Скуп измена %{id} – %{comment}
+      join_discussion: Пријавите се за разговор
+      discussion: Разговор
     node:
       title: 'Чвор: %{name}'
       history_title: 'Историја чвора: %{name}'
@@ -363,6 +368,7 @@ sr:
       prefix_format: '%{name}'
       prefix:
         aerialway:
+          cable_car: Жичара
           chair_lift: Лифт столица
           drag_lift: Лифт који вуче
           station: Ваздушна станица
@@ -423,6 +429,7 @@ sr:
           library: Библиотека
           market: Продавница
           marketplace: Пијаца
+          monastery: Манастир
           nightclub: Ноћни клуб
           nursery: Јаслице
           nursing_home: Дом за негу
@@ -461,6 +468,7 @@ sr:
           veterinary: Ветеринарска хирургија
           village_hall: Сеоски дом
           waste_basket: Корпа за отпатке
+          waste_disposal: Депонија
           youth_centre: Дом омладине
         boundary:
           administrative: Административна граница
@@ -475,6 +483,10 @@ sr:
           "yes": Мост
         building:
           "yes": Зграда
+        craft:
+          brewery: Пивара
+          carpenter: Пила
+          shoemaker: Обућар
         emergency:
           phone: Телефон за хитне случајеве
         highway:
@@ -483,6 +495,7 @@ sr:
           bus_stop: Аутобуска станица
           construction: Ауто-пут у изградњи
           cycleway: Бициклистичка стаза
+          elevator: Лифт
           emergency_access_point: Приступ за случај опасности
           footway: Пешачка стаза
           ford: Газ
@@ -516,13 +529,16 @@ sr:
           trunk_link: Магистрални пут
           unclassified: Некатегорисани пут
           unsurfaced: Неасфалтирани пут
+          "yes": Пут
         historic:
           archaeological_site: Археолошко налазиште
           battlefield: Бојиште
           boundary_stone: Гранични камен
-          building: Зграда
+          building: Историјска зграда
+          bunker: Бункер
           castle: Дворац
           church: Црква
+          city_gate: Капија
           citywalls: Градски зидови
           fort: Утврђивање
           house: Кућа
@@ -572,7 +588,9 @@ sr:
           beach_resort: Одмаралиште на плажи
           bird_hide: Склониште за птице
           common: Општинско земљиште
+          dog_park: Парк за псе
           fishing: Риболовно подручје
+          fitness_centre: Фитнес центар
           fitness_station: Технички преглед
           garden: Башта
           golf_course: Голф терен
@@ -691,7 +709,7 @@ sr:
           spur: Пруга
           station: Железничка станица
           stop: Станица на прузи
-          subway: Метро станица
+          subway: Метро
           subway_entrance: Улаз у метро
           switch: Скретница
           tram: Трамвај
@@ -780,6 +798,7 @@ sr:
           camp_site: Камп
           caravan_site: Камп-приколице
           chalet: Планинска колиба
+          gallery: Галерија
           guest_house: Гостинска кућа
           hostel: Хостел
           hotel: Хотел
@@ -1047,6 +1066,8 @@ sr:
       description: Почни са овим брзим водичем који покрива основе ОпенСтритМапа
     help:
       description: Постави питање или нађи одговор на ОСМ страници за питања и одговоре.
+    forums:
+      title: Форуми
     wiki:
       url: http://wiki.openstreetmap.org/wiki/Sr:Main_Page
       title: wiki.openstreetmap.org/wiki/Sr:Main_Page
@@ -1104,15 +1125,15 @@ sr:
       greeting: Здраво!
       created: Неко (надамо се ти) је управо отворио налог на %{site_url}.
     email_confirm:
-      subject: '[OpenStreetMap] Потврди адресу е-поште'
+      subject: '[OpenStreetMap] Потврдите Вашу имејл адресу'
     email_confirm_plain:
       greeting: Поздрав,
-      hopefully_you: Неко (вероватно ви) желео би да промени е-адресу са %{server_url}
+      hopefully_you: Неко (вероватно ви) желео би да промени имејл адресу са %{server_url}
         на %{new_address}.
       click_the_link: Ако сте то ви, кликните на везу испод да бисте потврдили измене.
     email_confirm_html:
       greeting: Поздрав,
-      hopefully_you: Неко (вероватно ви) желео би да промени е-адресу са %{server_url}
+      hopefully_you: Неко (вероватно Ви) желео би да промени имејл адресу са %{server_url}
         на %{new_address}.
       click_the_link: Ако сте то ви, кликните на везу испод да бисте потврдили измене.
     lost_password:
@@ -1245,13 +1266,12 @@ sr:
       table:
         entry:
           motorway: Ауто-пут
+          main_road: Главни пут
           trunk: Мото пут
           primary: Магистрални пут
           secondary: Регионални пут
           unclassified: Некатегорисани пут
-          unsurfaced: Неасфалтирани пут
           track: Макадам
-          byway: Споредни пут
           bridleway: Коњичка стаза
           cycleway: Бициклистичка стаза
           footway: Пешачка стаза
@@ -1275,7 +1295,6 @@ sr:
           golf: Голф терен
           park: Парк
           resident: Стамбено подручје
-          tourist: Туристичка атракција
           common:
           - Пољана
           - ливада
@@ -1305,7 +1324,6 @@ sr:
           tunnel: Испрекидан оквир – тунел
           bridge: Црни оквир – мост
           private: Приватни посед
-          permissive: Приступ уз дозволу
           destination: Приступ одредишту
           construction: Путеви у изградњи
     richtext_area:
@@ -1537,6 +1555,11 @@ sr:
         о проблему.
       auth failure: Не могу да вас пријавим с унетим подацима.
       openid_logo_alt: Пријавите се с OpenID-јем
+      auth_providers:
+        openid:
+          title: Пријавити се са OpenID
+        facebook:
+          title: Пријавити се са Facebook-ом
     logout:
       title: Одјава
       heading: Одјава
@@ -1544,12 +1567,12 @@ sr:
     lost_password:
       title: Повратак лозинке
       heading: Заборавили сте лозинку?
-      email address: 'Е-адреса:'
+      email address: 'Имејл адреса:'
       new password button: Поништи лозинку
       help_text: Унесите е-адресу коју сте унели при упису, а ми ћемо вам послати
         везу помоћу које можете да поништите лозинку.
       notice email on way: Порука за поништавање лозинке је послата.
-      notice email cannot find: Е-адреса није пронађена.
+      notice email cannot find: Имејл адреса није пронађена, жао нам је.
     reset_password:
       title: Поништи лозинку
       heading: Поништавање лозинке за %{user}
@@ -1562,11 +1585,11 @@ sr:
       title: Пријави се
       no_auto_account_create: Нажалост, тренутно нисмо у могућности да отворимо нови
         налог.
-      contact_webmaster: Контактирајте <a href="mailto:webmaster@openstreetmap.org">администратора</a>
-        за отварање новог налога. Обрадићемо захтев што је пре могуће.
+      contact_webmaster: Контактирајте <a href="%{webmaster}">администратора</a> за
+        отварање новог налога. Обрадићемо захтев што је пре могуће.
       license_agreement: Након што потврдите налог, мораћете да прихватите <a href="http://www.osmfoundation.org/wiki/License/Contributor_Terms">услове
         уређивања</a>.
-      email address: 'Е-адреса:'
+      email address: 'Имејл адреса:'
       confirm email address: 'Потврдите е-адресу:'
       not displayed publicly: Не приказује се јавно (погледајте <a href="http://wiki.openstreetmap.org/wiki/Privacy_Policy"
         title="wiki privacy policy including section on email addresses">политику
@@ -1634,7 +1657,7 @@ sr:
       ct declined: Одбијено
       ct accepted: Прихваћено пре %{ago} дана
       latest edit: 'Последња измена пре %{ago}:'
-      email address: 'Е-адреса:'
+      email address: 'Имејл адреса:'
       created from: 'Направљено из:'
       status: 'Стање:'
       spam score: 'Оцена спама:'
@@ -1664,7 +1687,7 @@ sr:
       create_block: блокирај овог корисника
       activate_user: активирај овог корисника
       deactivate_user: деактивирај овог корисника
-      confirm_user: потврди овог корисника
+      confirm_user: Потврди овог корисника
       hide_user: сакриј овог корисника
       unhide_user: откриј овог корисника
       delete_user: обриши овог корисника
@@ -1680,7 +1703,7 @@ sr:
     account:
       title: Уреди налог
       my settings: Поставке
-      current email address: 'Тренутна е-адреса:'
+      current email address: 'Тренутна имејл адреса:'
       new email address: 'Нова е-адреса:'
       email never displayed publicly: (никада се не приказује јавно)
       openid:
@@ -1733,12 +1756,12 @@ sr:
       make edits public button: Нека све моје измене буду јавне
       return to profile: Назад на профил
       flash update success confirm needed: Подаци о кориснику су успешно ажурирани.
-        Проверите е-пошту да бисте потврдили своју нову е-адресу.
+        Проверите имејл да бисте потврдили Вашу нову имејл адресу.
       flash update success: Подаци о кориснику су успешно ажурирани.
     confirm:
-      heading: Провери своју е-пошту!
+      heading: Проверите Ваш имејл!
       introduction_1: Послалисмо ти е-писмо за потврду.
-      introduction_2: Потврди свој налог тако што ћеш кликнути на везу у е-писму и
+      introduction_2: Потврди свој налог тако што ћеш кликнути на везу у имејлу и
         моћићеш да почнеш са цртањем карте.
       press confirm button: Притисните дугме за потврду да бисте активирали налог.
       button: Потврди
@@ -1750,16 +1773,17 @@ sr:
     confirm_resend:
       success: Послали смо нову потврдну поруку на %{email}. Након што потврдите свој
         налог, моћи ћете да почнете с мапирањем.<br /><br />Ако користите систем против
-        непожељних порука, додајте webmaster@openstreetmap.org у списак дозвољених
-        адреса јер нисмо у могућности да одговоримо на било који захтев за потврду.
+        непожељних порука, додајте %{sender} у списак дозвољених адреса јер нисмо
+        у могућности да одговоримо на било који захтев за потврду.
       failure: Корисник %{name} није пронађен.
     confirm_email:
-      heading: Потврда промене е-адресе
-      press confirm button: Кликните на дугме за потврду да бисте потврдили своју
-        нову е-адресу.
+      heading: Потврда промене имејл адресе
+      press confirm button: Кликните на дугме за потврду да бисте потврдили Вашу нову
+        имејл адресу.
       button: Потврди
-      success: Ваша е-адреса је потврђена. Хвала вам на упису!
+      success: Промена ваше е-адресе је потврђенаǃ
       failure: Е-адреса с овим новчићем је већ потврђена.
+      unknown_token: Вредност кода за потврду је истекла или тај код не постоји.
     set_home:
       flash success: Место становања је успешно сачувано
     go_public:
@@ -2023,6 +2047,8 @@ sr:
         comment_and_resolve: Коментариши и реши
         comment: Коментариши
     edit_help: Помери карту и увећај на место које хоћеш да уредиш, затим кликни овде.
+    directions:
+      distance: Удаљеност
   redaction:
     edit:
       description: Опис

@@ -8,13 +8,18 @@
 # Author: Freek
 # Author: Gnonthgol
 # Author: Gorbi
+# Author: Hede2000
 # Author: Hein0170
 # Author: Hylle
+# Author: Jens Jensen
+# Author: JrOsm
 # Author: Kaare
 # Author: Luckas
+# Author: Macofe
 # Author: Nemo bis
 # Author: OleLaursen
 # Author: Peter Alberti
+# Author: Ruila
 # Author: The real emj
 # Author: Winbladh
 ---
@@ -173,6 +178,7 @@ da:
         way: vej
         relation: relation
         changeset: ændringssæt
+        note: bemærk
     timeout:
       sorry: Beklager, data for %{type} med id %{id} tog for lang tid at hente
       type:
@@ -180,6 +186,7 @@ da:
         way: vej
         relation: relation
         changeset: ændringssæt
+        note: bemærk
     redacted:
       redaction: Omarbejdelse %{id}
       message_html: Version %{version} af %{type} kan ikke vises, da den er omarbejdet.
@@ -228,6 +235,7 @@ da:
       title: Forespørgselsfunktioner
       introduction: Klik på kortet for at finde funktioner i nærheden.
       nearby: Funktioner i nærheden
+      enclosing: Indkapslede områder
   changeset:
     changeset_paging_nav:
       showing_page: Side %{page}
@@ -268,6 +276,7 @@ da:
   diary_entry:
     new:
       title: Nyt blogindlæg
+      publish_button: Offentliggør
     list:
       title: Brugerblogs
       title_friends: Venners blogs
@@ -405,8 +414,10 @@ da:
     search_osm_nominatim:
       prefix:
         aerialway:
+          cable_car: Svævebane
           chair_lift: Stolelift
           drag_lift: Træklift
+          gondola: Gondolbane
           station: Svævebanestation
         aeroway:
           aerodrome: Flyveplads
@@ -417,6 +428,7 @@ da:
           taxiway: Rullevej
           terminal: Terminal
         amenity:
+          animal_shelter: Dyreinternat
           arts_centre: Kunstcenter
           atm: Pengeautomat
           bank: Bank
@@ -426,6 +438,7 @@ da:
           bicycle_parking: Cykelparkering
           bicycle_rental: Cykeludlejning
           biergarten: Udendørs øludskænkning
+          boat_rental: Bådudlejning
           brothel: Bordel
           bureau_de_change: Vekselkontor
           bus_station: Busstation
@@ -435,8 +448,10 @@ da:
           car_wash: Bilvask
           casino: Kasino
           charging_station: Ladestation
+          childcare: Børnepasning
           cinema: Biograf
           clinic: Klinik
+          clock: Ur
           college: Videregående uddanelsesinstitution
           community_centre: Forsamlingshus / lokalcenter
           courthouse: Retsbygning
@@ -455,6 +470,7 @@ da:
           food_court: Food Court
           fountain: Springvand
           fuel: Benzinstation
+          gambling: Spil
           grave_yard: Kirkegård
           gym: Træningscenter
           health_centre: Sundhedscenter
@@ -465,11 +481,14 @@ da:
           library: Bibliotek
           market: Marked
           marketplace: Markedsplads
+          monastery: Kloster
+          motorcycle_parking: Motorcykelparkering
           nightclub: Natklub
           nursery: Førskole
           nursing_home: Plejehjem
           office: Kontor
           parking: Parkering
+          parking_entrance: Parkeringsindkørsel
           pharmacy: Apotek
           place_of_worship: Sted for gudstjenester
           police: Politi
@@ -503,6 +522,7 @@ da:
           veterinary: Dyrlæge
           village_hall: Forsamlingshus
           waste_basket: Skraldespand
+          waste_disposal: Skraldecontainer
           youth_centre: Ungdomscenter
         boundary:
           administrative: Administrativ grænse
@@ -517,14 +537,30 @@ da:
           "yes": Bro
         building:
           "yes": Bygning
+        craft:
+          brewery: Bryggeri
+          carpenter: Tømrer
+          electrician: Elektriker
+          gardener: Gartner
+          painter: Maler
+          photographer: Fotograf
+          plumber: Blikkenslager
+          shoemaker: Skomager
+          tailor: Skrædder
+          "yes": Håndsværksbutik
         emergency:
+          ambulance_station: Ambulancestation
+          defibrillator: Hjertestarter
+          landing_site: Nødlandingsplads
           phone: Nødtelefon
         highway:
+          abandoned: Forladt motorvej
           bridleway: Ridesti
           bus_guideway: Styret busspor
           bus_stop: Busstoppested
           construction: Vej under konstruktion
           cycleway: Cykelsti
+          elevator: Elevator
           emergency_access_point: Nødudgangspunkt
           footway: Gangsti
           ford: Vadested
@@ -553,32 +589,41 @@ da:
           tertiary: Hovedvej
           tertiary_link: Hovedvej
           track: Hjulspor
+          traffic_signals: Trafiklys
           trail: Spor
           trunk: Motortrafikvej
           trunk_link: Motortrafikvej
           unclassified: Anden vej
           unsurfaced: Uasfalteret vej
+          "yes": Vej
         historic:
           archaeological_site: Arkæologisk sted
           battlefield: Slagmark
           boundary_stone: Grænsesten
-          building: Bygning
+          building: Historisk Bygning
+          bunker: Bunker
           castle: Slot
           church: Kirke
+          city_gate: Byport
           citywalls: Bymure
           fort: Skanse
+          heritage: Kulturarvssted
           house: Hus
           icon: Ikon
           manor: Herregård
           memorial: Mindesmærke
           mine: Mine
           monument: Monument
+          roman_road: Romersk vej
           ruins: Ruin
+          stone: Sten
           tomb: Grav
           tower: Tårn
           wayside_cross: Vejkors
           wayside_shrine: Vejside helligdom
           wreck: Vrag
+        junction:
+          "yes": Kryds
         landuse:
           allotments: Kolonihaver
           basin: Bassin
@@ -610,14 +655,19 @@ da:
           road: Vejområde
           village_green: Forte
           vineyard: Vingård
+          "yes": Arealanvendelse
         leisure:
           beach_resort: Badestrand
           bird_hide: Fugleskjul
+          club: Klub
           common: Fælles arealer
+          dog_park: Hundepark
           fishing: Fiskeområde
+          fitness_centre: Motionscenter
           fitness_station: Udendørs fitness udstyr
           garden: Have
           golf_course: Golfbane
+          horse_riding: Ridning
           ice_rink: Skøjtebane
           marina: Bådehavn
           miniature_golf: Minigolf
@@ -626,6 +676,7 @@ da:
           pitch: Sportsarena
           playground: Legeplads
           recreation_ground: Idrætsplads
+          resort: Feriested
           sauna: Sauna
           slipway: Bedding
           sports_centre: Sportscenter
@@ -633,6 +684,13 @@ da:
           swimming_pool: Svømmebasin
           track: Løbebane
           water_park: Vandland
+          "yes": Fritid
+        man_made:
+          lighthouse: Fyr
+          pipeline: Rørledning
+          tower: Tårn
+          works: Fabrik
+          "yes": Menneskeskabt
         military:
           airfield: Militær flyveplads
           barracks: Kaserne
@@ -652,6 +710,7 @@ da:
           forest: Skov
           geyser: Gejser
           glacier: Gletsjer
+          grassland: Græsslette
           heath: Hede
           hill: Bakke
           island: Ø
@@ -664,6 +723,8 @@ da:
           reef: Rev
           ridge: Bjergkam
           rock: Klippe
+          saddle: Saddel
+          sand: Sand
           scree: Klint
           scrub: Krat
           spring: Kilde
@@ -677,6 +738,7 @@ da:
           wood: Skov
         office:
           accountant: Revisor
+          administrative: Administration
           architect: Arkitekt
           company: Firma
           employment_agency: Arbejdsløshedskontor
@@ -689,6 +751,8 @@ da:
           travel_agent: Rejsebureau
           "yes": Kontor
         place:
+          allotments: Kolonihaver
+          block: Blok
           airport: Lufthavn
           city: Storby
           country: Land
@@ -713,6 +777,7 @@ da:
           town: By
           unincorporated_area: Kommunefrit område
           village: Landsby
+          "yes": Sted
         railway:
           abandoned: Nedlagt jernbane
           construction: Jernbane under konstruktion
@@ -733,7 +798,7 @@ da:
           spur: Jernbanesidespor
           station: Jernbanestation
           stop: Jernbanestation
-          subway: Undergrundsstation
+          subway: Undergrundsbane
           subway_entrance: Undergrundsindgang
           switch: Sporskifte
           tram: Sporvej
@@ -815,6 +880,7 @@ da:
           "yes": Forretning
         tourism:
           alpine_hut: Bjerghytte
+          apartment: Lejlighed
           artwork: Kunst
           attraction: Seværdighed
           bed_and_breakfast: Bed and Breakfast
@@ -822,6 +888,7 @@ da:
           camp_site: Lejrplads
           caravan_site: Campingplads
           chalet: Chalet
+          gallery: Galleri
           guest_house: Guesthouse (hotel)
           hostel: Vandrerhjem
           hotel: Hotel
@@ -853,14 +920,15 @@ da:
           wadi: Flodseng
           waterfall: Vandfald
           weir: Overløbsdæmning
+          "yes": Vandvej
       admin_levels:
         level2: Landegrænse
-        level4: Statsgrænse
+        level4: Regionsgrænse
         level5: Regionsgrænse
         level6: Kommunegrænse
         level8: Bygrænse
-        level9: Landsbygrænse
-        level10: Forstadsgrænse
+        level9: Bydelsgrænse
+        level10: Sognegrænse
     description:
       title:
         osm_nominatim: Position fra <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
@@ -937,9 +1005,10 @@ da:
     legal_babble:
       title_html: Ophavsret og licens
       intro_1_html: |-
-        OpenStreetMap er <i>åbne data</i>, licenseret under <a
+        OpenStreetMap<sup><a href="#trademarks">&reg;</a></sup> er <i>åbne data</i>, licenseret under <a
         href="http://opendatacommons.org/licenses/odbl/">Open Data
-        Commons Open Database License</a> (ODbL).
+        Commons Open Database License</a> (ODbL) af <a
+        href="http://osmfoundation.org/">OpenStreetMap Foundation</a> (OSMF).
       intro_2_html: "Du kan frit kopiere, distribuere, overføre og tilpasse vores
         data, \nså længe du angiver OpenStreetMap og dets\nbidragsydere som kilde.
         Hvis du ændrer eller bygger på vores\ndata, må du kun distribuere resultatet
@@ -968,7 +1037,8 @@ da:
         title: Eksempel på kildeangivelse
       more_title_html: Læs mere
       more_1_html: |-
-        Læs mere om brug af vores data, og hvordan du kreditere os, på den <a
+        Læs mere om brug af vores data, og hvordan du kreditere os, på <a
+        href="http://osmfoundation.org/Licence">OSMF Licenssiden</a> og på den <a
         href="http://wiki.openstreetmap.org/wiki/Legal_FAQ">juridiske
         FAQ</a>.
       more_2_html: |-
@@ -1006,6 +1076,11 @@ da:
         (<a href="http://www.and.com">www.and.com</a>)
       contributors_nz_html: "<strong>New Zealand</strong>: Indeholder data fra \nLand
         Information New Zealand. Crown Copyright reserveret."
+      contributors_si_html: |-
+        <strong>Slovenien</strong>: Indeholder data fra
+        <a href="http://www.gu.gov.si/en/">Opmålings- og Kortlægnings-myndigheden</a> og
+        <a href="http://www.mkgp.gov.si/en/">Ministeriet for Landbrug, Skovbrug og Fødevarer</a>
+        (offentlig information Slovenien).
       contributors_za_html: |-
         <strong>Syd Afrika</strong>: Indeholder data fra
         <a href="http://www.ngi.gov.za/">Chief Directorate:
@@ -1031,6 +1106,10 @@ da:
          føjet til OpenStreetMap databasen eller dette websted, bedes du følge
          vores <a href="http://www.osmfoundation.org/wiki/License/Takedown_procedure">procedure til fjernelse a materiale</a> eller udfyld formular direkte på vores
         <a href="http://dmca.openstreetmap.org/">on-line side</a>.
+      trademarks_title_html: <span id="trademarks"></span>Varemærker
+      trademarks_1_html: OpenStreetMap og forstørrelsesglaslogoet er registrerede
+        varemærker for OpenStreetMap Foundation. Hvis du har spørgsmål om din brug
+        af mærkerne, bedes du sende dine spørgsmål til <a href="http://wiki.osmfoundation.org/wiki/Licensing_Working_Group">Licens-arbejdsgruppen</a>.
   welcome_page:
     title: Velkommen!
     introduction_html: Velkommen til OpenStreetMap, det frie brugerredigerede verdenskort.
@@ -1060,6 +1139,14 @@ da:
       tag_html: En <strong>egenskab</strong> er en lille bid information om et "punkt"
         eller en "vej", f.eks. navnet på en restaurant eller hastighedsbegrænsningen
         på en vej.
+    rules:
+      title: Regler!
+      paragraph_1_html: "OpenStreetMap har få formelle regler, men vi forventer, at
+        alle deltagere vil samarbejde\nmed, og kommunikere med fællesskabet. Hvis
+        du overvejer\nandre aktiviteter end manuel redigering af en side, skal du
+        læse og følge retningslinjerne på \n<a href=\"http://wiki.openstreetmap.org/wiki/Import/Guidelines\">Import</a>
+        og \n<a href=\"http://wiki.openstreetmap.org/wiki/Automated_Edits_code_of_conduct\">Automatiserede
+        Redigeringer</a>."
     questions:
       title: Spørgsmål?
       paragraph_1_html: |-
@@ -1104,11 +1191,30 @@ da:
       url: /welcome
       title: Velkommen til OSM
       description: Start med denne hurtige guide der dækker det grundlæggende i OpenStreetMap.
+    beginners_guide:
+      url: http://wiki.openstreetmap.org/wiki/Da:Beginners%27_guide
+      title: Hjælp for nybegyndere
+      description: Hjælp for nybegyndere, som vedligeholdes af fællesskabet.
     help:
       url: https://help.openstreetmap.org/
       title: help.openstreetmap.org
       description: Stil et spørgsmål eller find et svar på OSMs spørgsmål og svar
         side.
+    mailing_lists:
+      title: Mailinglister
+      description: Stil et spørgsmål eller diskuter interessante spørgsmål på en bred
+        vifte af tematiske eller regionale mailinglister.
+    forums:
+      title: Fora
+      description: Spørgsmål og diskussioner for dem, der foretrækker et opslagstavlelignende
+        interface.
+    irc:
+      title: IRC
+      description: Interaktiv chat på mange forskellige sprog, og om mange emner.
+    switch2osm:
+      title: switch2osm
+      description: Hjælp til virksomheder og organisationer, der skifter til OpenStreetMap
+        baserede kort og andre tjenester.
     wiki:
       url: http://wiki.openstreetmap.org/
       title: wiki.openstreetmap.org
@@ -1116,7 +1222,7 @@ da:
   about_page:
     next: Næste
     copyright_html: <span>&copy;</span>OpenStreetMap<br>bidragsydere
-    used_by: '%{name} stiller kortdata til rådighed for hundredvis af websteder, mobile
+    used_by: '%{name} stiller kortdata til rådighed for tusindvis af websteder, mobile
       apps og hardware-enheder'
     lede_text: OpenStreetMap er bygget af et fællesskab af kortlæggere, der bidrager
       og vedligeholder data om veje, stier, caféer, jernbanestationer og meget mere,
@@ -1140,6 +1246,12 @@ da:
       så længe du nævner OpenStreetMap og dets bidragsydere. Hvis du ændrer eller
       bygger oven på data på bestemte måder, må du kun distribuere resultatet under
       den samme licens. Se siden om <a href='%{copyright_path}'>ophavsret og licens</a> for detaljer.
+    legal_title: Juridisk
+    legal_html: "Dette websted og mange andre relaterede ydelser er formelt drevet
+      af \n<a href=\"http://osmfoundation.org/\">OpenStreetMap Foundation</a> (OSMF)
+      \npå vegne af fællesskabet.\n<br> \nDu bedes <a href=\"http://osmfoundation.org/Contact\">kontakte
+      OSMF</a> \nhvis du har spørgsmål om licenser, ophavsret eller andre juridiske
+      spørgsmål og problemstillinger."
     partners_title: Partnere
   notifier:
     diary_comment_notification:
@@ -1363,6 +1475,10 @@ da:
       close: Luk
     search:
       search: Søg
+      get_directions: Få rutevejledninger
+      get_directions_title: Find vejen mellem to punkter
+      from: Fra
+      to: Til
       where_am_i: Hvor er jeg?
       where_am_i_title: Beskriv den nuværende position ved hjælp af søgemaskinen
       submit_text: Søg
@@ -1370,13 +1486,12 @@ da:
       table:
         entry:
           motorway: Motorvej
+          main_road: Hovedvej
           trunk: Motortrafikvej
           primary: Hovedvej (primærrute)
           secondary: Hovedvej (sekundærrute)
           unclassified: Anden vej
-          unsurfaced: Uasfalteret vej
           track: Hjulspor
-          byway: Stikvej
           bridleway: Ridesti
           cycleway: Cykelsti
           footway: Gangsti
@@ -1400,7 +1515,6 @@ da:
           golf: Golfbane
           park: Park
           resident: Boligområde
-          tourist: Seværdighed
           common:
           - Fælled
           - eng
@@ -1430,7 +1544,6 @@ da:
           tunnel: Stiplet kant = tunnel
           bridge: Sort kant = bro
           private: Privat adgang
-          permissive: Adgang kræver tilladelse
           destination: Ærindekørsel tilladt
           construction: Veje under konstruktion
     richtext_area:
@@ -1591,6 +1704,7 @@ da:
       allow_read_gpx: læse dine private GPS-spor.
       allow_write_gpx: Upload GPS-spor.
       allow_write_notes: ændre bemærkninger.
+      grant_access: Tillad adgang
     oauthorize_success:
       title: Anmodning om tilladelse godkendt
       allowed: Du har givet programmet %{app_name} adgang til din konto.
@@ -1675,6 +1789,7 @@ da:
       register now: Opret nu
       with username: 'Har du allerede en OpenStreetMap konto? Log på med dit brugernavn
         og din adgangskode:'
+      with external: 'Alternativt kan du bruge en tredjepart for at logge på:'
       new to osm: Ny på OpenStreetMap?
       to make changes: For at ændre i OpenStreetMaps data skal du have en konto.
       create account minute: Opret en konto. Det tager kun et minut.
@@ -1687,6 +1802,28 @@ da:
         at drøfte dette.
       auth failure: Kunne ikke logge på med disse oplysninger.
       openid_logo_alt: Log på med et OpenID
+      auth_providers:
+        openid:
+          title: Log på med OpenID
+          alt: Log på med en OpenID-URL
+        google:
+          title: Log på med Google
+          alt: Log på med et Google OpenID
+        facebook:
+          title: Log på med Facebook
+          alt: Log på med en Facebook-konto
+        windowslive:
+          title: Log på med Windows Live
+          alt: Log på med en Windows Live-konto
+        yahoo:
+          title: Log på med Yahoo
+          alt: Log på med et Yahoo OpenID
+        wordpress:
+          title: Log på med Wordpress
+          alt: Log på med et Wordpress OpenID
+        aol:
+          title: Log på med AOL
+          alt: Log på med et AOL OpenID
     logout:
       title: Log af
       heading: Log af fra OpenStreetMap
@@ -1713,9 +1850,9 @@ da:
       title: Opret konto
       no_auto_account_create: Vi kan desværre ikke oprette en konto automatisk for
         dig pt.
-      contact_webmaster: Kontakt venligst <a href="mailto:webmaster@openstreetmap.org">webmaster</a>
-        for at få oprettet en konto - vi vil forsøge at håndtere forespørgslen så
-        hurtigt som muligt.
+      contact_webmaster: Kontakt venligst <a href="%{webmaster}">webmaster</a> for
+        at få oprettet en konto - vi vil forsøge at håndtere forespørgslen så hurtigt
+        som muligt.
       about:
         header: Fri og redigerbar
         html: |-
@@ -1730,8 +1867,12 @@ da:
       display name: 'Vist navn:'
       display name description: Dit offentligt synlige brugernavn. Du kan ændre dette
         senere i indstillingerne.
+      external auth: 'Tredjeparts-godkendelse:'
       password: 'Adgangskode:'
       confirm password: 'Bekræft adgangskode:'
+      use external auth: Alternativt kan du bruge en tredjepart for at logge på
+      auth no password: Med tredjeparts-godkendelse er en adgangskode ikke påkrævet,
+        men nogle ekstra værktøjer eller servere, har muligvis stadig brug for en.
       continue: Opret konto
       terms accepted: Tak for at du accepterede de nye vilkår for bidragsydere!
       terms declined: Vi er kede af at du har besluttet at du ikke kan acceptere de
@@ -1762,6 +1903,7 @@ da:
       heading: Brugeren %{user} findes ikke
       body: Der findes desværre ingen bruger ved navn %{user}. Tjek venligst stavningen,
         ellers kan linket du trykkede på være forkert.
+      deleted: slettet
     view:
       my diary: Min blog
       new diary entry: nyt blogindlæg
@@ -1839,6 +1981,7 @@ da:
       current email address: 'Nuværende e-mailadresse:'
       new email address: 'Ny e-mailadresse:'
       email never displayed publicly: (vises aldrig offentligt)
+      external auth: 'Ekstern godkendelse:'
       openid:
         link: http://wiki.openstreetmap.org/wiki/OpenID
         link text: hvad er dette?
@@ -1909,16 +2052,16 @@ da:
       success: Vi har sendt en ny e-mail bekræftelse til %{email}, og så snart du
         har bekræftet din konto, kan du gå i gang med kortlægningen.<br /><br />Hvis
         du bruger et antispam-system som sender bekræftelsesforespørgsler, så sørg
-        for at du har hvidlistet webmaster@openstreetmap.org da vi ikke kan svare
-        på den slags forespørgsler.
+        for at du har hvidlistet %{sender} da vi ikke kan svare på den slags forespørgsler.
       failure: Bruger %{name} ikke fundet.
     confirm_email:
       heading: Bekræft ændring af e-mailadresse
       press confirm button: Tryk på bekræft-knappen nedenfor for at bekræfte din nye
         e-mailadresse.
       button: Bekræft
-      success: Din e-mailadresse er bekræftet, tak fordi du tilmeldte dig!
+      success: Bekræftet din ændring af e-mailadresse!
       failure: En e-mailadresse er allerede blevet bekræftet med denne nøgle.
+      unknown_token: Den bekræftelseskode er udløbet eller eksisterer ikke.
     set_home:
       flash success: Hjemmeposition gemt
     go_public:
@@ -1956,6 +2099,21 @@ da:
         mistænkelig aktivitet. \n</p>\n<p>\n Denne beslutning vil blive gennemgået
         af en administrator snarest, eller du kan kontakte %{webmaster} hvis du ønsker
         at drøfte det.\n</p>"
+    auth_failure:
+      connection_failed: Forbindelse til godkendelsesudbyder mislykkedes
+      invalid_credentials: Ugyldig godkendelse af legitimationsoplysninger
+      no_authorization_code: Ingen godkendelseskode
+      unknown_signature_algorithm: Ukendt signaturalgoritme
+      invalid_scope: Ugyldigt anvendelsesområde
+    auth_association:
+      heading: Dit ID er ikke forbundet med en OpenStreetMap konto endnu.
+      option_1: |-
+        Hvis du er ny på OpenStreetMap, skal du oprette en ny konto
+        ved hjælp af formularen nedenfor.
+      option_2: |-
+        Hvis du allerede har en konto, kan du logge på din konto
+        ved hjælp af dit brugernavn og adgangskode og derefter knytte den konto
+        med dit ID i dine brugerindstillinger.
   user_role:
     filter:
       not_an_administrator: Kun administratorer kan forvalte brugerroller, og du er
@@ -2071,6 +2229,8 @@ da:
       heading: '%{block_on} blokeret af %{block_by}'
       time_future: Slutter om %{time}
       time_past: Sluttede %{time} siden
+      created: Oprettet
+      ago: '%{time} siden'
       status: Status
       show: Vis
       edit: Redigér
@@ -2121,6 +2281,7 @@ da:
       link: Link eller HTML
       long_link: Link
       short_link: Kort link
+      geo_uri: Geo-URI
       embed: HTML
       custom_dimensions: Angiv brugerdefinerede dimensioner
       format: 'Format:'
@@ -2188,6 +2349,44 @@ da:
         comment_and_resolve: Kommentere på og løse
         comment: Kommenter
     edit_help: Flyt kortet og zoom ind på et sted, du vil redigere, og klik så her.
+    directions:
+      engines:
+        graphhopper_bicycle: Cykel (GraphHopper)
+        graphhopper_foot: Til fods (GrapHopper)
+        mapquest_bicycle: Cykel (MapQuest)
+        mapquest_car: Bil (MapQuest)
+        mapquest_foot: Til fods (MapQuest)
+        osrm_car: Bil (OSRM)
+        mapzen_bicycle: Cykel (Mapzen)
+        mapzen_car: Bil (Mapzen)
+        mapzen_foot: Fod (Mapzen)
+      directions: Rutevejledning
+      distance: Afstand
+      errors:
+        no_route: Kunne ikke finde en rute mellem de to steder.
+        no_place: Beklager - kunne ikke finde det sted.
+      instructions:
+        continue_without_exit: Fortsæt ad %{name}
+        slight_right_without_exit: Svagt til højre ind på %{name}
+        turn_right_without_exit: Drej til højre ind på %{name}
+        sharp_right_without_exit: Skarpt til højre ind på %{name}
+        uturn_without_exit: U-vending langs %{name}
+        sharp_left_without_exit: Skarpt til venstre ind på %{name}
+        turn_left_without_exit: Drej til venstre ind på %{name}
+        slight_left_without_exit: Svagt til venstre ind på %{name}
+        via_point_without_exit: (via punkt)
+        follow_without_exit: Følg %{name}
+        roundabout_without_exit: Ved rundkørslen, tag %{name}
+        leave_roundabout_without_exit: Forlad rundkørslen - %{name}
+        stay_roundabout_without_exit: Bliv i rundkørslen - %{name}
+        start_without_exit: Start ved slutningen af %{name}
+        destination_without_exit: Nå målet
+        against_oneway_without_exit: Kør mod ensretningen på %{name}
+        end_oneway_without_exit: Slutningen af ensretningen på %{name}
+        roundabout_with_exit: Ved rundkørslen, tag afkørsel %{exit} mod %{name}
+        unnamed: unavngiven vej
+        courtesy: Anvisninger stillet til rådighed af %{link}
+      time: Tid
     query:
       node: Punkt
       way: Vej

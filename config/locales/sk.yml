@@ -6,12 +6,16 @@
 # Author: KuboF
 # Author: Kusavica
 # Author: Lesny skriatok
+# Author: Macofe
 # Author: MartinSNV
 # Author: MichalP
+# Author: Mikulas1
 # Author: Mimarik
 # Author: Nemo bis
 # Author: Rudko
+# Author: Ruila
 # Author: Teslaton
+# Author: TomášPolonec
 # Author: Vladolc
 ---
 sk:
@@ -177,7 +181,7 @@ sk:
         changeset: sada zmien
     redacted:
       redaction: Revízia %{id}
-      message_html: Verzia %{version} tohto objektu %{type} nemôže byť zobrazené,
+      message_html: Verzia %{version} tohto objektu %{type} nemôže byť zobrazená,
         pretože bola skrytá. Viac informácií nájdete na %{redaction_link}.
       type:
         node: bod
@@ -378,6 +382,7 @@ sk:
     search_osm_nominatim:
       prefix:
         aerialway:
+          cable_car: Lanovka
           chair_lift: Sedačková lanovka
           drag_lift: Vlek
           station: Lanovková stanica
@@ -390,6 +395,7 @@ sk:
           taxiway: Pojazdová dráha
           terminal: Terminál
         amenity:
+          animal_shelter: Útulok pre zvieratá
           arts_centre: Kultúrne stredisko
           atm: Bankomat
           bank: Banka
@@ -399,6 +405,7 @@ sk:
           bicycle_parking: Parkovisko bicyklov
           bicycle_rental: Požičovňa bicyklov
           biergarten: Záhradná krčma
+          boat_rental: Požičovňa lodí
           brothel: Nevestinec
           bureau_de_change: Zmenáreň
           bus_station: Autobusová stanica
@@ -438,6 +445,7 @@ sk:
           library: Knižnica
           market: Obchod
           marketplace: Tržnica
+          monastery: Kláštor
           nightclub: Nočný klub
           nursery: Jasle
           nursing_home: Sanatórium
@@ -490,7 +498,18 @@ sk:
           "yes": Most
         building:
           "yes": Budova
+        craft:
+          brewery: Pivovar
+          electrician: Elektrikár
+          gardener: Záhradník
+          painter: Maliar
+          photographer: Fotograf
+          plumber: Inštalatér
+          shoemaker: Obuvník
+          tailor: Krajčír
         emergency:
+          ambulance_station: Stanica záchrannej služby
+          defibrillator: Defibrilátor
           phone: Núdzový telefón
         highway:
           bridleway: Cesta pre kone
@@ -498,6 +517,7 @@ sk:
           bus_stop: Zastávka autobusu
           construction: Cesta vo výstavbe
           cycleway: Cyklistický chodník
+          elevator: Výťah
           emergency_access_point: Stanica prvej pomoci
           footway: Chodník
           ford: Brod
@@ -513,7 +533,7 @@ sk:
           primary_link: Cesta I. triedy
           proposed: Navrhovaná cesta
           raceway: Pretekárska dráha
-          residential: Ulica
+          residential: Ulica v obytnej štvrti
           rest_area: Odpočívadlo
           road: Cesta
           secondary: Cesta II. triedy
@@ -526,26 +546,32 @@ sk:
           tertiary: Cesta III. triedy
           tertiary_link: Cesta III. triedy
           track: Nespevnená cesta
+          traffic_signals: Semafor
           trail: Chodník
           trunk: Cesta pre motorové vozidlá
           trunk_link: Privádzač k ceste pre motorové vozidlá
           unclassified: Neklasifikovaná cesta
           unsurfaced: Nespevnená cesta
+          "yes": Cesta
         historic:
           archaeological_site: Archeologické nálezisko
           battlefield: Bojisko
           boundary_stone: Hraničný kameň
-          building: Budova
+          building: Historická budova
+          bunker: Bunker
           castle: Hrad
           church: Kostol
+          city_gate: Mestská brána
           citywalls: Mestské hradby
           fort: Pevnosť
+          heritage: Lokalita historického dedičstva
           house: Dom
           icon: Ikona
           manor: Šľachtické sídlo
           memorial: Pomník
           mine: Baňa
           monument: Pamätník
+          roman_road: Rímska cesta
           ruins: Ruina
           tomb: Náhrobok
           tower: Veža
@@ -586,11 +612,15 @@ sk:
         leisure:
           beach_resort: Plážové letovisko
           bird_hide: Vtáčia pozorovateľňa
+          club: Klub
           common: Verejné priestranstvo
+          dog_park: Psí park
           fishing: Rybolov (športový)
+          fitness_centre: Fitnescentrum
           fitness_station: Fitnes zastávka
           garden: Záhrada
           golf_course: Golfové ihrisko
+          horse_riding: Jazda na koni
           ice_rink: Umelé klzisko
           marina: Prístav pre jachty
           miniature_golf: Mini golf
@@ -606,6 +636,12 @@ sk:
           swimming_pool: Plaváreň
           track: Bežecká dráha
           water_park: Aquapark
+        man_made:
+          lighthouse: Maják
+          pipeline: Vodovod
+          tower: Veža
+          works: Továreň
+          "yes": Vytvorené človekom
         military:
           airfield: Vojenské letisko
           barracks: Kasárne
@@ -625,6 +661,7 @@ sk:
           forest: Les (udržiavaný)
           geyser: Gejzír
           glacier: Ľadovec
+          grassland: Trvalé trávne porasty
           heath: Vresovisko
           hill: Kopec
           island: Ostrov
@@ -637,6 +674,8 @@ sk:
           reef: Bradlo, Skalisko
           ridge: Hrebeň
           rock: Skala
+          saddle: Sedlo
+          sand: Piesok
           scree: Sutina
           scrub: Rúbanisko
           spring: Prameň
@@ -706,7 +745,7 @@ sk:
           spur: Železničná vlečka
           station: Železničná stanica
           stop: Železničná zastávka
-          subway: Stanica metra
+          subway: Metro
           subway_entrance: Vchod do metra
           switch: Železničná výhybka
           tram: Električka
@@ -795,6 +834,7 @@ sk:
           camp_site: Kemping
           caravan_site: Autokemping
           chalet: Veľká chata
+          gallery: Galéria
           guest_house: Penzión
           hostel: Ubytovňa, internát
           hotel: Hotel
@@ -826,6 +866,7 @@ sk:
           wadi: Občasné riečisko(Vádí)
           waterfall: Vodopád
           weir: Splav
+          "yes": Vodná cesta
       admin_levels:
         level2: Štátna hranica
         level4: Hranica kraja (state)
@@ -1019,12 +1060,23 @@ sk:
     title: Nahlásiť problém / Opraviť mapu
     how_to_help:
       title: Ako pomôcť
+      join_the_community:
+        title: Pripojte sa ku komunite
   help_page:
     welcome:
       title: Vitajte na OSM
+    beginners_guide:
+      url: http://wiki.openstreetmap.org/wiki/Sk:Beginners%27_guide
     help:
       url: https://help.openstreetmap.org/
       title: help.openstreetmap.org
+    forums:
+      title: Fóra
+    irc:
+      title: IRC
+    wiki:
+      url: http://wiki.openstreetmap.org/
+      title: wiki.openstreetmap.org
   about_page:
     next: Ďalej
     partners_title: Partneri
@@ -1100,6 +1152,8 @@ sk:
       anonymous: Anonymný používateľ
       greeting: Ahoj,
       details: Viac podrobností o poznámke môžete nájsť nájsť na %{url}.
+    changeset_comment_notification:
+      greeting: Ahoj,
   message:
     inbox:
       title: Doručená pošta
@@ -1224,13 +1278,12 @@ sk:
       table:
         entry:
           motorway: Diaľnica
+          main_road: Hlavná cesta
           trunk: Cesta pre motorové vozidlá
           primary: Cesta prvej triedy
           secondary: Cesta druhej triedy
           unclassified: Neklasifikovaná cesta
-          unsurfaced: Nespevnená cesta
           track: Lesná, poľná cesta
-          byway: Súkromná cesta
           bridleway: Chodník pre kone
           cycleway: Cyklotrasa
           footway: Chodník pre peších
@@ -1254,7 +1307,6 @@ sk:
           golf: Golfové ihrisko
           park: Park
           resident: Obytná oblasť
-          tourist: Turistická atrakcia
           common:
           - Pastvina
           - lúka
@@ -1284,7 +1336,6 @@ sk:
           tunnel: Čiarkovaný obrys = tunel
           bridge: Čireny obrys = most
           private: Súkromný prístup
-          permissive: Voľný prístup
           destination: Prejazd zakázaný
           construction: Cesta vo výstavbe
     richtext_area:
@@ -1520,6 +1571,28 @@ sk:
         podozrivú aktivitu.<br>Ak to chcete riešiť, môžete kontaktovať <a href="%{webmaster}">webmastera</a>.
       auth failure: Ľutujeme, s uvedenými údajmi sa nie je možné prihlásiť.
       openid_logo_alt: Prihlásenie pomocou OpenID
+      auth_providers:
+        openid:
+          title: Prihlásenie sa pomocou OpenID
+          alt: Prihlásenie sa pomocou OpenID URL
+        google:
+          title: Prihlásenie sa pomocou Google
+          alt: Prihlásenie sa pomocou Google OpenID
+        facebook:
+          title: Prihlásenie sa pomocou Facebooku
+          alt: Prihlásenie sa pomocou účtu na Facebooku
+        windowslive:
+          title: Prihlásenie sa pomocou Windows Live
+          alt: Prihlásenie sa pomocou účtu Windows Live
+        yahoo:
+          title: Prihlásenie sa pomocou Yahoo
+          alt: Prihlásenie sa pomocou Yahoo OpenID
+        wordpress:
+          title: Prihlásenie sa pomocou Wordpress
+          alt: Prihlásenie sa pomocou Wordpress OpenID
+        aol:
+          title: Prihlásenie sa pomocou AOL
+          alt: Prihlásenie sa pomocou AOL OpenID
     logout:
       title: Odhlásenie
       heading: Odhlásenie z OpenStreetMap
@@ -1546,7 +1619,7 @@ sk:
       title: Zaregistrovať sa
       no_auto_account_create: Bohužiaľ teraz nie sme schopný vytvoriť pre vás účet
         automaticky.
-      contact_webmaster: Kontaktujte prosím <a href="mailto:webmaster@openstreetmap.org">webmastera</a>
+      contact_webmaster: Kontaktujte prosím <a href="%{webmaster}">webmastera</a>
         so žiadosťou o založenie konta – budeme sa snažiť vašu požiadavku vybaviť
         čo najrýchlejšie.
       license_agreement: Pri potvrdení konta budete musieť vyjadriť súhlas s <a href="http://www.osmfoundation.org/wiki/License/Contributor_Terms">Podmienkami
@@ -1738,8 +1811,8 @@ sk:
       success: Na adresu %{email} sme Vám poslali potvrdzovací e-mail. Akonáhle svoje
         konto potvrdíte, budete môcť začať tvoriť mapy.<br /><br />Ak náhodou používate
         systém pre ochranu proti nevyžiadanej pošte (anti-spam), ktorý vyžaduje potvrdenia,
-        nezabudnite definovať výnimku pre odosielateľa webmaster@openstreetmap.org,
-        nakoľko na žiadosti o potvrdenie nie sme schopní reagovať.
+        nezabudnite definovať výnimku pre odosielateľa %{sender}, nakoľko na žiadosti
+        o potvrdenie nie sme schopní reagovať.
       failure: Používateľ %{name} neexistuje.
     confirm_email:
       heading: Potvrdiť zmenu e-mailovej adresy
@@ -1904,6 +1977,8 @@ sk:
       heading: '%{block_on} zablokovaný používateľom %{block_by}'
       time_future: Končí o %{time}
       time_past: Ukončené pred %{time}
+      created: Vytvorené
+      ago: pred %{time}
       status: Stav
       show: Zobraziť
       edit: Upraviť
@@ -1920,6 +1995,8 @@ sk:
       creator: Autor
       description: Popis
       created_at: Vytvorené
+      last_changed: Posledná zmena
+      ago_html: pred %{when}
   javascripts:
     close: Zavrieť
     share:
@@ -1969,6 +2046,10 @@ sk:
       edit_disabled_tooltip: Pre editáciu priblížte mapu
       createnote_tooltip: Pridať do mapy poznámku
       createnote_disabled_tooltip: Pre vloženie poznámky priblížte mapu
+    changesets:
+      show:
+        hide_comment: skryť
+        unhide_comment: zobraziť
     notes:
       new:
         intro: Aby sme mohli mapu spresniť, zobrazí sa vami zadaná informácia ostatným
@@ -1991,21 +2072,8 @@ sk:
         no_route: Nepodarilo sa nájsť trasu medzi týmito miestami.
         no_place: Ospravedlňujeme sa - nepodarilo sa nájsť toto miesto.
       instructions:
-        continue_on: Pokračujte na
-        slight_right: Mierne doprava na
-        turn_right: Odbočte vpravo na
-        sharp_right: Ostro doprava na
-        sharp_left: Ostro doľava na
-        turn_left: Odbočte vľavo na
-        slight_left: Mierne doľava na
-        via_point: (cez bod)
-        follow: Pokračujte po
-        roundabout: Na kruhovom objazde použite
-        leave_roundabout: Opustite kruhový objazd -
-        stay_roundabout: Zostaňte na kruhovom objazde -
-        start: Začnite na konci
-        destination: Došli ste do cieľa
-        unnamed: (nepomenované)
+        unnamed: nepomenované
+      time: Čas
   redaction:
     edit:
       description: Popis

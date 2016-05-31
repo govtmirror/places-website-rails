@@ -13,25 +13,32 @@ class GeocoderController < ApplicationController
     normalize_params
 
     @sources = []
+
     if params[:lat] && params[:lon]
       @sources.push "latlon"
       @sources.push "osm_nominatim_reverse"
       @sources.push "geonames_reverse" if defined?(GEONAMES_USERNAME)
-    elsif params[:query].match(/^\d{5}(-\d{4})?$/)
-      @sources.push "us_postcode"
-      @sources.push "osm_nominatim"
-    elsif params[:query].match(/^(GIR 0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]|[A-HK-Y][0-9]([0-9]|[ABEHMNPRV-Y]))|[0-9][A-HJKS-UW])\s*[0-9][ABD-HJLNP-UW-Z]{2})$/i)
-      @sources.push "uk_postcode"
-      @sources.push "osm_nominatim"
-    elsif params[:query].match(/^[A-Z]\d[A-Z]\s*\d[A-Z]\d$/i)
-      @sources.push "ca_postcode"
-      @sources.push "osm_nominatim"
-    else
-      @sources.push "osm_nominatim"
-      @sources.push "geonames" if defined?(GEONAMES_USERNAME)
+    elsif params[:query]
+      if params[:query] =~ /^\d{5}(-\d{4})?$/
+        @sources.push "us_postcode"
+        @sources.push "osm_nominatim"
+      elsif params[:query] =~ /^(GIR 0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]|[A-HK-Y][0-9]([0-9]|[ABEHMNPRV-Y]))|[0-9][A-HJKS-UW])\s*[0-9][ABD-HJLNP-UW-Z]{2})$/i
+        @sources.push "uk_postcode"
+        @sources.push "osm_nominatim"
+      elsif params[:query] =~ /^[A-Z]\d[A-Z]\s*\d[A-Z]\d$/i
+        @sources.push "ca_postcode"
+        @sources.push "osm_nominatim"
+      else
+        @sources.push "osm_nominatim"
+        @sources.push "geonames" if defined?(GEONAMES_USERNAME)
+      end
     end
 
-    render :layout => map_layout
+    if @sources.empty?
+      render :text => "", :status => :bad_request
+    else
+      render :layout => map_layout
+    end
   end
 
   def search_latlon
@@ -63,7 +70,7 @@ class GeocoderController < ApplicationController
     response = fetch_text("http://rpc.geocoder.us/service/csv?zip=#{escape_query(query)}")
 
     # parse the response
-    unless response.match(/couldn't find this zip/)
+    unless response =~ /couldn't find this zip/
       data = response.split(/\s*,\s+/) # lat,long,town,state,zip
       @results.push(:lat => data[0], :lon => data[1],
                     :zoom => POSTCODE_ZOOM,
@@ -88,10 +95,10 @@ class GeocoderController < ApplicationController
     response = fetch_text("http://www.npemap.org.uk/cgi/geocoder.fcgi?format=text&postcode=#{escape_query(query)}")
 
     # parse the response
-    unless response.match(/Error/)
+    unless response =~ /Error/
       dataline = response.split(/\n/)[1]
       data = dataline.split(/,/) # easting,northing,postcode,lat,long
-      postcode = data[2].gsub(/'/, "")
+      postcode = data[2].delete("'")
       zoom = POSTCODE_ZOOM - postcode.count("#")
       @results.push(:lat => data[3], :lon => data[4], :zoom => zoom,
                     :name => postcode)
@@ -164,11 +171,11 @@ class GeocoderController < ApplicationController
       type = place.attributes["type"].to_s
       name = place.attributes["display_name"].to_s
       min_lat, max_lat, min_lon, max_lon = place.attributes["boundingbox"].to_s.split(",")
-      if type.empty?
-        prefix_name = ""
-      else
-        prefix_name = t "geocoder.search_osm_nominatim.prefix.#{klass}.#{type}", :default => type.gsub("_", " ").capitalize
-      end
+      prefix_name = if type.empty?
+                      ""
+                    else
+                      t "geocoder.search_osm_nominatim.prefix.#{klass}.#{type}", :default => type.tr("_", " ").capitalize
+                    end
       if klass == "boundary" && type == "administrative"
         rank = (place.attributes["place_rank"].to_i + 1) / 2
         prefix_name = t "geocoder.search_osm_nominatim.admin_levels.level#{rank}", :default => prefix_name
@@ -286,7 +293,13 @@ class GeocoderController < ApplicationController
   private
 
   def fetch_text(url)
-    OSM.http_client.get(URI.parse(url)).body
+    response = OSM.http_client.get(URI.parse(url))
+
+    if response.success?
+      response.body
+    else
+      raise response.status.to_s
+    end
   end
 
   def fetch_xml(url)
@@ -326,11 +339,11 @@ class GeocoderController < ApplicationController
   def nsew_to_decdeg(captures)
     begin
       Float(captures[0])
-      captures[2].downcase != "s" ? lat = captures[0].to_f : lat = -(captures[0].to_f)
-      captures[5].downcase != "w" ? lon = captures[3].to_f : lon = -(captures[3].to_f)
+      lat = !captures[2].casecmp("s").zero? ? captures[0].to_f : -captures[0].to_f
+      lon = !captures[5].casecmp("w").zero? ? captures[3].to_f : -captures[3].to_f
     rescue
-      captures[0].downcase != "s" ? lat = captures[1].to_f : lat = -(captures[1].to_f)
-      captures[3].downcase != "w" ? lon = captures[4].to_f : lon = -(captures[4].to_f)
+      lat = !captures[0].casecmp("s").zero? ? captures[1].to_f : -captures[1].to_f
+      lon = !captures[3].casecmp("w").zero? ? captures[4].to_f : -captures[4].to_f
     end
     { :lat => lat, :lon => lon }
   end
@@ -338,11 +351,11 @@ class GeocoderController < ApplicationController
   def ddm_to_decdeg(captures)
     begin
       Float(captures[0])
-      captures[3].downcase != "s" ? lat = captures[0].to_f + captures[1].to_f / 60 : lat = -(captures[0].to_f + captures[1].to_f / 60)
-      captures[7].downcase != "w" ? lon = captures[4].to_f + captures[5].to_f / 60 : lon = -(captures[4].to_f + captures[5].to_f / 60)
+      lat = !captures[3].casecmp("s").zero? ? captures[0].to_f + captures[1].to_f / 60 : -(captures[0].to_f + captures[1].to_f / 60)
+      lon = !captures[7].casecmp("w").zero? ? captures[4].to_f + captures[5].to_f / 60 : -(captures[4].to_f + captures[5].to_f / 60)
     rescue
-      captures[0].downcase != "s" ? lat = captures[1].to_f + captures[2].to_f / 60 : lat = -(captures[1].to_f + captures[2].to_f / 60)
-      captures[4].downcase != "w" ? lon = captures[5].to_f + captures[6].to_f / 60 : lon = -(captures[5].to_f + captures[6].to_f / 60)
+      lat = !captures[0].casecmp("s").zero? ? captures[1].to_f + captures[2].to_f / 60 : -(captures[1].to_f + captures[2].to_f / 60)
+      lon = !captures[4].casecmp("w").zero? ? captures[5].to_f + captures[6].to_f / 60 : -(captures[5].to_f + captures[6].to_f / 60)
     end
     { :lat => lat, :lon => lon }
   end
@@ -350,11 +363,11 @@ class GeocoderController < ApplicationController
   def dms_to_decdeg(captures)
     begin
       Float(captures[0])
-      captures[4].downcase != "s" ? lat = captures[0].to_f + (captures[1].to_f + captures[2].to_f / 60) / 60 : lat = -(captures[0].to_f + (captures[1].to_f + captures[2].to_f / 60) / 60)
-      captures[9].downcase != "w" ? lon = captures[5].to_f + (captures[6].to_f + captures[7].to_f / 60) / 60 : lon = -(captures[5].to_f + (captures[6].to_f + captures[7].to_f / 60) / 60)
+      lat = !captures[4].casecmp("s").zero? ? captures[0].to_f + (captures[1].to_f + captures[2].to_f / 60) / 60 : -(captures[0].to_f + (captures[1].to_f + captures[2].to_f / 60) / 60)
+      lon = !captures[9].casecmp("w").zero? ? captures[5].to_f + (captures[6].to_f + captures[7].to_f / 60) / 60 : -(captures[5].to_f + (captures[6].to_f + captures[7].to_f / 60) / 60)
     rescue
-      captures[0].downcase != "s" ? lat = captures[1].to_f + (captures[2].to_f + captures[3].to_f / 60) / 60 : lat = -(captures[1].to_f + (captures[2].to_f + captures[3].to_f / 60) / 60)
-      captures[5].downcase != "w" ? lon = captures[6].to_f + (captures[7].to_f + captures[8].to_f / 60) / 60 : lon = -(captures[6].to_f + (captures[7].to_f + captures[8].to_f / 60) / 60)
+      lat = !captures[0].casecmp("s").zero? ? captures[1].to_f + (captures[2].to_f + captures[3].to_f / 60) / 60 : -(captures[1].to_f + (captures[2].to_f + captures[3].to_f / 60) / 60)
+      lon = !captures[5].casecmp("w").zero? ? captures[6].to_f + (captures[7].to_f + captures[8].to_f / 60) / 60 : -(captures[6].to_f + (captures[7].to_f + captures[8].to_f / 60) / 60)
     end
     { :lat => lat, :lon => lon }
   end

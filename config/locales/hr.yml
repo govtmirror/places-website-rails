@@ -3,12 +3,15 @@
 # Export driver: phpyaml
 # Author: Ex13
 # Author: Janjko
+# Author: Macofe
 # Author: Mnalis
 # Author: Mvrban
 # Author: Nemo bis
 # Author: Phidrho
 # Author: Roberta F.
+# Author: Ruila
 # Author: SpeedyGonsales
+# Author: Teoo3
 ---
 hr:
   time:
@@ -123,11 +126,17 @@ hr:
       way_paginated: Putovi(%{x}-%{y} od %{count})
       relation: Relacije (%{count})
       relation_paginated: Relacije(%{x}-%{y} od %{count})
+      comment: Komentari (%{count})
+      hidden_commented_by: Komentar skriven od %{user} <abbr title="%{exact_time}">prije
+        %{when}</abbr>
+      commented_by: Komentirao/la %{user} <abbr title='%{exact_time}'>prije %{when}</abbr>
       changesetxml: XLM Changeset
       osmchangexml: osmChange XML
       feed:
         title: Changeset %{id}
         title_comment: Changeset %{id} - %{comment}
+      join_discussion: Prijavi se za uključivanje u raspravu
+      discussion: Razgovor
     node:
       title: 'Točka: %{name}'
       history_title: 'Povijest točke: %{name}'
@@ -158,6 +167,7 @@ hr:
         way: put
         relation: relacija
         changeset: changeset
+        note: bilješka
     timeout:
       sorry: Žao mi je, podaci za %{type} sa id %{id}, predugo se čekaju.
       type:
@@ -165,8 +175,11 @@ hr:
         way: put
         relation: relacija
         changeset: changeset
+        note: bilješka
     redacted:
       redaction: Redakcija %{id}
+      message_html: Verzija %{version} ove %{type} ne može se prikazati jer je uređena.
+        Molim pogledaj %{redaction_link} za dodatne informacije.
       type:
         node: točka
         way: put
@@ -181,7 +194,9 @@ hr:
       wiki_link:
         key: Opis wiki stranica za oznaku %{key} (tag)
         tag: Opis wiki stranica za oznaku %{key}=%{value} (tag)
+      wikidata_link: '%{page} Predmet na Wikidata'
       wikipedia_link: Članak o %{page} na Wikipediji
+      telephone_link: Nazovi %{phone_number}
     note:
       title: 'Bilješka: %{id}'
       new_note: Nova bilješka
@@ -201,6 +216,11 @@ hr:
       reopened_by_anonymous: Ponovno aktivirano anonimno <abbr title='%{exact_time}'>prije
         %{when}</abbr>
       hidden_by: Sakrio/la %{user} <abbr title='%{exact_time}'>prije %{when}</abbr>
+    query:
+      title: Potraži značajke
+      introduction: Klikni na kartu za pronalazak okolnih značajki.
+      nearby: Obližnje značajke
+      enclosing: Obuhvaćene značajke
   changeset:
     changeset_paging_nav:
       showing_page: Stranica %{page}
@@ -231,9 +251,17 @@ hr:
     timeout:
       sorry: Nažalost, popis Changeseta (skupa promjena) koje ste zatražili je predugo
         trajalo za preuzimanje.
+    rss:
+      title_all: Rasprava o OpenStreetMap setu promjena
+      title_particular: 'Rasprava o OpenStreetMap setu promjena #%{changeset_id}'
+      comment: 'Novi komentar na setu promjena #%{changeset_id} od %{author}'
+      commented_at_html: Osvježeno prije %{when}
+      commented_at_by_html: Osvježio korisnik %{user} prije %{when}
+      full: Kompletna rasprava
   diary_entry:
     new:
       title: Novi zapis u dnevnik
+      publish_button: Objavi
     list:
       title: Dnevnici korisnika
       title_friends: Dnevnici prijatelja
@@ -371,17 +399,21 @@ hr:
     search_osm_nominatim:
       prefix:
         aerialway:
+          cable_car: Kabinska žičara
           chair_lift: Sedežnica
           drag_lift: Sidro/tanjurić
+          gondola: Žičara
           station: Stanica žičare
         aeroway:
           aerodrome: Zračna luka
           apron: Pristanišna platforma
+          gate: Izlaz
           helipad: Heliodrom
           runway: Pista
           taxiway: Rulnica
           terminal: Terminal
         amenity:
+          animal_shelter: Sklonište za životinje
           arts_centre: Umjetnički centar
           atm: Bankomat
           bank: Banka
@@ -390,6 +422,8 @@ hr:
           bench: Klupa
           bicycle_parking: Biciklistički parking
           bicycle_rental: Rent a bicikl
+          biergarten: Vrtna pivnica
+          boat_rental: Najam brodova
           brothel: Bordel
           bureau_de_change: Mjenjačnica
           bus_station: Autobusni kolodvor
@@ -398,8 +432,11 @@ hr:
           car_sharing: Carsharing
           car_wash: Autopraonica
           casino: Casino
+          charging_station: Postaja za punjenje električnih automobila
+          childcare: Vrtić
           cinema: Kino
           clinic: Klinika
+          clock: Sat
           college: Fakultet
           community_centre: Društveni centar
           courthouse: Sud
@@ -415,8 +452,10 @@ hr:
           ferry_terminal: Trajektni terminal
           fire_hydrant: Hidrant
           fire_station: Vatrogasna postaja
+          food_court: Blagovaonski kutak
           fountain: Fontana
           fuel: Benzinska
+          gambling: Kockarnica
           grave_yard: Groblje
           gym: Fitness centar
           health_centre: Zdravstveni centar
@@ -427,11 +466,14 @@ hr:
           library: Knjižnica
           market: Tržnica
           marketplace: Tržnica
+          monastery: Samostan
+          motorcycle_parking: Parking za motocikle
           nightclub: Noćni klub
           nursery: Čuvanje djece
           nursing_home: Starački dom
           office: Kancelarija
           parking: Parking
+          parking_entrance: Ulaz na parking
           pharmacy: Ljekarna
           place_of_worship: Crkva
           police: Policija
@@ -449,7 +491,10 @@ hr:
           school: Škola
           shelter: Sklonište
           shop: Trgovina
+          shower: Tuš
+          social_centre: Društveni centar
           social_club: Društveni klub
+          social_facility: Društvena ustanova
           studio: Studio
           swimming_pool: Bazen
           taxi: Taxi
@@ -462,26 +507,50 @@ hr:
           veterinary: Veterinar
           village_hall: Seoski Dom
           waste_basket: Kanta za otpatke
+          waste_disposal: Kontejner za smeće
           youth_centre: Centar za mladež
         boundary:
           administrative: Administrativna granica
+          census: Statističke granice
           national_park: Nacionalni park
           protected_area: Zaštićeno područje
         bridge:
+          aqueduct: Akvadukt
+          suspension: Viseći most
+          swing: Pokretni most
           viaduct: Vijadukt
           "yes": Most
         building:
           "yes": Zgrada
+        craft:
+          brewery: Pivovara
+          carpenter: Stolar
+          electrician: Električar
+          gardener: Vrtlar
+          painter: Soboslikar
+          photographer: Fotograf
+          plumber: Vodoinstalater
+          shoemaker: Obućar
+          tailor: Krojač
+          "yes": Radionica
+        emergency:
+          ambulance_station: Garaža hitne pomoći
+          defibrillator: Defibrilator
+          landing_site: Mjesto slijetanja u nuždi
+          phone: Telefon za hitne službe
         highway:
+          abandoned: Napuštena cesta
           bridleway: Konjička staza
           bus_guideway: Autobusna traka
           bus_stop: Autobusno stajalište
           construction: Autocesta u izgradnji
           cycleway: Biciklistička staza
+          elevator: Dizalo
           emergency_access_point: S.O.S. točka
           footway: Pješačka staza
           ford: Ford
           living_street: Ulica smirenog prometa
+          milestone: Kilometarski stup
           motorway: Autocesta
           motorway_junction: Čvor (autoputa)
           motorway_link: Autocesta (pristupna cesta)
@@ -490,14 +559,18 @@ hr:
           platform: Platforma
           primary: Državna cesta
           primary_link: Državna cesta
+          proposed: Planirana cesta
           raceway: Trkalište
-          residential: Ulica
+          residential: Ulica stanovanja
+          rest_area: Odmorište
           road: Cesta
           secondary: Županijska cesta
           secondary_link: Županijska cesta
           service: Servisna cesta
           services: Autocesta - usluge
+          speed_camera: Kamera za kontrolu brzine
           steps: Stepenice
+          street_lamp: Ulična rasvjeta
           tertiary: Lokalna cesta
           track: Makadam
           trail: Staza
@@ -505,11 +578,13 @@ hr:
           trunk_link: Cesta rezrevirana za mot. voz. - prilazna cesta
           unclassified: Nerazvrstana cesta
           unsurfaced: Neasfaltirana cesta
+          "yes": Cesta
         historic:
           archaeological_site: Arheološko nalazište
           battlefield: Bojno polje
           boundary_stone: Granični kamen
-          building: Zgrada
+          building: Povijesna zgrada
+          bunker: Bunker
           castle: Dvorac
           church: Crkva
           citywalls: Gradske zidine
@@ -663,7 +738,7 @@ hr:
           preserved: Sačuvana pruga
           spur: Pruga
           station: Željeznički kolodvor
-          subway: Podzemna - stanica
+          subway: Podzemna željeznica
           subway_entrance: Podzemna - ulaz
           switch: Skretnica
           tram: Tramvaj
@@ -844,9 +919,10 @@ hr:
     legal_babble:
       title_html: Autorska prava i Dozvola
       intro_1_html: |-
-        OpenStreetMap sadrži <i>slobodne podatke</i>, licencirane pod licencom: <a
-        href="http://opendatacommons.org/licenses/odbl/">"Open Data
-        Commons Open Database License"</a> (ODbL).
+        OpenStreetMap<sup><a href="#trademarks">&reg;</a></sup> sadrži <i>otvorene podatke</i>, licencirane pod <a
+        href="http://opendatacommons.org/licenses/odbl/">Open Data
+        Commons Open Database License</a> (ODbL) licencom od strane <a
+        href="http://osmfoundation.org/">OpenStreetMap zaklade</a> (OSMF).
       intro_2_html: Slobodni ste kopirati, distribuirati, prenositi i adaptirati naše
         podatke, sve dok navodite OpenStreetMap i njegove doprinositelje kao izvor.
         Ako izmijenite ili nadogradite naše podatke, možete distribuirati rezultate
@@ -865,8 +941,11 @@ hr:
       attribution_example:
         title: Primjer doprinosa
       more_title_html: Više o
-      more_1_html: Pročitaj više o korištenju naših podataka i kako iskazati zasluge
-        na <a href="http://wiki.openstreetmap.org/wiki/Legal_FAQ">Legal FAQ</a>.
+      more_1_html: |-
+        Pročitaj više o korištenju naših podataka i kako iskazati zasluge na <a
+        href="http://osmfoundation.org/Licence">OSMF Licence stranici</a> i zajednici <a
+        href="http://wiki.openstreetmap.org/wiki/Legal_FAQ">Legal
+        FAQ</a>.
       more_2_html: |-
         Iako su podaci karte OpenStreetMap slobodni podaci, ne možemo pružiti besplatni API (aplikacijsko programsko sučelje) za razvojne inženjere treće strane.
         Vidi naš <a href="http://wiki.openstreetmap.org/wiki/API_usage_policy">API Usage Policy</a>,
@@ -895,7 +974,7 @@ hr:
   welcome_page:
     title: Dobrodošli!
     whats_on_the_map:
-      title: Što je na karti
+      title: Što ova karta sadrži
     basic_terms:
       way_html: <strong>Put</strong> je linija ili područje, npr. cesta, potok, jezero
         ili zgrada.
@@ -911,6 +990,8 @@ hr:
   help_page:
     welcome:
       title: Dobrodošao/la na OSM
+    beginners_guide:
+      url: http://wiki.openstreetmap.org/wiki/Hr:Beginners%27_guide
     help:
       url: https://help.openstreetmap.org/
       title: help.openstreetmap.org
@@ -1118,9 +1199,7 @@ hr:
           primary: Primarna cesta
           secondary: Sekundarna cesta
           unclassified: Nerazvrstana cesta
-          unsurfaced: Neasfaltirana cesta
           track: Neasfaltirani put
-          byway: Usputna staza
           bridleway: Staza za konje
           cycleway: Biciklistička staza
           footway: Pješačka staza
@@ -1144,7 +1223,6 @@ hr:
           golf: Golf teren
           park: Park
           resident: Stambeno područje
-          tourist: Turistička atrakcija
           common:
           - Travnjaci
           - livade
@@ -1174,7 +1252,6 @@ hr:
           tunnel: Iscrtkani rubovi = tunel
           bridge: Crni rubovi = most
           private: Privatni pristup
-          permissive: Pristup uz dozvolu
           destination: Pristup odredištu
           construction: Ceste u izgradnji
     richtext_area:
@@ -1425,7 +1502,7 @@ hr:
       title: Otvori račun
       no_auto_account_create: Nažalost nismo u mogućnosti automatski otvarati korisničke
         račune.
-      contact_webmaster: Molim kontaktirajte <a href="mailto:webmaster@openstreetmap.org">webmastera</a>
+      contact_webmaster: Molim kontaktirajte <a href="%{webmaster}">webmastera</a>
         da priredi za stvaranje korisničkog računa - pokušati ćemo se pozabaviti s
         ovime u najkraćem vremenu.
       license_agreement: Kada potvrdiš svoj račun trebati ćeš pristati na <a href="http://www.osmfoundation.org/wiki/License/Contributor_Terms">uvjete
@@ -1513,16 +1590,16 @@ hr:
         revoke:
           administrator: Opozovi pristup administatora
           moderator: Opozovi pristup moderatora
-      block_history: prikaži dobivene blokade
-      moderator_history: prikaži dane blokade
+      block_history: Aktivne blokade
+      moderator_history: Prikaži dane blokade
       comments: Komentari
-      create_block: blokiraj ovog korisnika
-      activate_user: aktiviraj ovog korisnika
-      deactivate_user: deaktiviraj ovog korisnika
-      confirm_user: potvrdi ovog korisnika
-      hide_user: sakrij ovog korisnika
-      unhide_user: otkrij ovog korisnika
-      delete_user: obriši ovog korisnika
+      create_block: Blokiraj ovog korisnika
+      activate_user: Aktiviraj ovog korisnika
+      deactivate_user: Deaktiviraj ovog korisnika
+      confirm_user: Potvrdi ovog korisnika
+      hide_user: Sakrij ovog korisnika
+      unhide_user: Otkrij ovog korisnika
+      delete_user: Obriši ovog korisnika
       confirm: Potvrdi
     popup:
       your location: Vaša lokacija
@@ -1596,14 +1673,14 @@ hr:
     confirm_resend:
       success: Poslali smo novu potvrdu na email %{email}, a čim potvrdiš svoj račun,
         moći ćeš početi kartirati.<br /><br />Ako koristiš antispam sustav koji šalje
-        potvrdu zahtjeva, molim te da provjeriš je li webmaster@openstreetmap.org
-        na tzv. "whitelisti", jer nismo u mogućnosti odgovarati na potvrde zahtjeva.
+        potvrdu zahtjeva, molim te da provjeriš je li %{sender} na tzv. "whitelisti",
+        jer nismo u mogućnosti odgovarati na potvrde zahtjeva.
       failure: Korisnik %{name} nije pronađen.
     confirm_email:
       heading: Potvrdi promjenu email adrese.
       press confirm button: Pritsni potvrdno dugme ispod i potvrdi novu email adresu.
       button: Potvrdi
-      success: Potvrđena je vaša email adresa, hvala za priključenje!
+      success: Promjena email adrese je potvrđena!
       failure: Email adresa je već potvrđena s ovim token-om.
     set_home:
       flash success: Lokacija doma uspješno snimljena.
@@ -1842,9 +1919,10 @@ hr:
       map_data_zoom_in_tooltip: Povećaj prikaz da vidiš podatke karte
     notes:
       new:
-        intro: Kako bi poboljšao/la kartu, informacije koje uneseš su prikazane drugim
-          doprinositeljima karte, zato jasno opiši nedostatak u komentaru i precizno
-          označi mjesto pomičući oznaku tvoje bilješke na točnu poziciju.
+        intro: Primjetili ste grešku ili nedostatak nečega? Javite ostalim kartografima
+          kako bismo to ispravili. Stavite oznaku na pravo mjesto i dodajte bilješku
+          s opisom problema. (Molimo ne unašajte osobne podatke ili podatke s karata
+          s autorskim pravima ili lista direktorija.)
         add: Dodaj bilješku
       show:
         anonymous_warning: Ova bilješka sadrži komentare anonimnih korisnika koje

@@ -6,8 +6,10 @@ defaults: &defaults
   copyright_owner: "OpenStreetMap and contributors"
   attribution_url: "http://www.openstreetmap.org/copyright"
   license_url: "http://opendatacommons.org/licenses/odbl/1-0/"
+  # Support email address
+  support_email: support@openstreetmap.org
   # Sender addresses for emails
-  email_from: "OpenStreetMap <webmaster@openstreetmap.org>"
+  email_from: "OpenStreetMap <support@openstreetmap.org>"
   email_return_path: "bounces@openstreetmap.org"
   # API version
   api_version: "0.6"
@@ -63,6 +65,8 @@ defaults: &defaults
   attachments_dir: ":rails_root/public/attachments"
   # Log file to use
   #log_path: ""
+  # Log file to use for logstash
+  #logstash_path: ""
   # List of memcache servers to use for caching
   #memcache_servers: []
   # Enable legacy OAuth 1.0 support
@@ -88,10 +92,23 @@ defaults: &defaults
     - ".*\\.google\\.ru/.*"
   # URL of Overpass instance to use for feature queries
   overpass_url: "//overpass-api.de/api/interpreter"
+  # Routing endpoints
+  graphhopper_url: "//graphhopper.com/api/1/route"
+  mapquest_directions_url: "//open.mapquestapi.com/directions/v2/route"
+  mapzen_valhalla_url: "//valhalla.mapzen.com/route"
+  osrm_url: "//router.project-osrm.org/viaroute"
   # External authentication credentials
   #google_auth_id: ""
   #google_auth_secret: ""
   #google_openid_realm: ""
+  #facebook_auth_id: ""
+  #facebook_auth_secret: ""
+  #windowslive_auth_id: ""
+  #windowslive_auth_secret: ""
+  # MapQuest authentication details
+  #mapquest_key: ""
+  # Mapzen authentication details
+  #mapzen_valhalla_key: ""
 
 development:
   <<: *defaults
@@ -107,3 +124,7 @@ test:
   google_auth_id: "dummy"
   google_auth_secret: "dummy"
   google_openid_realm: "https://www.openstreetmap.org"
+  facebook_auth_id: "dummy"
+  facebook_auth_secret: "dummy"
+  windowslive_auth_id: "dummy"
+  windowslive_auth_secret: "dummy"

@@ -5,6 +5,7 @@
 # Author: Armin1392
 # Author: BMRG14
 # Author: Baqeri
+# Author: Dalba
 # Author: Danialbehzadi
 # Author: Ebraminio
 # Author: Fatemi127
@@ -16,7 +17,9 @@
 # Author: Mjbmr
 # Author: Movyn
 # Author: Omidh
+# Author: Pirehelokan
 # Author: Reza1615
+# Author: Ruila
 # Author: Sahim
 # Author: Taha
 # Author: Wayiran
@@ -538,8 +541,10 @@ fa:
           plumber: لوله کش
           shoemaker: کفاش
           tailor: خیاط
+          "yes": فروشگاه قایق
         emergency:
           ambulance_station: ایستگاه آمبولانس
+          defibrillator: برگرداننده تپش قلب
           landing_site: محوطه فرود اضطراری
           phone: تلفن اضطراری
         highway:
@@ -644,11 +649,13 @@ fa:
           road: جاده منطقه
           village_green: روستای سبز
           vineyard: باغ انگوری
+          "yes": کاربری زمین
         leisure:
           beach_resort: تفریحگاه ساحلی
           bird_hide: محل مشاهده ی پرندگان
           club: باشگاه
           common: سرزمین مشترک
+          dog_park: پارک سگ
           fishing: منطقهٔ ماهی‌گیری
           fitness_centre: مرکز تناسب اندام
           fitness_station: ایستگاه تناسب اندام
@@ -663,6 +670,7 @@ fa:
           pitch: زمین ورزشی
           playground: زمین بازی
           recreation_ground: زمین تفریحی
+          resort: بازمرتب سازی
           sauna: سونا
           slipway: تعميرگاه دريايي
           sports_centre: مرکز ورزشی
@@ -673,8 +681,10 @@ fa:
           "yes": فراغت
         man_made:
           lighthouse: فانوس دریایی
+          pipeline: خط لوله
           tower: برج
           works: کارخانه
+          "yes": ساخت بشر
         military:
           airfield: فرودگاه نظامی
           barracks: پادگان
@@ -735,7 +745,8 @@ fa:
           travel_agent: آژانس مسافرتی
           "yes": دفتر
         place:
-          block: مسدود
+          allotments: سهم
+          block: بستن
           airport: فرودگاه
           city: شهر بزرگ
           country: کشور
@@ -1145,10 +1156,19 @@ fa:
       title: به OSM خوش آمدید
       description: با این آموزش ساده که در بر دارنده مبانی OpenStreetMap است آغاز
         کنید.
+    beginners_guide:
+      url: http://wiki.openstreetmap.org/wiki/Fa:Beginners%27_guide
+      title: راهنمای مبتدیان
     help:
       url: https://help.openstreetmap.org/
       title: help.openstreetmap.org
       description: یک سؤال بپرسید یا پاسخ ها را ببینید در سایت پرسش و پاسخ OSM.
+    mailing_lists:
+      title: فهرست ایمیل‌ها
+    irc:
+      title: IRC
+    switch2osm:
+      title: سویچ به OSM
     wiki:
       url: http://wiki.openstreetmap.org/
       title: wiki.openstreetmap.org
@@ -1176,6 +1196,7 @@ fa:
       شما داده ها را در روش های خاص تغییر دهید یا بسازید، شما باید نتایج را تحت همین
       مجوز توزیع کنید. <a href=''%{copyright_path}''>صفحه ی حق نشر و مجوز</a>  را
       برای راهنمایی ببینید.'
+    legal_title: قانونی
     partners_title: شرکای تجاری
   notifier:
     diary_comment_notification:
@@ -1406,9 +1427,7 @@ fa:
           primary: جادهٔ اصلی
           secondary: جاده دوم
           unclassified: جاده طبقه بندی نشده
-          unsurfaced: جاده ی ظاهر نشده
           track: پیگیری
-          byway: Byway
           bridleway: راه حیوان رو
           cycleway: راه دوچرخه
           footway: راه پیاده
@@ -1432,7 +1451,6 @@ fa:
           golf: زمین گلف
           park: پارک
           resident: منطقه مسکونی
-          tourist: جاذبه ی توریستی
           common:
           - عمومی
           - علفزار
@@ -1462,7 +1480,6 @@ fa:
           tunnel: پوشش خط چین شده = تونل
           bridge: پوشش سیاه = پل
           private: دسترسی شخصی
-          permissive: دسترسی مجاز
           destination: دسترسی به مقصد
           construction: جاده در دست ساخت
     richtext_area:
@@ -1722,6 +1739,22 @@ fa:
         آنرا مطرح کنید.
       auth failure: پوزش، با این اطلاعات نمی توان وارد شد.
       openid_logo_alt: ورود با OpenID
+      auth_providers:
+        openid:
+          title: ورود با OpenID
+          alt: ورود با نشانی OpenID
+        google:
+          title: ورود با گوگل
+          alt: ورود با OpenID گوگل
+        yahoo:
+          title: ورود با یاهو
+          alt: ورود با OpenID یاهو
+        wordpress:
+          title: ورود با وردپرس
+          alt: ورود با OpenID وردپرس
+        aol:
+          title: ورود با AOL
+          alt: ورود با OpenID AOL
     logout:
       title: خروج
       heading: خروج از OpenStreetMap
@@ -1759,15 +1792,19 @@ fa:
       license_agreement: وقتی ایمیلتان را تأیید کردید نیاز است که با <a href="http://www.osmfoundation.org/wiki/License/Contributor_Terms">شرایط
         همکاری</a> موافقت کنید.
       email address: 'آدرس ایمیل:'
-      confirm email address: 'تأیید آدرس ایمیل:'
+      confirm email address: 'تأیید نشانی ایمیل:'
       not displayed publicly: به عموم نشان داده نمیشود (<a href="http://wiki.openstreetmap.org/wiki/Privacy_Policy"
         title="wiki privacy policy including section on email addresses">حفظ حریم
         خصوصی</a>را ببینید)
       display name: 'نام نمایشی:'
       display name description: ' نام کاربری شما برای عموم نمایش داده شده. شما می
         توانید بعدا این مورد را در ترجیحات تغییر دهید.'
+      external auth: 'اعتبار طرف سوم:'
       password: 'کلمه عبور:'
       confirm password: 'تأیید گذرواژه:'
+      use external auth: استفاده از طرف سوم برای ورود
+      auth no password: با استفاده از طرف سوم نیازی به گذروآه نیست ولی هنوز نیاز به
+        اتصال به سرور آنهاست.
       continue: ثبت نام
       terms accepted: با تشکر  از پذیرش شرایط شرکت کنندگان تازه!
       terms declined: متاسفیم که تصمیم گرفتید شرایط شرکت کننده تازه را نپذیرید. برای
@@ -1852,7 +1889,7 @@ fa:
       moderator_history: بلوک های داده شده
       comments: نظرات
       create_block: بلوک کردن این کاربر
-      activate_user: فعال‌کردن این کاربر
+      activate_user: فعال کردن این کاربر
       deactivate_user: غیر فعال کردن این کاربر
       confirm_user: تأیید این کاربر
       hide_user: مخفی کردن این کاربر
@@ -1944,7 +1981,7 @@ fa:
         به هیچ درخواست تأییدی نیستیم.
       failure: کاربر %{name} یافت نشد.
     confirm_email:
-      heading: تأیید تغییر آدرس ایمیل
+      heading: تأیید تغییر نشانی ایمیل
       press confirm button: برای تأیید آدرس ایمیل جدیدتان دکمهٔ تأیید زیر را فشار
         دهید.
       button: تأیید
@@ -2105,6 +2142,8 @@ fa:
       heading: '%{block_on} توسط %{block_by} بلوک شده'
       time_future: در %{time} پایان می پذیرد
       time_past: به پایان رسیده %{time} قبل
+      created: ایجاد شده
+      ago: '%{time} پیش'
       status: وضعیت
       show: نمایش
       edit: ویرایش
@@ -2236,15 +2275,8 @@ fa:
         no_route: نتوانستیم بین آن دو مکان، مسیری بیابیم.
         no_place: متاسفیم - محل پیدا نشد.
       instructions:
-        continue_on: مستقیم به طرف
-        slight_right: به آرامی به سمت راست به طرف
-        turn_right: گردش به راست به طرف
-        turn_left: گردش به چپ به طرف
-        slight_left: به آرامی به سمت چپ به طرف
-        follow: دنبال‌کردن
-        start: شروع در انتهای
-        destination: ورود به مقصد
-        unnamed: (بی نام)
+        follow_without_exit: دنبال کن %{name}
+        unnamed: بی نام
         courtesy: جهت از %{link}
       time: مدت
     query:

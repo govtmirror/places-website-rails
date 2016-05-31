@@ -108,7 +108,7 @@ class Notifier < ActionMailer::Base
                           :title => "Re: #{comment.diary_entry.title}")
 
       mail :from => from_address(comment.user.display_name, "c", comment.id, comment.digest),
-           :to =>  comment.diary_entry.user.email,
+           :to => comment.diary_entry.user.email,
            :subject => I18n.t("notifier.diary_comment_notification.subject", :user => comment.user.display_name)
     end
   end
@@ -116,6 +116,12 @@ class Notifier < ActionMailer::Base
   def friend_notification(friend)
     with_recipient_locale friend.befriendee do
       @friend = friend
+      @viewurl = url_for(:host => SERVER_URL,
+                         :controller => "user", :action => "view",
+                         :display_name => @friend.befriender.display_name)
+      @friendurl = url_for(:host => SERVER_URL,
+                           :controller => "user", :action => "make_friend",
+                           :display_name => @friend.befriender.display_name)
 
       mail :to => friend.befriendee.email,
            :subject => I18n.t("notifier.friend_notification.subject", :user => friend.befriender.display_name)
@@ -130,17 +136,17 @@ class Notifier < ActionMailer::Base
       @owner = recipient == comment.note.author
       @event = comment.event
 
-      if comment.author
-        @commenter = comment.author.display_name
-      else
-        @commenter = I18n.t("notifier.note_comment_notification.anonymous")
-      end
+      @commenter = if comment.author
+                     comment.author.display_name
+                   else
+                     I18n.t("notifier.note_comment_notification.anonymous")
+                   end
 
-      if @owner
-        subject = I18n.t("notifier.note_comment_notification.#{@event}.subject_own", :commenter => @commenter)
-      else
-        subject = I18n.t("notifier.note_comment_notification.#{@event}.subject_other", :commenter => @commenter)
-      end
+      subject = if @owner
+                  I18n.t("notifier.note_comment_notification.#{@event}.subject_own", :commenter => @commenter)
+                else
+                  I18n.t("notifier.note_comment_notification.#{@event}.subject_other", :commenter => @commenter)
+                end
 
       mail :to => recipient.email, :subject => subject
     end
@@ -156,11 +162,11 @@ class Notifier < ActionMailer::Base
       @time = comment.created_at
       @changeset_author = comment.changeset.user.display_name
 
-      if @owner
-        subject = I18n.t("notifier.changeset_comment_notification.commented.subject_own", :commenter => @commenter)
-      else
-        subject = I18n.t("notifier.changeset_comment_notification.commented.subject_other", :commenter => @commenter)
-      end
+      subject = if @owner
+                  I18n.t("notifier.changeset_comment_notification.commented.subject_own", :commenter => @commenter)
+                else
+                  I18n.t("notifier.changeset_comment_notification.commented.subject_other", :commenter => @commenter)
+                end
 
       mail :to => recipient.email, :subject => subject
     end
@@ -169,14 +175,8 @@ class Notifier < ActionMailer::Base
   private
 
   def with_recipient_locale(recipient)
-    old_locale = I18n.locale
-
-    begin
-      I18n.locale = recipient.preferred_language_from(I18n.available_locales)
-
+    I18n.with_locale Locale.available.preferred(recipient.preferred_languages) do
       yield
-    ensure
-      I18n.locale = old_locale
     end
   end
 

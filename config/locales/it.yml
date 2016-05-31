@@ -2,14 +2,18 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Alessioz
+# Author: Alexmar983
 # Author: Bellazambo
 # Author: Beta16
 # Author: Darth Kule
 # Author: Davalv
 # Author: Davio
+# Author: Devid Farinelli
 # Author: Dieterdreist
 # Author: Efred
+# Author: Federico Mugnaini
 # Author: Frammm
+# Author: Fringio
 # Author: Gianfranco
 # Author: Isiond
 # Author: Kaitu
@@ -23,12 +27,15 @@
 # Author: Od1n
 # Author: Ontsed
 # Author: Paolopoz
+# Author: Purodha
 # Author: Raoli
 # Author: Ricordisamoa
 # Author: Rippitippi
+# Author: Ruila
 # Author: Shirayuki
 # Author: Simone
 # Author: SimoneSVC
+# Author: Tuxfuzz
 # Author: Ximo17
 # Author: ZioNicco
 ---
@@ -96,7 +103,7 @@ it:
         sender: Mittente
         title: Soggetto
         body: Corpo del messaggio
-        recipient: Recipiente
+        recipient: Destinatario
       user:
         email: Email
         active: Attivo
@@ -141,8 +148,8 @@ it:
       belongs_to: Autore
       node: Nodi (%{count})
       node_paginated: Nodi (%{x}-%{y} di %{count})
-      way: Ways (%{count})
-      way_paginated: Ways (%{x}-%{y} di %{count})
+      way: Percorsi (%{count})
+      way_paginated: Percorsi (%{x}-%{y} di %{count})
       relation: Relazioni (%{count})
       relation_paginated: Relazioni (%{x}-%{y} di %{count})
       comment: Commenti (%{count})
@@ -154,18 +161,18 @@ it:
       feed:
         title: Gruppo di modifiche %{id}
         title_comment: Gruppo di modifiche %{id} - %{comment}
-      join_discussion: Fai login per unirti alla discussione
+      join_discussion: Accedi per unirti alla discussione
       discussion: Discussione
     node:
       title: 'Nodo: %{name}'
       history_title: 'Cronologia nodo: %{name}'
     way:
-      title: 'Way: %{name}'
-      history_title: 'Cronologia way: %{name}'
+      title: 'Percorso: %{name}'
+      history_title: 'Cronologia percorso: %{name}'
       nodes: Nodi
       also_part_of:
-        one: parte di way %{related_ways}
-        other: parte di way %{related_ways}
+        one: parte del percorso %{related_ways}
+        other: parte dei percorsi %{related_ways}
     relation:
       title: 'Relazione: %{name}'
       history_title: 'Cronologia relazione: %{name}'
@@ -186,6 +193,7 @@ it:
         way: percorso
         relation: relazione
         changeset: gruppo di modifiche
+        note: nota
     timeout:
       sorry: Ci rincresce, il reperimento di dati per %{type} con id %{id} ha richiesto
         troppo tempo.
@@ -194,6 +202,7 @@ it:
         way: percorso
         relation: relazione
         changeset: gruppo di modifiche
+        note: nota
     redacted:
       redaction: Redazione %{id}
       message_html: La versione %{version} di questo %{type} non può essere mostrata
@@ -237,7 +246,7 @@ it:
         fa</abbr>
       hidden_by: Nascosta da %{user} <abbr title='%{exact_time}'>%{when} fa</abbr>
     query:
-      title: Funzionalità di query
+      title: Ricerca di elementi
       introduction: Clicca sulla cartina per disponibilità nei pressi.
       nearby: Disponibilità nei pressi
       enclosing: Elementi interni
@@ -282,6 +291,7 @@ it:
   diary_entry:
     new:
       title: Nuova voce del diario
+      publish_button: Pubblica
     list:
       title: Diari degli utenti
       title_friends: Diari degli amici
@@ -310,7 +320,7 @@ it:
       user_title: Diario dell'utente %{user}
       leave_a_comment: Lascia un commento
       login_to_leave_a_comment: '%{login_link} per lasciare un commento'
-      login: Login
+      login: Accedi
       save_button: Salva
     no_such_entry:
       title: Nessuna voce del diario
@@ -472,7 +482,7 @@ it:
           ferry_terminal: Terminal traghetti
           fire_hydrant: Pompa antincendio
           fire_station: Vigili del fuoco
-          food_court: Food Court
+          food_court: Area ristorazione
           fountain: Fontana
           fuel: Stazione di rifornimento
           gambling: Gioco d'azzardo
@@ -490,7 +500,7 @@ it:
           motorcycle_parking: Parcheggio per Moto
           nightclub: Night Club
           nursery: Asilo nido
-          nursing_home: Asilo nido
+          nursing_home: Residenza sanitaria assistenziale
           office: Ufficio
           parking: Parcheggio
           parking_entrance: Entrata del parcheggio
@@ -513,9 +523,9 @@ it:
           shop: Negozio
           shower: Doccia
           social_centre: Centro sociale
-          social_club: Centro Sociale
+          social_club: Associazione
           social_facility: Struttura sociale
-          studio: Studio
+          studio: Studio audio/video
           swimming_pool: Piscina
           taxi: Taxi
           telephone: Telefono pubblico
@@ -588,7 +598,7 @@ it:
           secondary_link: Strada secondaria
           service: Strada di servizio
           services: Stazione di servizio
-          speed_camera: Autovelox fissi
+          speed_camera: Autovelox fisso
           steps: Scala
           street_lamp: Lampione
           tertiary: Strada terziaria
@@ -803,7 +813,7 @@ it:
           spur: Diramazione ferroviaria breve
           station: Stazione ferroviaria
           stop: Fermata ferroviaria
-          subway: Stazione della metropolitana
+          subway: Metropolitana
           subway_entrance: Ingresso metropolitana
           switch: Punti ferroviari
           tram: Tramvia
@@ -827,7 +837,7 @@ it:
           chemist: Farmacia
           clothes: Negozio di abbigliamento
           computer: Negozio di computer
-          confectionery: Pasticceria
+          confectionery: Negozio di dolciumi
           convenience: Minimarket
           copyshop: Copisteria
           cosmetics: Negozio cosmetici
@@ -944,7 +954,7 @@ it:
         towns: Città
         places: Luoghi
     results:
-      no_results: Nessun risultato
+      no_results: Nessun risultato trovato
       more_results: Altri risultati
   layouts:
     logo:
@@ -1011,8 +1021,8 @@ it:
     legal_babble:
       title_html: Copyright e licenza
       intro_1_html: |-
-        OpenStreetMap è un <i>database aperto</i>, rilasciato in base alla licenza <a
-        href="http://opendatacommons.org/licenses/odbl/">Open Data Commons Open Database License</a> (ODbL).
+        OpenStreetMap<sup><a href="#trademarks">&reg;</a></sup> è <i>open data</i>, e i suoi dati sono distribuiti con licenza <a
+        href="http://opendatacommons.org/licenses/odbl/">Open Data Commons Open Database License</a> (ODbL) dalla <a href="http://osmfoundation.org/">OpenStreetMap Foundation</a> (OSMF).
       intro_2_html: "Sei libero di copiare, distribuire, trasmettere e adattare i
         nostri dati, finché lo attribuisci a OpenStreetMap e ai suoi contributori.
         Se alteri o ti basi sui nostri dati,\npuoi distribuire il risultato solo sotto
@@ -1034,10 +1044,10 @@ it:
         alt: Esempio di come attribuire ad OpenStreetMap su una pagina web
         title: Esempio di attribuzione
       more_title_html: Per saperne di più
-      more_1_html: |-
-        Per saperne di più su come utilizzare i nostri dati, e come accreditarci, consulta
-        le <a href="http://wiki.openstreetmap.org/wiki/Legal_FAQ">Domande
-        legali frequenti</a>.
+      more_1_html: Per saperne di più su come utilizzare i nostri dati e come citarne
+        correttamente la fonte, consulta la pagina sulla <a href="http://osmfoundation.org/Licence">Licenza
+        OSMF</a> e le <a href="http://wiki.openstreetmap.org/wiki/Legal_FAQ">Domande
+        legali frequenti</a> della community.
       more_2_html: |-
         Anche se i dati OpenStreetMap sono aperti, non possiamo fornire accesso alle API della mappa gratuitamente per gli sviluppatori di terze parti.
         Vedi la nostra <a href="http://wiki.openstreetmap.org/wiki/API_usage_policy">Politica di utilizzo delle API</a>, la
@@ -1073,6 +1083,11 @@ it:
       contributors_nz_html: |-
         <strong>Nuova Zelanda</strong>: contiene i dati provenienti dalla
         Land Information New Zealand. Crown Copyright reserved.
+      contributors_si_html: |-
+        <strong>Slovenia</strong>: Contiene dati dell'
+        <a href="http://www.gu.gov.si/en/">Autorità per il Rilievo e la Mappatura</a> e del
+        <a href="http://www.mkgp.gov.si/en/">Ministero dell' Agricoltura, delle foreste e dell'alimentazione</a>
+        (informazioni pubbliche della Slovenia).
       contributors_za_html: |-
         <strong>Sud Africa</strong>: contiene i dati provenienti dalla
         <a href="http://www.ngi.gov.za/">Chief Directorate:
@@ -1098,6 +1113,11 @@ it:
         Se ritieni che materiale protetto da copyright sia stato impropriamente aggiunto al database di OpenStreetMap o a questo sito, consulta la nostra
          <a href="http://www.osmfoundation.org/wiki/License/Takedown_procedure">procedura di rimozione per violazione del copyright</a> o segnalacelo direttamente alla nostra
         <a href="http://dmca.openstreetmap.org/">pagina di segnalazione on-line</a>.
+      trademarks_title_html: <span id="trademarks"></span>Marchi registrati
+      trademarks_1_html: OpenStreetMap ed il logo con la lente d'ingrandimento sono
+        marchi registrati della Fondazione OpenStreetMap. Se avete domande sull'uso
+        dei marchi, inviatele al <a href="http://wiki.osmfoundation.org/wiki/Licensing_Working_Group">gruppo
+        di lavoro per le licenze</a>.
   welcome_page:
     title: Benvenuto!
     introduction_html: Benvenuti in OpenStreetMap, la mappa del mondo libera e modificabile.
@@ -1124,6 +1144,14 @@ it:
         un fiume, lago o edificio.
       tag_html: Un <strong>tag</strong> include alcuni dati su un punto o una strada,
         come il nome di un ristorante o i limiti di velocità di una strada.
+    rules:
+      title: Regole!
+      paragraph_1_html: "OpenStreetMap ha poche regole formali, ma ci aspettiamo che
+        tutti i partecipanti collaborino\ncon, e comunichino con la comunità. Se stai
+        considerando qualsiasi attività di editing manuale, sei <a href='http://wiki.openstreetmap.org/wiki/Automated_Edits_code_of_conduct'>pregato
+        di leggere e seguire le indicazioni \n<a href=\"http://wiki.openstreetmap.org/wiki/Import/Guidelines\">Le
+        importazioni</a> e \n<a href=\"http://wi</a>ki.openstreetmap.org/wiki/Automated_Edits_code_of_conduct\">Automatizzato
+        Modifiche</a>."
     questions:
       title: Domande?
       paragraph_1_html: |-
@@ -1166,13 +1194,32 @@ it:
       gli argomenti di mappatura.
     welcome:
       url: /welcome
-      title: Benvenuti a OSM
+      title: Benvenuti in OSM
       description: Inizia con questa guida rapida che copre le basi di OpenStreetMap.
+    beginners_guide:
+      url: http://wiki.openstreetmap.org/wiki/IT:Beginners%27_guide
+      title: Guida per Principianti
+      description: Guida per i principianti gestita dalla community.
     help:
       url: https://help.openstreetmap.org/
       title: help.openstreetmap.org
       description: Fai una domanda o cerca risposte sul sito di domande e risposte
         di OSM.
+    mailing_lists:
+      title: Mailing List
+      description: Poni la tua domanda o discuti questioni di interesse su una vasta
+        gamma di mailing list tematiche o regionali.
+    forums:
+      title: Forum
+      description: Domande e discussioni per coloro che preferiscono un'interfaccia
+        in stile bacheca (BBS).
+    irc:
+      title: IRC
+      description: Chat interattiva in molte lingue diverse e su molti argomenti.
+    switch2osm:
+      title: switch2osm
+      description: Aiuto per imprese e organizzazioni che intendono migrare a mappe
+        e altri servizi basati su OpenStreetMap.
     wiki:
       url: http://wiki.openstreetmap.org/
       title: wiki.openstreetmap.org
@@ -1180,8 +1227,8 @@ it:
   about_page:
     next: Successivo
     copyright_html: <span>&copy;</span>OpenStreetMap<br>contributors
-    used_by: '%{name} fornisce dati geografici su centinaia di siti web, app mobili
-      e dispositivi hardware'
+    used_by: '%{name} fornisce dati geografici su migliaia di siti web, applicazioni
+      mobili e dispositivi hardware'
     lede_text: OpenStreetMap è costruito da una comunità di mappatori che contribuiscono
       e mantengono i dati sulle strade, sentieri, caffè, stazioni ferroviarie e molto
       altro ancora, in tutto il mondo.
@@ -1202,6 +1249,12 @@ it:
       o sviluppi sulla base dei dati in un certo modo, puoi distribuire il risultato
       solo mediante la stessa licenza. Consultare la <a href=''%{copyright_path}''>pagina
       Copyright e Licenza</a> per i dettagli.'
+    legal_title: Note legali
+    legal_html: "Questo sito e molti altri servizi correlati sono formalmente gestiti
+      dalla \n<a href=\"http://osmfoundation.org/\">OpenStreetMap Foundation</a> (OSMF)
+      \nper conto della comunità.\n<br> \nSi prega di <a href=\"http://osmfoundation.org/Contact\">contattare
+      la OSMF</a> \nin caso di dubbi e problemi di licenza, copyright o altre questioni
+      legali."
     partners_title: Partner
   notifier:
     diary_comment_notification:
@@ -1369,9 +1422,9 @@ it:
         di questi %{people_mapping_nearby_link}?
       people_mapping_nearby: persone che mappano nelle vicinanze
     reply:
-      wrong_user: Sei loggato come `%{user}', ma il messaggio al quale hai chiesto
-        di rispondere non era diretto a quell'utente. Se vuoi rispondere, per favore
-        loggati con l'utenza interessata.
+      wrong_user: Hai effettuato l'accesso come '%{user}', ma il messaggio al quale
+        hai chiesto di rispondere non era diretto a quell'utente. Se vuoi rispondere,
+        per favore accedi con l'utenza interessata.
     read:
       title: Leggi messaggio
       from: Da
@@ -1381,9 +1434,9 @@ it:
       unread_button: Segna come non letto
       back: Indietro
       to: A
-      wrong_user: Sei loggato come `%{user}', ma il messaggio che hai chiesto di leggere
-        non era diretto a quell'utente. Se vuoi leggerlo, per favore loggati con l'utenza
-        interessata.
+      wrong_user: Hai effettuato l'accesso come '%{user}', ma il messaggio che hai
+        chiesto di leggere non era diretto a quell'utente. Se vuoi leggerlo, per favore
+        accedi con l'utenza interessata.
     sent_message_summary:
       delete_button: Cancella
     mark:
@@ -1439,13 +1492,12 @@ it:
       table:
         entry:
           motorway: Autostrada
+          main_road: Strada principale
           trunk: Superstrada
           primary: Strada primaria
           secondary: Strada secondaria
           unclassified: Strada non classificata
-          unsurfaced: Strada non pavimentata
           track: Strada forestale o agricola
-          byway: Byway (UK)
           bridleway: Percorso per equitazione
           cycleway: Pista Ciclabile
           footway: Percorso pedonale
@@ -1469,7 +1521,6 @@ it:
           golf: Campo da golf
           park: Parco
           resident: Zona residenziale
-          tourist: Attrazione turistica
           common:
           - Area comune
           - prato
@@ -1499,7 +1550,6 @@ it:
           tunnel: Linea tratteggiata = tunnel
           bridge: Quadrettatura nera = ponte
           private: Accesso privato
-          permissive: Accesso permissivo
           destination: Servitù di passaggio
           construction: Strade in costruzione
     richtext_area:
@@ -1664,6 +1714,7 @@ it:
       allow_read_gpx: Visualizza i tuoi tracciati GPS
       allow_write_gpx: carica tracciati GPS.
       allow_write_notes: modificare le note.
+      grant_access: Concedi l'accesso
     oauthorize_success:
       title: Richiesta di autorizzazione consentita
       allowed: Hai consentito l'accesso all'applicazione %{app_name} al tuo account.
@@ -1748,6 +1799,7 @@ it:
       register now: Registrati ora
       with username: 'Possiedi già un profilo OpenStreetMap? Entra con il tuo nome
         utente e password:'
+      with external: In alternativa, effettua l'accesso tramite terze parti
       new to osm: Sei nuovo su OpenStreetMap?
       to make changes: Per apportare modifiche ai dati di OpenStreetMap, è necessario
         disporre di un account.
@@ -1761,6 +1813,28 @@ it:
         di attività sospette.<br />Se desideri discuterne, puoi contattare il <a href="%{webmaster}">webmaster</a>.
       auth failure: Spiacenti, non si può accedere con questi dettagli.
       openid_logo_alt: Accedi con un OpenID
+      auth_providers:
+        openid:
+          title: Accedi con OpenID
+          alt: Accedi con un URL OpenID
+        google:
+          title: Accedi con Google
+          alt: Accedi con un OpenID di Google
+        facebook:
+          title: Accedi con Facebook
+          alt: Accedi con un Account Facebook
+        windowslive:
+          title: Accedi con Windows Live
+          alt: Accedi con un Account Windows Live
+        yahoo:
+          title: Accedi con Yahoo
+          alt: Accedi con un OpenID di Yahoo
+        wordpress:
+          title: Accedi con Wordpress
+          alt: Accedi con un OpenID di Wordpress
+        aol:
+          title: Accedi con AOL
+          alt: Accedi con un OpenID di AOL
     logout:
       title: Esci
       heading: Esci da OpenStreetMap
@@ -1790,8 +1864,8 @@ it:
       title: Registrati
       no_auto_account_create: Sfortunatamente in questo momento non è possibile creare
         automaticamente per te un profilo.
-      contact_webmaster: Si prega di contattare il <a href="mailto:webmaster@openstreetmap.org">webmaster</a>
-        affinchè faccia in modo di creare un profilo. Tenteremo di soddisfare la richiesta
+      contact_webmaster: Si prega di contattare il <a href="%{webmaster}">webmaster</a>
+        affinché faccia in modo di creare un profilo. Tenteremo di soddisfare la richiesta
         il più rapidamente possibile.
       about:
         header: Libero ed editabile
@@ -1809,8 +1883,13 @@ it:
       display name: 'Nome visualizzato:'
       display name description: Il proprio nome utente visualizzato pubblicamente.
         Può essere modificato più tardi nelle preferenze.
+      external auth: 'Autenticazione tramite terze parti:'
       password: 'Password:'
       confirm password: 'Conferma password:'
+      use external auth: In alternativa, effettua l'accesso tramite terze parti
+      auth no password: Con l'autenticazione tramite terze parti non è richiesta una
+        password, ma alcuni strumenti o server aggiuntivi potrebbero ancora averne
+        bisogno.
       continue: Registrati
       terms accepted: Grazie di aver accettato le nuove regole per contribuire!
       terms declined: Siamo spiacenti che tu abbia deciso di non accettare i nuovi
@@ -1841,6 +1920,7 @@ it:
       heading: L'utente %{user} non esiste
       body: Spiacenti, non c'è alcun utente con il nome %{user}. Controllare la digitazione,
         o che il collegamento sul quale hai cliccato non sia errato.
+      deleted: cancellato
     view:
       my diary: Il mio diario
       new diary entry: nuova voce del diario
@@ -1893,16 +1973,16 @@ it:
         revoke:
           administrator: Revoca l'accesso come amministratore
           moderator: Revoca l'accesso come moderatore
-      block_history: blocchi ricevuti
-      moderator_history: blocchi applicati
+      block_history: Blocchi attivi
+      moderator_history: Blocchi applicati
       comments: Commenti
-      create_block: blocca questo utente
-      activate_user: attiva questo utente
-      deactivate_user: disattiva questo utente
-      confirm_user: conferma questo utente
-      hide_user: nascondi questo utente
-      unhide_user: mostra questo utente
-      delete_user: elimina questo utente
+      create_block: Blocca questo utente
+      activate_user: Attiva questo utente
+      deactivate_user: Disattiva questo utente
+      confirm_user: Conferma questo utente
+      hide_user: Nascondi questo utente
+      unhide_user: Mostra questo utente
+      delete_user: Cancella questo utente
       confirm: Conferma
       friends_changesets: gruppi di modifiche degli amici
       friends_diaries: note dei diari degli amici
@@ -1918,6 +1998,7 @@ it:
       current email address: 'Indirizzo e-mail attuale:'
       new email address: 'Nuovo indirizzo e-mail:'
       email never displayed publicly: (mai visualizzato pubblicamente)
+      external auth: 'Autenticazione Esterna:'
       openid:
         link: http://wiki.openstreetmap.org/wiki/IT:OpenID
         link text: che cos'è questo?
@@ -1989,16 +2070,17 @@ it:
       success: È stato spedito un nuovo messaggio di conferma all'indirizzo %{email}
         e non appena verrà confermato il proprio profilo si sarà in grado di mappare.<br
         /><br />Se si utilizzano dei filtri antispam che spediscono richieste di conferma
-        assicurarsi di inserire l'indirizzo webmaster@openstreetmap.org nella whitelist,
-        altrimenti non siamo in grado di rispondere ad alcuna richiesta di conferma.
+        assicurarsi di inserire l'indirizzo %{sender} nella whitelist, altrimenti
+        non siamo in grado di rispondere ad alcuna richiesta di conferma.
       failure: Utente %{name} non trovato.
     confirm_email:
       heading: Conferma una variazione di indirizzo email
       press confirm button: Premere sul pulsante di conferma sottostante per confermare
         il nuovo indirizzo email.
       button: Conferma
-      success: L'indirizzo email è stato confermato, grazie per l'iscrizione!
+      success: Confermato il cambio di indirizzo e-mail!
       failure: Un indirizzo email con questo codice è già stato confermato.
+      unknown_token: Questo codice di conferma è scaduto oppure non esiste.
     set_home:
       flash success: Posizione personale salvata con successo
     go_public:
@@ -2037,6 +2119,19 @@ it:
         a causa di \n  attività sospette. \n</p>\n<p>\n  Questa decisione sarà riesaminata
         a breve da un amministratore, oppure \n  se desideri discuterne puoi contattare
         il %{webmaster}.\n</p>"
+    auth_failure:
+      connection_failed: Connessione al provider di autenticazione non riuscita
+      invalid_credentials: Le credenziali di autenticazione non sono valide
+      no_authorization_code: Nessun codice di autorizzazione
+      unknown_signature_algorithm: Algoritmo di firma sconosciuto
+      invalid_scope: Ambito non valido
+    auth_association:
+      heading: Il tuo ID non è ancora associato ad un'utenza di OpenStreetMap.
+      option_1: Se sei nuovo su OpenStreetMap, crea una nuova utenza utilizzando il
+        modulo di seguito.
+      option_2: Se disponi già di un'utenza, puoi accedere ad essa utilizzando il
+        tuo nome utente e la password e quindi associare l'utenza con il tuo ID nelle
+        impostazioni.
   user_role:
     filter:
       not_an_administrator: Solo gli amministratori possono gestire i ruoli degli
@@ -2153,6 +2248,8 @@ it:
       heading: '%{block_on} bloccato da %{block_by}'
       time_future: Termina fra %{time}
       time_past: Terminato %{time} fa
+      created: Creato
+      ago: '%{time} fa'
       status: Stato
       show: Mostra
       edit: Modifica
@@ -2203,6 +2300,7 @@ it:
       link: Link o HTML
       long_link: Link
       short_link: Link breve
+      geo_uri: Geo URI
       embed: HTML
       custom_dimensions: Imposta dimensioni personalizzate
       format: 'Formato:'
@@ -2214,6 +2312,9 @@ it:
       center_marker: Centra la mappa sul marcatore
       paste_html: Incolla l'HTML per incorporarlo nel sito web
       view_larger_map: Visualizza mappa ingrandita
+      only_standard_layer: Solo il livello standard può essere esportato come immagine
+    embed:
+      report_problem: Segnala un problema
     key:
       title: Legenda
       tooltip: Legenda
@@ -2281,30 +2382,34 @@ it:
         mapquest_car: Auto (MapQuest)
         mapquest_foot: A piedi (MapQuest)
         osrm_car: Auto (OSRM)
-      directions: Direzioni
+        mapzen_bicycle: Bicicletta (Mapzen)
+        mapzen_car: Auto (Mapzen)
+        mapzen_foot: Piedi (Mapzen)
+      directions: Indicazioni
       distance: Distanza
       errors:
         no_route: Impossibile trovare un percorso fra questi due posti.
         no_place: Spiacenti, non è possibile trovare quel luogo.
       instructions:
-        continue_on: Prosegui
-        slight_right: Svolta leggermente a destra in
-        turn_right: Svolta a destra verso
-        sharp_right: Svolta bruscamente a destra in
-        uturn: Inversione ad U lungo
-        sharp_left: Svolta bruscamente a sinistra in
-        turn_left: Svolta a sinistra verso
-        slight_left: Svolta leggermente a sinistra in
-        via_point: (punto intermedio)
-        follow: Segui
-        roundabout: Alla rotatoria prendi
-        leave_roundabout: Esci dalla rotatoria
-        stay_roundabout: Rimani nella rotatoria
-        start: Inizia alla fine di
-        destination: Raggiungi la destinazione
-        against_oneway: Vai contro il senso unico in
-        end_oneway: Fine del senso unico in
-        unnamed: (senza nome)
+        continue_without_exit: Prosegui su %{name}
+        slight_right_without_exit: Svolta leggermente a destra in %{name}
+        turn_right_without_exit: Svolta a destra in %{name}
+        sharp_right_without_exit: Svolta tutto a destra in %{name}
+        uturn_without_exit: Effettua un'inversione a U lungo %{name}
+        sharp_left_without_exit: Svolta tutto a sinistra in %{name}
+        turn_left_without_exit: Svolta a sinistra in %{name}
+        slight_left_without_exit: Svolta leggermente a sinistra in %{name}
+        via_point_without_exit: (punto di passaggio)
+        follow_without_exit: Segui %{name}
+        roundabout_without_exit: Alla rotonda prendi %{name}
+        leave_roundabout_without_exit: Esci dalla rotonda - %{name}
+        stay_roundabout_without_exit: Rimani sulla rotonda - %{name}
+        start_without_exit: Inizia alla fine di %{name}
+        destination_without_exit: Raggiungi la destinazione
+        against_oneway_without_exit: Vai contro il senso unico in %{name}
+        end_oneway_without_exit: Fine del senso unico in %{name}
+        roundabout_with_exit: Alla rotonda prendi l'uscita n° %{exit} su %{name}
+        unnamed: senza nome
         courtesy: Indicazioni per gentile concessione di %{link}
       time: Tempo
     query:

@@ -32,6 +32,7 @@ module Potlatch2
     "fr" => "fr_FR",
     "fur" => "fur",
     "ga" => "ga",
+    "gd" => "gd",
     "gl" => "gl",
     "grc" => "grc",
     "he" => "he",
@@ -47,6 +48,7 @@ module Potlatch2
     "kn" => "kn",
     "ko" => "ko",
     "krc" => "krc",
+    "ksh" => "ksh",
     "ku-Latn" => "ku-latn",
     "ky" => "ky",
     "lb" => "lb",
@@ -71,6 +73,7 @@ module Potlatch2
     "ru" => "ru",
     "rue" => "rue",
     "sah" => "sah",
+    "scn" => "scn",
     "sk" => "sk",
     "sl" => "sl",
     "sq" => "sq",
@@ -90,5 +93,5 @@ module Potlatch2
     "yi" => "yi",
     "zh" => "zh_CN",
     "zh-TW" => "zh_TW"
-  }
+  }.freeze
 end

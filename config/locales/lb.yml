@@ -119,12 +119,14 @@ lb:
         way: Wee
         relation: Relatioun
         changeset: Set vun Ännerungen
+        note: Notiz
     timeout:
       type:
         node: Knuet
         way: Wee
         relation: Relatioun
         changeset: Set vun Ännerungen
+        note: Notiz
     redacted:
       type:
         node: Knuet
@@ -190,6 +192,8 @@ lb:
       commented_at_by_html: Viru(n) %{when} vum %{user} aktualiséiert
       full: Komplett Diskussioun
   diary_entry:
+    new:
+      publish_button: Verëffentlechen
     list:
       title: Blogge vun de Benotzer
     edit:
@@ -493,7 +497,7 @@ lb:
           miniature: Miniatur-Eisebunn
           proposed: Proposéiert Eisebunnslinn
           station: Gare (Eisebunn)
-          subway: Metro-Statioun
+          subway: Metro
           tram: Tram
         shop:
           antiques: Antiquitéitegeschäft
@@ -610,6 +614,8 @@ lb:
     title: Wëllkomm!
     whats_on_the_map:
       title: Wat ass op der Kaart
+    rules:
+      title: Regelen!
     questions:
       title: Nach Froen?
     add_a_note:
@@ -627,11 +633,19 @@ lb:
     welcome:
       url: /welcome
       title: Wëllkomm bäi OSM
+    beginners_guide:
+      url: http://wiki.openstreetmap.org/wiki/Beginners%27_guide
     help:
       url: https://help.openstreetmap.org/
       title: help.openstreetmap.org
       description: Stellt eng Fro oder kuckt no Äntwerten um OSM-Site mat de Froen
         an Äntwerten.
+    mailing_lists:
+      title: Mailing-Lëschten
+    forums:
+      title: Forumen
+    irc:
+      title: IRC
     wiki:
       url: http://wiki.openstreetmap.org/
       title: wiki.openstreetmap.org
@@ -639,6 +653,7 @@ lb:
     next: Weider
     local_knowledge_title: Lokaalt Wëssen
     open_data_title: Open Data
+    legal_title: Legal
     partners_title: Partner
   notifier:
     diary_comment_notification:
@@ -740,9 +755,9 @@ lb:
       table:
         entry:
           motorway: Autobunn
+          main_road: Haaptstrooss
           secondary: Niewestrooss
           unclassified: Net klasséiert Strooss
-          byway: Niewewee
           bridleway: Wee fir Päerd
           cycleway: Vëlospiste
           footway: Fousswee
@@ -756,7 +771,6 @@ lb:
           wood: Bësch
           golf: Golfterrain
           park: Park
-          tourist: Touristenattraktioun
           industrial: Industriezone
           lake:
           - Séi
@@ -878,6 +892,28 @@ lb:
       create account minute: Maacht e Benotzerkont. Et dauert nëmmen eng Minutt.
       no account: Hutt Dir kee Benotzerkont?
       openid_logo_alt: Alogge mat enger OpenID
+      auth_providers:
+        openid:
+          title: Alogge mat OpenID
+          alt: Alogge mat enger OpenID URL
+        google:
+          title: Alogge mat Google
+          alt: Alogge mat enger Google OpenID
+        facebook:
+          title: Mat Facebook aloggen
+          alt: Mat engem Facebook Benotzerkont aloggen
+        windowslive:
+          title: Mat Windows Live aloggen
+          alt: Mat engem Windows-Live Benotzerkont aloggen
+        yahoo:
+          title: Alogge mat Yahoo
+          alt: Alogge mat enger Yahoo OpenID
+        wordpress:
+          title: Alogge mat Wordpress
+          alt: Alogge mat enger Wordpress OpenID
+        aol:
+          title: Alogge mat AOL
+          alt: Alogge mat enger AOL OpenID
     logout:
       title: Ofmellen
       heading: Vun OpenStreetMap ofmellen
@@ -954,14 +990,15 @@ lb:
         revoke:
           administrator: Administrateur-Zougang ofhuelen
           moderator: Moderateursrechter ewechhuelen
+      block_history: Aktiv Spären
       comments: Bemierkungen
-      create_block: dëse Benotzer spären
-      activate_user: dëse Benotzer aktivéieren
-      deactivate_user: dëse Benotzer desaktivéieren
-      confirm_user: dëse Benotzer confirméieren
-      hide_user: dëse Benotzer verstoppen
-      unhide_user: dëse Benotzer net méi verstoppen
-      delete_user: dëse Benotzer läschen
+      create_block: Dëse Benotzer spären
+      activate_user: Dëse Benotzer aktivéieren
+      deactivate_user: Dëse Benotzer desaktivéieren
+      confirm_user: Dëse Benotzer confirméieren
+      hide_user: Dëse Benotzer verstoppen
+      unhide_user: Dëse Benotzer net méi verstoppen
+      delete_user: Dëse Benotzer läschen
       confirm: Confirméieren
     popup:
       friend: Frënn
@@ -1005,6 +1042,7 @@ lb:
     confirm_email:
       heading: Eng Ännerung vun enger E-Mailadress confirméieren
       button: Confirméieren
+      unknown_token: Dee Confirmatiouns-Code ass ofgelaf oder et gëtt en net.
     go_public:
       flash success: All Är Ännerunge sinn elo ëffentlech, an Dir däerft elo änneren.
     make_friend:
@@ -1022,11 +1060,16 @@ lb:
     list:
       title: Benotzer
       heading: Benotzer
-      confirm: Erausgesichte Benotzer confirméieren
-      hide: Erausgesichte Benotzer vrstoppen
+      confirm: Erausgesicht Benotzer confirméieren
+      hide: Erausgesicht Benotzer vrstoppen
       empty: Et goufe keng sou Benotzer fonnt
     suspended:
       webmaster: Webmaster
+    auth_failure:
+      no_authorization_code: Keen Autorisatiouns-Code
+    auth_association:
+      option_1: Wann Dir nei sidd bei OpenSrreetMap da leet w.e.g. e Benotzerkont
+        un andeem Dir de Formulaire hei drënner benotzt.
   user_role:
     filter:
       not_an_administrator: Nëmmen Administrateure kënnen d'Gestioun vun de Rolle
@@ -1087,6 +1130,7 @@ lb:
     show:
       title: '%{block_on} gespaart vum %{block_by}'
       heading: '%{block_on} gespaart vum %{block_by}'
+      ago: viru(n) %{time}}
       status: Status
       show: Weisen
       edit: Änneren
@@ -1106,6 +1150,7 @@ lb:
   javascripts:
     close: Zoumaachen
     share:
+      title: Deelen
       cancel: Ofbriechen
       image: Bild
       link: Link oder HTML
@@ -1117,6 +1162,8 @@ lb:
       download: Eroflueden
       short_url: Kuerz URL
       view_larger_map: Méi grouss Kaart weisen
+    embed:
+      report_problem: E Problem mellen
     map:
       locate:
         title: Weise wou ech sinn
@@ -1143,11 +1190,19 @@ lb:
         reactivate: Reaktivéieren
         comment: Bemierkung
     directions:
+      engines:
+        mapzen_bicycle: Vëlo (Mapzen)
       directions: Richtungen
       distance: Distanz
       instructions:
-        continue_on: Weider op
-        unnamed: (ouni Numm)
+        continue_without_exit: Virun op %{name}
+        sharp_right_without_exit: Schaarf riets op %{name}
+        sharp_left_without_exit: Schaarf lénks op %{name}
+        via_point_without_exit: (iwwer de Punkt)
+        roundabout_without_exit: Am Kreesverkéier huelt %{name}
+        leave_roundabout_without_exit: Aus dem Kreesverkéier erausgoen - %{name}
+        stay_roundabout_without_exit: Am Kreesverkéier bleiwen - %{name}
+        unnamed: Strooss ouni Numm
       time: Zäit
     query:
       way: Wee

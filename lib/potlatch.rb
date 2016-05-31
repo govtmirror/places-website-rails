@@ -24,15 +24,13 @@ module Potlatch
 
     # Return eight-byte double-precision float
     def self.getdouble(s)
-      a = s.read(8).unpack("G")			# G big-endian, E little-endian
+      a = s.read(8).unpack("G")	# G big-endian, E little-endian
       a[0]
     end
 
     # Return numeric array
     def self.getarray(s)
-      getlong(s).times.collect do
-        getvalue(s)
-      end
+      Array.new(getlong(s)) { getvalue(s) }
     end
 
     # Return object/hash
@@ -42,23 +40,23 @@ module Potlatch
         break if key == ""
         arr[key] = getvalue(s)
       end
-      s.getbyte		# skip the 9 'end of object' value
+      s.getbyte	# skip the 9 'end of object' value
       arr
     end
 
     # Parse and get value
     def self.getvalue(s)
       case s.getbyte
-      when 0 then return getdouble(s)			# number
-      when 1 then return s.getbyte			# boolean
-      when 2 then return getstring(s)			# string
-      when 3 then return getobject(s)			# object/hash
-      when 5 then return nil				# null
-      when 6 then return nil				# undefined
-      when 8 then s.read(4)				# mixedArray
-                  return getobject(s)			#  |
-      when 10 then return getarray(s)			# array
-      else         return nil				# error
+      when 0 then return getdouble(s)                  # number
+      when 1 then return s.getbyte                     # boolean
+      when 2 then return getstring(s)                  # string
+      when 3 then return getobject(s)                  # object/hash
+      when 5 then return nil                           # null
+      when 6 then return nil                           # undefined
+      when 8 then s.read(4)                            # mixedArray
+                  return getobject(s)                  #  |
+      when 10 then return getarray(s)                  # array
+      else         return nil                          # error
       end
     end
 
@@ -181,7 +179,7 @@ module Potlatch
       presetcategory = ""
       #	StringIO.open(txt) do |file|
       File.open("#{Rails.root}/config/potlatch/presets.txt") do |file|
-        file.each_line do|line|
+        file.each_line do |line|
           t = line.chomp
           if t =~ %r{(\w+)/(\w+)}
             presettype = $1
@@ -193,7 +191,7 @@ module Potlatch
             kv = $2
             presetnames[presettype][presetcategory].push(pre)
             presets[pre] = {}
-            kv.split(",").each do|a|
+            kv.split(",").each do |a|
               presets[pre][$1] = $2 if a =~ /^(.+)=(.*)$/
             end
           end
@@ -245,17 +243,17 @@ module Potlatch
       # Read auto-complete
       autotags = { "point" => {}, "way" => {}, "POI" => {} }
       File.open("#{Rails.root}/config/potlatch/autocomplete.txt") do |file|
-        file.each_line do|line|
+        file.each_line do |line|
           next unless line.chomp =~ %r{^([\w:]+)/(\w+)\s+(.+)$}
 
           tag = $1
           type = $2
           values = $3
-          if values == "-"
-            autotags[type][tag] = []
-          else
-            autotags[type][tag] = values.split(",").sort.reverse
-          end
+          autotags[type][tag] = if values == "-"
+                                  []
+                                else
+                                  values.split(",").sort.reverse
+                                end
         end
       end
 

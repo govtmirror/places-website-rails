@@ -98,7 +98,7 @@ class AmfController < ApplicationController
           result = startchangeset(*args)
         end
 
-        err = true if result[0] == -3  # If a conflict is detected, don't execute any more writes
+        err = true if result[0] == -3 # If a conflict is detected, don't execute any more writes
       end
 
       result
@@ -151,7 +151,7 @@ class AmfController < ApplicationController
         cs = Changeset.find(closeid.to_i)
         cs.set_closed_time_now
         if cs.user_id != user.id
-          fail OSM::APIUserChangesetMismatchError.new
+          raise OSM::APIUserChangesetMismatchError.new
         elsif closecomment.empty?
           cs.save!
         else
@@ -189,12 +189,14 @@ class AmfController < ApplicationController
   def getpresets(usertoken, lang) #:doc:
     user = getuser(usertoken)
 
-    if user && !user.languages.empty?
-      http_accept_language.user_preferred_languages = user.languages
-    end
+    langs = if user && !user.languages.empty?
+              Locale.list(user.languages)
+            else
+              Locale.list(http_accept_language.user_preferred_languages)
+            end
 
-    lang = http_accept_language.compatible_language_from(getlocales)
-    (real_lang, localised) = getlocalized(lang)
+    lang = getlocales.preferred(langs)
+    (real_lang, localised) = getlocalized(lang.to_s)
 
     # Tell Potlatch what language it's using
     localised["__potlatch_locale"] = real_lang
@@ -469,11 +471,11 @@ class AmfController < ApplicationController
       return -1, t("application.setup_user_auth.blocked") if user.blocks.active.exists?
 
       query = Trace.visible_to(user)
-      if searchterm.to_i > 0
-        query = query.where(:id => searchterm.to_i)
-      else
-        query = query.where("MATCH(name) AGAINST (?)", searchterm).limit(21)
-      end
+      query = if searchterm.to_i > 0
+                query.where(:id => searchterm.to_i)
+              else
+                query.where("MATCH(name) AGAINST (?)", searchterm).limit(21)
+              end
       gpxs = query.collect do |gpx|
         [gpx.id, gpx.name, gpx.description]
       end
@@ -527,7 +529,7 @@ class AmfController < ApplicationController
   # 3. version.
 
   def putrelation(renumberednodes, renumberedways, usertoken, changeset_id, version, relid, tags, members, visible) #:doc:
-    amf_handle_error("'putrelation' #{relid}", "relation", relid)  do
+    amf_handle_error("'putrelation' #{relid}", "relation", relid) do
       user = getuser(usertoken)
 
       return -1, "You are not logged in, so the relation could not be saved." unless user
@@ -645,7 +647,7 @@ class AmfController < ApplicationController
           return -2, "Server error - node with id 0 found in way #{originalway}." if id == 0
           return -2, "Server error - node with latitude -90 found in way #{originalway}." if lat == 90
 
-          id = renumberednodes[id]  if renumberednodes[id]
+          id = renumberednodes[id] if renumberednodes[id]
 
           node = Node.new
           node.changeset_id = changeset_id
@@ -675,7 +677,7 @@ class AmfController < ApplicationController
 
         # -- Save revised way
 
-        pointlist.collect! do|a|
+        pointlist.collect! do |a|
           renumberednodes[a] ? renumberednodes[a] : a
         end # renumber nodes
         new_way = Way.new
@@ -866,15 +868,14 @@ class AmfController < ApplicationController
 
   def getuser(token) #:doc:
     if token =~ /^(.+)\:(.+)$/
-      user = User.authenticate(:username => $1, :password => $2)
+      User.authenticate(:username => $1, :password => $2)
     else
-      user = User.authenticate(:token => token)
+      User.authenticate(:token => token)
     end
-    user
   end
 
   def getlocales
-    Dir.glob("#{Rails.root}/config/potlatch/locales/*").collect { |f| File.basename(f, ".yml") }
+    @locales ||= Locale.list(Dir.glob("#{Rails.root}/config/potlatch/locales/*").collect { |f| File.basename(f, ".yml") })
   end
 
   ##

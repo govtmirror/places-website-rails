@@ -58,11 +58,11 @@ class BrowseController < ApplicationController
   def changeset
     @type = "changeset"
     @changeset = Changeset.find(params[:id])
-    if @user && @user.moderator?
-      @comments = @changeset.comments.unscope(:where => :visible).includes(:author)
-    else
-      @comments = @changeset.comments.includes(:author)
-    end
+    @comments = if @user && @user.moderator?
+                  @changeset.comments.unscope(:where => :visible).includes(:author)
+                else
+                  @changeset.comments.includes(:author)
+                end
     @node_pages, @nodes = paginate(:old_nodes, :conditions => { :changeset_id => @changeset.id }, :per_page => 20, :parameter => "node_page")
     @way_pages, @ways = paginate(:old_ways, :conditions => { :changeset_id => @changeset.id }, :per_page => 20, :parameter => "way_page")
     @relation_pages, @relations = paginate(:old_relations, :conditions => { :changeset_id => @changeset.id }, :per_page => 20, :parameter => "relation_page")
@@ -76,7 +76,14 @@ class BrowseController < ApplicationController
 
   def note
     @type = "note"
-    @note = Note.find(params[:id])
+
+    if @user && @user.moderator?
+      @note = Note.find(params[:id])
+      @note_comments = @note.comments.unscope(:where => :visible)
+    else
+      @note = Note.visible.find(params[:id])
+      @note_comments = @note.comments
+    end
   rescue ActiveRecord::RecordNotFound
     render :action => "not_found", :status => :not_found
   end

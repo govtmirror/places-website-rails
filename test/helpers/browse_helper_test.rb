@@ -23,6 +23,7 @@ class BrowseHelperTest < ActionView::TestCase
     assert_dom_equal "18", printable_name(nodes(:node_with_name_redacted_version))
     assert_dom_equal "<bdi>Test Node</bdi> (<bdi>18, v2</bdi>)", printable_name(nodes(:node_with_name_current_version), true)
     assert_dom_equal "18, v1", printable_name(nodes(:node_with_name_redacted_version), true)
+    assert_dom_equal "<bdi>3.1415926</bdi> (<bdi>19</bdi>)", printable_name(current_nodes(:node_with_ref_without_name))
 
     I18n.locale = "pt"
 
@@ -32,6 +33,7 @@ class BrowseHelperTest < ActionView::TestCase
     assert_dom_equal "18", printable_name(nodes(:node_with_name_redacted_version))
     assert_dom_equal "<bdi>Nó teste</bdi> (<bdi>18, v2</bdi>)", printable_name(nodes(:node_with_name_current_version), true)
     assert_dom_equal "18, v1", printable_name(nodes(:node_with_name_redacted_version), true)
+    assert_dom_equal "<bdi>3.1415926</bdi> (<bdi>19</bdi>)", printable_name(current_nodes(:node_with_ref_without_name))
 
     I18n.locale = "pt-BR"
 
@@ -41,6 +43,7 @@ class BrowseHelperTest < ActionView::TestCase
     assert_dom_equal "18", printable_name(nodes(:node_with_name_redacted_version))
     assert_dom_equal "<bdi>Nó teste</bdi> (<bdi>18, v2</bdi>)", printable_name(nodes(:node_with_name_current_version), true)
     assert_dom_equal "18, v1", printable_name(nodes(:node_with_name_redacted_version), true)
+    assert_dom_equal "<bdi>3.1415926</bdi> (<bdi>19</bdi>)", printable_name(current_nodes(:node_with_ref_without_name))
 
     I18n.locale = "de"
 
@@ -50,6 +53,7 @@ class BrowseHelperTest < ActionView::TestCase
     assert_dom_equal "18", printable_name(nodes(:node_with_name_redacted_version))
     assert_dom_equal "<bdi>Test Node</bdi> (<bdi>18, v2</bdi>)", printable_name(nodes(:node_with_name_current_version), true)
     assert_dom_equal "18, v1", printable_name(nodes(:node_with_name_redacted_version), true)
+    assert_dom_equal "<bdi>3.1415926</bdi> (<bdi>19</bdi>)", printable_name(current_nodes(:node_with_ref_without_name))
   end
 
   def test_link_class
@@ -187,6 +191,18 @@ class BrowseHelperTest < ActionView::TestCase
     link = wikipedia_link("wikipedia:fr", "de:Test")
     assert_equal "http://fr.wikipedia.org/wiki/de:Test?uselang=en", link[:url]
     assert_equal "de:Test", link[:title]
+
+    link = wikipedia_link("wikipedia", "de:Englischer Garten (München)#Japanisches Teehaus")
+    assert_equal "http://de.wikipedia.org/wiki/de:Englischer Garten (München)?uselang=en#Japanisches_Teehaus", link[:url]
+    assert_equal "de:Englischer Garten (München)#Japanisches Teehaus", link[:title]
+
+    link = wikipedia_link("wikipedia", "de:Alte Brücke (Heidelberg)#Brückenaffe")
+    assert_equal "http://de.wikipedia.org/wiki/de:Alte Brücke (Heidelberg)?uselang=en#Br.C3.BCckenaffe", link[:url]
+    assert_equal "de:Alte Brücke (Heidelberg)#Brückenaffe", link[:title]
+
+    link = wikipedia_link("wikipedia", "de:Liste der Baudenkmäler in Eichstätt#Brückenstraße 1, Ehemaliges Bauernhaus")
+    assert_equal "http://de.wikipedia.org/wiki/de:Liste der Baudenkmäler in Eichstätt?uselang=en#Br.C3.BCckenstra.C3.9Fe_1.2C_Ehemaliges_Bauernhaus", link[:url]
+    assert_equal "de:Liste der Baudenkmäler in Eichstätt#Brückenstraße 1, Ehemaliges Bauernhaus", link[:title]
 
     I18n.locale = "pt-BR"
 
